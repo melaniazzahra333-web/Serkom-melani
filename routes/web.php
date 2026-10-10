@@ -132,7 +132,7 @@ Route::get('/staf-guru/{id}', [GuruController::class, 'show'])->name('staf.guru.
 Route::get('/ekstrakurikuler', [EkstrakurikulerController::class, 'landing'])->name('ekstrakurikuler');
 Route::get('/ekstrakurikuler/{slug}', [EkstrakurikulerController::class, 'detail'])->name('ekstrakurikuler.detail');
 
-Route::get('/prestasi', [PrestasiController::class, 'landing'])->name('prestasi');Route::get('/prestasi', [PrestasiController::class, 'landing'])->name('prestasi');
+Route::get('/prestasi', [PrestasiController::class, 'landing'])->name('prestasi');
 Route::get('/prestasi/{id}', [PrestasiController::class, 'detail'])->name('prestasi.detail');
 
 Route::get('/pengumuman', [PengumumanController::class, 'landing'])->name('pengumuman');

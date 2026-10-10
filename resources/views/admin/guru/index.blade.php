@@ -20,29 +20,22 @@
         @endif
     </div>
 
-    <div class="card border-0 shadow-sm">
-        <div class="card-body p-0">
-            <div class="d-flex justify-content-between align-items-center p-3 border-bottom">
-                <div>
-                    <h5 class="fw-bold mb-1" style="color:#244D73;">Daftar Guru</h5>
-                    <small class="text-muted">Data guru yang terdaftar</small>
-                </div>
-
-                <div class="d-flex align-items-center gap-2">
-                    <form action="{{ route('admin.guru') }}" method="GET" class="d-flex">
-                        <div class="input-group">
-                            <span class="input-group-text bg-white"><i class="fa-solid fa-magnifying-glass text-muted"></i></span>
-                            <input type="text" name="search" class="form-control" placeholder="Cari guru..." value="{{ $search ?? '' }}">
-                        </div>
-                        @if($search)
-                        <a href="{{ route('admin.guru') }}" class="btn btn-secondary ms-2">Reset</a>
-                        @endif
-                    </form>
-
-                    <span class="badge rounded-pill" style="background:#C8DFDB;color:#3368A0;">{{ $gurus->count() }} Guru</span>
-                </div>
+    <div class="d-flex align-items-center gap-2 pb-3">
+        <form action="{{ route('admin.guru') }}" method="GET" class="d-flex">
+            <div class="input-group">
+                <span class="input-group-text bg-white"><i class="fa-solid fa-magnifying-glass text-muted"></i></span>
+                <input type="text" name="search" class="form-control" placeholder="Cari guru..." value="{{ $search ?? '' }}">
             </div>
+            @if($search)
+            <a href="{{ route('admin.guru') }}" class="btn btn-secondary ms-2">Reset</a>
+            @endif
+        </form>
 
+        <span class="badge rounded-pill" style="background:#C8DFDB;color:#3368A0;">{{ $gurus->count() }} Guru</span>
+    </div>
+
+    <div class="card border-0 shadow-sm ">
+        <div class="card-body p-0">
             <div class="table-responsive">
                 <table class="table table-hover align-middle mb-0">
                     <thead class="table-light">

@@ -20,13 +20,10 @@
             <span style="color:#777;font-size:14px;"> » Foto & Video</span>
         </div>
 
-        <div style="margin-bottom:35px;">
-            <div style="font-size:14px;letter-spacing:2px;color:#e99b00;">DOKUMENTASI KEGIATAN</div>
-            <h2 style="font-size:32px;font-weight:700;color:#005baa;margin-top:5px;">Galeri Sekolah</h2>
-            <p style="font-size:15px;color:#666;line-height:1.7;margin-top:12px;max-width:850px;">
-                Galeri sekolah menampilkan berbagai dokumentasi kegiatan dan momen berharga siswa selama proses pembelajaran dan pengembangan diri.
-            </p>
-            <div style="width:200px;height:4px;background:#e9a000;margin:14px 0 0;"></div>
+        <div>
+            <span style="font-size:13px;color:#e99b00;">DOKUMENTASI KEGIATAN</span>
+            <h2 style="font-size:25px; font-weight:bold; color:#005eab;">Galeri Sekolah</h2>
+            <hr style="width:190px;height:4px;background:#e58b00;">
         </div>
 
         <div class="row g-4">

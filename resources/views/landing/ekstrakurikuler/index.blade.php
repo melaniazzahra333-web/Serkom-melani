@@ -14,7 +14,7 @@
 
 @include('landing.navbar')
 
-<section style="padding:50px 0 60px;background:#fff;">
+<section style="padding:50px 0 60px;background:#fff; min-height:80vh;">
     <div class="container">
 
         <div style="padding-bottom:18px;border-bottom:1px solid #eee;margin-bottom:25px;">
@@ -22,9 +22,11 @@
             <span style="color:#777;font-size:14px;"> » Ekstrakurikuler</span>
         </div>
 
-        <h1 style="font-size:34px;font-weight:700;color:#333;margin-bottom:30px;" data-aos="fade-up">
-            Ekstrakurikuler
-        </h1>
+        <div>
+            <span style="font-size:13px;color:#e99b00;">PENGEMBANGAN MINAT & BAKAT</span>
+            <h2 style="font-size:25px; font-weight:bold; color:#005eab;">Ekstrakurikuler</h2>
+            <hr style="width:190px;height:4px;background:#e58b00;">
+        </div>
 
         <div class="row g-3">
 

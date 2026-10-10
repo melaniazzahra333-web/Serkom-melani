@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/landing.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+
 </head>
 
 <body>
@@ -23,20 +25,15 @@
                 <span style="color:#777;font-size:14px;"> » Prestasi Siswa</span>
             </div>
 
-            <!-- Judul -->
-            <div style="margin-bottom:35px;">
-                <div style="font-size:14px;letter-spacing:2px;color:#e99b00;">
-                    PRESTASI SEKOLAH
-                </div>
-
-                <h2 style="font-size:32px;font-weight:700;color:#005baa;margin-top:5px;">
-                    Prestasi Siswa
-                </h2>
-
-                <div style="width:200px;height:4px;background:#e9a000;margin:14px 0 0;"></div>
+            <div>
+                <span style="font-size:13px;color:#e99b00;">PRESTASI SEKOLAH</span>
+                <h2 style="font-size:25px; font-weight:bold; color:#005eab;"> Prestasi Siswa</h2>
+                <hr style="width:190px;height:4px;background:#e58b00;">
             </div>
 
-            <div class="row g-4">
+            
+
+            <div class="row g-4" data-aos="fade-up">
 
                 @forelse($prestasis as $prestasi)
 
@@ -46,16 +43,10 @@
 
                             @if($prestasi->foto)
                                 <img src="{{ asset('storage/'.$prestasi->foto) }}"
-                                     alt="Prestasi"
-                                     style="width:100%;height:250px;object-fit:cover;">
+                                     style="width:100%;height:400px;object-fit:cover;">
                             @endif
 
                             <div class="card-body">
-
-                                <h4 style="font-size:20px;font-weight:600;color:#005baa;">
-                                    <i class="fa-solid fa-trophy me-2"></i>
-                                    Prestasi
-                                </h4>
 
                                 <p style="font-size:15px;color:#555;line-height:1.7;">
                                     {{ $prestasi->deskripsi }}
@@ -91,6 +82,9 @@
     @include('landing.footer')
 
     <script src="{{ asset('assets/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+AOS.init({duration:800,once:true});
+</script>
 </body>
 </html>

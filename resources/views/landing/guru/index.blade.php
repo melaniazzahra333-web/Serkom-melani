@@ -19,16 +19,15 @@
     <div class="container">
 
         <!-- Breadcrumb -->
-        <div style="padding-bottom:18px;border-bottom:1px solid #eee;margin-bottom:30px;" data-aos="fade-down">
+        <div style="padding-bottom:18px;border-bottom:1px solid #eee;margin-bottom:30px;" >
             <a href="{{ url('/') }}" style="text-decoration:none;color:#333;font-size:14px;">Beranda</a>
             <span style="color:#777;font-size:14px;"> » Staf & Guru</span>
         </div>
 
-        <!-- Judul -->
-        <div style="margin-bottom:35px;" data-aos="fade-up">
-            <div style="font-size:14px;letter-spacing:2px;color:#e99b00;margin-bottom:8px;">TENAGA PENDIDIK</div>
-            <h2 style="font-size:32px;font-weight:700;color:#005baa;margin:0;">Staf & Guru</h2>
-            <div style="width:200px;height:4px;background:#e9a000;margin:14px 0;"></div>
+        <div>
+            <span style="font-size:13px;color:#e99b00;">TENAGA PENDIDIK</span>
+            <h2 style="font-size:25px; font-weight:bold; color:#005eab;">Staf & Guru</h2>
+            <hr style="width:190px;height:4px;background:#e58b00;">
         </div>
 
         <!-- Data Guru -->

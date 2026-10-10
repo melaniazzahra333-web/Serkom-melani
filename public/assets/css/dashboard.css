@@ -1,228 +1,294 @@
+/* ==========================================
+   1. PAGE HEADER
+   ================================          */
+
+/* Mengatur jarak bawah bagian header halaman */
 .page-header {
-    margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 
+/* Mengatur ukuran, ketebalan, dan warna judul halaman */
 .page-title {
-    font-size: 30px;
-    font-weight: 700;
-    color: #3368A0;
-    margin-bottom: 5px;
+  font-size: 30px;
+  font-weight: 700;
+  color: #3368A0;
+  margin-bottom: 5px;
 }
 
+/* Mengatur warna teks penjelas di bawah judul */
 .page-subtitle {
-    color: #66808F;
-    margin-bottom: 0;
+  color: #66808F;
+  margin: 0;
 }
 
+
+/* ==========================================
+   2. SCHOOL WELCOME CARD
+   ================================          */
+
+/* Mengatur tampilan kartu sambutan pada dashboard */
 .school-welcome-card {
-    position: relative;
-    overflow: hidden;
-    min-height: 250px;
-    padding: 35px;
-    border-radius: 20px;
-    background: #3368A0;
-    color: white;
+  position: relative; /* Menjadi acuan posisi elemen di dalam kartu */
+  overflow: hidden; /* Menyembunyikan elemen yang keluar dari kartu */
+  min-height: 250px; /* Mengatur tinggi minimum kartu */
+  padding: 35px; /* Memberikan ruang di dalam kartu */
+  border-radius: 20px; /* Membulatkan sudut kartu */
+  background: #3368A0; /* Memberikan latar biru */
+  color: #fff; /* Membuat teks berwarna putih */
 }
 
+/* Mengatur tampilan judul di dalam kartu sambutan */
 .school-welcome-card h2 {
-    margin-top: 20px;
-    font-size: 28px;
-    font-weight: 700;
+  margin: 20px 0 0; /* Mengatur jarak atas dan menghilangkan margin bawah */
+  font-size: 28px; /* Mengatur ukuran judul */
+  font-weight: 700; /* Membuat judul tebal */
 }
 
+/* Mengatur tampilan paragraf pada kartu sambutan */
 .school-welcome-card p {
-    max-width: 450px;
-    color: #EAF3F5;
-    margin: 15px 0 25px;
+  max-width: 450px; /* Membatasi lebar teks agar mudah dibaca */
+  color: #EAF3F5; /* Memberikan warna teks biru muda */
+  margin: 15px 0 25px; /* Mengatur jarak atas dan bawah paragraf */
 }
 
+/* Mengatur tampilan label atau badge sambutan */
 .welcome-badge {
-    display: inline-block;
-    padding: 7px 14px;
-    border-radius: 20px;
-    background: #C8DFDB;
-    color: #3368A0;
-    font-size: 13px;
-    font-weight: 600;
+  display: inline-block; /* Membuat badge berada dalam satu baris */
+  padding: 7px 14px; /* Memberikan ruang di dalam badge */
+  border-radius: 20px; /* Membulatkan sudut badge */
+  background: #C8DFDB; /* Memberikan latar hijau muda */
+  color: #3368A0; /* Memberikan warna tulisan biru */
+  font-size: 13px; /* Mengatur ukuran teks badge */
+  font-weight: 600; /* Membuat teks agak tebal */
 }
 
+/* Mengatur tampilan tombol pada kartu sambutan */
 .welcome-button {
-    display: inline-block;
-    padding: 11px 18px;
-    border-radius: 10px;
-    background: #C8DFDB;
-    color: #3368A0;
-    text-decoration: none;
-    font-weight: 600;
+  display: inline-block; /* Membuat link tampil seperti tombol */
+  padding: 11px 18px; /* Memberikan ruang di dalam tombol */
+  border-radius: 10px; /* Membulatkan sudut tombol */
+  background: #C8DFDB; /* Memberikan latar hijau muda */
+  color: #3368A0; /* Memberikan warna tulisan biru */
+  text-decoration: none; /* Menghilangkan garis bawah link */
+  font-weight: 600; /* Membuat tulisan tombol agak tebal */
 }
 
+/* Mengubah warna tombol ketika kursor diarahkan */
 .welcome-button:hover {
-    background: #F2EFE7;
-    color: #3368A0;
+  background: #F2EFE7; /* Mengubah latar tombol */
+  color: #3368A0; /* Mempertahankan warna tulisan biru */
 }
 
+/* Mengatur dekorasi ikon atau gambar besar pada kartu sambutan */
 .welcome-decoration {
-    position: absolute;
-    right: 25px;
-    bottom: -15px;
-    font-size: 130px;
-    color: rgba(255, 255, 255, 0.12);
+  position: absolute; /* Memungkinkan dekorasi ditempatkan secara bebas */
+  right: 25px; /* Mengatur jarak dari sisi kanan */
+  bottom: -15px; /* Menggeser dekorasi ke bagian bawah */
+  font-size: 130px; /* Memperbesar ukuran dekorasi */
+  color: rgba(255, 255, 255, .12); /* Membuat dekorasi putih transparan */
 }
 
+
+/* ==========================================
+   3. SCHOOL STAT CARD
+   ================================          */
+
+/* Mengatur tampilan kartu statistik sekolah */
 .school-stat-card {
-    background: #FFFFFF;
-    border: 1px solid #DCE8E6;
-    border-radius: 18px;
-    padding: 22px;
-    min-height: 115px;
+  background: #fff; /* Memberikan latar putih */
+  border: 1px solid #DCE8E6; /* Memberikan garis tepi tipis */
+  border-radius: 18px; /* Membulatkan sudut kartu */
+  padding: 22px; /* Memberikan ruang di dalam kartu */
+  min-height: 115px; /* Mengatur tinggi minimum kartu */
 }
 
+/* Mengatur bentuk dan tampilan ikon statistik */
 .school-stat-icon {
-    width: 45px;
-    height: 45px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 12px;
-    background: #C8DFDB;
-    color: #3368A0;
-    font-size: 20px;
-    margin-bottom: 12px;
+  width: 45px; /* Mengatur lebar ikon */
+  height: 45px; /* Mengatur tinggi ikon */
+  display: flex; /* Menggunakan flexbox untuk mengatur ikon */
+  align-items: center; /* Memusatkan ikon secara vertikal */
+  justify-content: center; /* Memusatkan ikon secara horizontal */
+  border-radius: 12px; /* Membulatkan sudut wadah ikon */
+  background: #C8DFDB; /* Memberikan latar hijau muda */
+  color: #3368A0; /* Memberikan warna ikon biru */
+  font-size: 20px; /* Mengatur ukuran ikon */
+  margin-bottom: 12px; /* Memberikan jarak di bawah ikon */
 }
 
+/* Mengatur ukuran, ketebalan, dan warna angka statistik */
 .school-stat-number {
-    font-size: 26px;
-    font-weight: 700;
-    color: #244D73;
+  font-size: 26px; /* Mengatur ukuran angka */
+  font-weight: 700; /* Membuat angka tebal */
+  color: #244D73; /* Memberikan warna biru gelap */
 }
 
+/* Mengatur ukuran dan warna nama statistik */
 .school-stat-title {
-    color: #66808F;
-    font-size: 14px;
+  font-size: 14px; /* Mengatur ukuran tulisan */
+  color: #66808F; /* Memberikan warna teks sekunder */
 }
 
+
+/* ==========================================
+   4. DASHBOARD CARD & HEADER
+   ================================          */
+
+/* Mengatur tampilan kartu pada dashboard */
 .dashboard-card {
-    background: #FFFFFF;
-    border: 1px solid #DCE8E6;
-    border-radius: 18px;
-    padding: 25px;
-    height: 100%;
+  height: 100%; /* Membuat kartu mengikuti tinggi wadah */
+  padding: 25px; /* Memberikan ruang di dalam kartu */
+  background: #fff; /* Memberikan latar putih */
+  border: 1px solid #DCE8E6; /* Memberikan garis tepi kartu */
+  border-radius: 18px; /* Membulatkan sudut kartu */
 }
 
+/* Menyusun judul kartu dan link secara sejajar */
 .dashboard-card-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 20px;
+  display: flex; /* Mengatur elemen dengan flexbox */
+  align-items: center; /* Menyejajarkan elemen secara vertikal */
+  justify-content: space-between; /* Memisahkan judul dan link */
+  margin-bottom: 20px; /* Memberikan jarak di bawah header kartu */
 }
 
+/* Mengatur tampilan judul kartu dashboard */
 .dashboard-card-header h3 {
-    margin: 0;
-    font-size: 18px;
-    font-weight: 700;
-    color: #244D73;
+  margin: 0; /* Menghilangkan margin bawaan judul */
+  font-size: 18px; /* Mengatur ukuran judul */
+  font-weight: 700; /* Membuat judul tebal */
+  color: #244D73; /* Memberikan warna biru gelap */
 }
 
+/* Mengatur tampilan link pada header kartu dashboard */
 .dashboard-card-header a {
-    color: #3368A0;
-    text-decoration: none;
-    font-size: 13px;
-    font-weight: 600;
+  color: #3368A0; /* Memberikan warna link biru */
+  text-decoration: none; /* Menghilangkan garis bawah link */
+  font-size: 13px; /* Mengatur ukuran link */
+  font-weight: 600; /* Membuat tulisan link agak tebal */
 }
 
+
+/* ==========================================
+   5. SCHOOL INFO ITEM
+   ================================          */
+
+/* Menyusun label dan nilai informasi sekolah dalam satu baris */
 .school-info-item {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    padding: 13px 0;
-    border-bottom: 1px solid #E9EFEF;
+  display: flex; /* Menyusun elemen secara fleksibel */
+  justify-content: space-between; /* Memisahkan label dan nilai */
+  gap: 20px; /* Memberikan jarak antara label dan nilai */
+  padding: 13px 0; /* Memberikan ruang atas dan bawah */
+  border-bottom: 1px solid #E9EFEF; /* Memberikan garis pemisah antar informasi */
 }
 
+/* Menghilangkan garis bawah pada informasi terakhir */
 .school-info-item:last-child {
-    border-bottom: none;
+  border-bottom: 0;
 }
 
+/* Mengatur ukuran dan warna teks label informasi sekolah */
 .school-info-item span {
-    color: #66808F;
-    font-size: 14px;
+  font-size: 14px; /* Mengatur ukuran teks */
+  color: #66808F; /* Memberikan warna teks sekunder */
 }
 
+/* Mengatur tampilan nilai informasi sekolah */
 .school-info-item strong {
-    color: #244D73;
-    text-align: right;
+  color: #244D73; /* Memberikan warna biru gelap */
+  text-align: right; /* Meratakan nilai ke kanan */
 }
 
-.guru-item,
+
+/* ==========================================
+   6. GURU & BERITA ITEM
+   ================================          */
+
+/* Menyusun item guru dan berita dengan ikon serta teks */
+.guru-item, 
 .berita-item {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    padding: 13px 0;
-    border-bottom: 1px solid #E9EFEF;
+  display: flex; /* Menyusun ikon dan informasi secara horizontal */
+  align-items: center; /* Menyejajarkan elemen secara vertikal */
+  gap: 15px; /* Memberikan jarak antara ikon dan teks */
+  padding: 13px 0; /* Memberikan ruang atas dan bawah */
+  border-bottom: 1px solid #E9EFEF; /* Memberikan garis pemisah antar item */
 }
 
-.guru-item:last-child,
+/* Menghilangkan garis bawah pada item guru atau berita terakhir */
+.guru-item:last-child, 
 .berita-item:last-child {
-    border-bottom: none;
+  border-bottom: 0;
 }
 
-.guru-icon,
+/* Mengatur bentuk dan tampilan ikon item guru dan berita */
+.guru-icon, 
 .berita-icon {
-    width: 43px;
-    height: 43px;
-    min-width: 43px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 11px;
-    background: #C8DFDB;
-    color: #3368A0;
-    font-size: 19px;
+  width: 43px; /* Mengatur lebar ikon */
+  height: 43px; /* Mengatur tinggi ikon */
+  min-width: 43px; /* Menjaga lebar ikon agar tidak mengecil */
+  display: flex; /* Menggunakan flexbox untuk ikon */
+  align-items: center; /* Memusatkan ikon secara vertikal */
+  justify-content: center; /* Memusatkan ikon secara horizontal */
+  border-radius: 11px; /* Membulatkan sudut wadah ikon */
+  background: #C8DFDB; /* Memberikan latar hijau muda */
+  color: #3368A0; /* Memberikan warna ikon biru */
+  font-size: 19px; /* Mengatur ukuran ikon */
 }
 
-.guru-info,
+/* Menyusun informasi guru dan berita secara vertikal */
+.guru-info, 
 .berita-info {
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
+  display: flex; /* Menggunakan flexbox untuk informasi */
+  flex-direction: column; /* Menyusun informasi dari atas ke bawah */
+  gap: 3px; /* Memberikan jarak antar teks */
 }
 
-.guru-info strong,
+/* Mengatur tampilan teks utama pada item guru dan berita */
+.guru-info strong, 
 .berita-info strong {
-    color: #244D73;
-    font-size: 14px;
+  font-size: 14px; /* Mengatur ukuran teks utama */
+  color: #244D73; /* Memberikan warna biru gelap */
 }
 
-.guru-info span,
+/* Mengatur tampilan teks tambahan pada item guru dan berita */
+.guru-info span, 
 .berita-info span {
-    color: #66808F;
-    font-size: 13px;
+  font-size: 13px; /* Mengatur ukuran teks tambahan */
+  color: #66808F; /* Memberikan warna teks sekunder */
 }
 
+
+/* ==========================================
+   7. QUICK MENU & UTILITIES
+   ================================          */
+
+/* Mengatur tampilan link menu cepat pada dashboard */
 .quick-menu {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 14px;
-    margin-bottom: 10px;
-    border-radius: 12px;
-    background: #F2EFE7;
-    color: #3368A0;
-    text-decoration: none;
+  display: flex; /* Menyusun ikon dan teks secara horizontal */
+  align-items: center; /* Menyejajarkan elemen secara vertikal */
+  gap: 12px; /* Memberikan jarak antar elemen */
+  padding: 14px; /* Memberikan ruang di dalam menu */
+  margin-bottom: 10px; /* Memberikan jarak di bawah setiap menu */
+  border-radius: 12px; /* Membulatkan sudut menu */
+  background: #F2EFE7; /* Memberikan latar krem muda */
+  color: #3368A0; /* Memberikan warna tulisan biru */
+  text-decoration: none; /* Menghilangkan garis bawah link */
 }
 
+/* Mengubah warna latar menu cepat ketika diarahkan */
 .quick-menu:hover {
-    background: #C8DFDB;
-    color: #3368A0;
+  background: #C8DFDB; /* Mengubah latar menjadi hijau muda */
+  color: #3368A0; /* Mempertahankan warna tulisan biru */
 }
 
+/* Membuat teks menu cepat mengisi ruang yang tersedia */
 .quick-menu span {
-    flex: 1;
-    font-weight: 600;
+  flex: 1; /* Memungkinkan teks menggunakan ruang kosong */
+  font-weight: 600; /* Membuat tulisan agak tebal */
 }
 
+/* Mengatur tampilan pesan ketika tidak ada data */
 .empty-data {
-    padding: 20px 0;
-    color: #66808F;
-    text-align: center;
+  padding: 20px 0; /* Memberikan ruang atas dan bawah */
+  color: #66808F; /* Memberikan warna teks sekunder */
+  text-align: center; /* Memusatkan teks */
 }

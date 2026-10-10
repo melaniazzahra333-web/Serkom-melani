@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all.min.css') }}">
 
     <!-- <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}"> -->
-    <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}?v=2">
+    <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}?v=4">
 
 </head>
 
@@ -207,7 +207,7 @@
                 <button class="btn-desktop-toggle d-none d-xl-flex align-items-center justify-content-center me-3" id="desktop-sidebar-toggle" aria-label="Minimize Sidebar">
                     <i class="bi bi-chevron-bar-left"></i>
                 </button>
-                <button class="sidebar-toggle-btn me-2" id="sidebar-toggle" aria-label="Toggle Navigation"><i class="bi bi-list"></i></button>
+                <!-- <button class="sidebar-toggle-btn me-2" id="sidebar-toggle" aria-label="Toggle Navigation"><i class="bi bi-list"></i></button> -->
             </div>
 
             <!-- NAVBAR ACTION -->
@@ -219,7 +219,6 @@
 
               
                 <!-- ADMIN PROFILE -->
-
                 <div class="dropdown ms-2">
                     <button class="navbar-profile-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 
@@ -241,7 +240,7 @@
                             {{ session('user_name', 'Administrator') }}
                         </span>
 
-                        <i class="bi bi-chevron-down navbar-profile-caret"></i>
+                        <!-- <i class="bi bi-chevron-down navbar-profile-caret"></i> -->
 
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-profile">

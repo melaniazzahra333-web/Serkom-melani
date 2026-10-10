@@ -6,22 +6,23 @@ use App\Models\Prestasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
+
 class PrestasiController extends Controller
 {
     public function index(Request $request)
     {
         $search = $request->search;
 
-        $prestasis = Prestasi::query()
-            ->when($search, function ($query) use ($search) {
-                $query->where('deskripsi', 'like', '%' . $search . '%')
-                    ->orWhere('tahun_ajaran', 'like', '%' . $search . '%');
-            })
-            ->latest()
-            ->get();
+        $prestasis = Prestasi::latest();
+
+        if ($search) {
+            $prestasis->where('deskripsi', 'like', "%$search%")
+                      ->orWhere('tahun_ajaran', 'like', "%$search%");
+        }
+
+        $prestasis = $prestasis->get();
 
         return view('admin.prestasi.index', compact('prestasis', 'search'));
-
     }
 
     public function create()
@@ -32,8 +33,8 @@ class PrestasiController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'deskripsi' => 'required|string',
-            'tahun_ajaran' => 'required|string|max:20',
+            'deskripsi' => 'required',
+            'tahun_ajaran' => 'required|max:20',
             'foto' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
 
@@ -43,7 +44,8 @@ class PrestasiController extends Controller
 
         Prestasi::create($data);
 
-        return redirect()->route('admin.prestasi')->with('success', 'Data prestasi berhasil ditambahkan.');
+        return redirect()->route('admin.prestasi')
+            ->with('success', 'Data prestasi berhasil ditambahkan.');
     }
 
     public function edit($id)
@@ -58,13 +60,12 @@ class PrestasiController extends Controller
         $prestasi = Prestasi::findOrFail($id);
 
         $data = $request->validate([
-            'deskripsi' => 'required|string',
-            'tahun_ajaran' => 'required|string|max:20',
+            'deskripsi' => 'required',
+            'tahun_ajaran' => 'required|max:20',
             'foto' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
 
         if ($request->hasFile('foto')) {
-
             if ($prestasi->foto) {
                 Storage::disk('public')->delete($prestasi->foto);
             }
@@ -74,7 +75,8 @@ class PrestasiController extends Controller
 
         $prestasi->update($data);
 
-        return redirect()->route('admin.prestasi')->with('success', 'Data prestasi berhasil diperbarui.');
+        return redirect()->route('admin.prestasi')
+            ->with('success', 'Data prestasi berhasil diperbarui.');
     }
 
     public function destroy($id)
@@ -87,22 +89,21 @@ class PrestasiController extends Controller
 
         $prestasi->delete();
 
-        return redirect()->route('admin.prestasi')->with('success', 'Data prestasi berhasil dihapus.');
+        return redirect()->route('admin.prestasi')
+            ->with('success', 'Data prestasi berhasil dihapus.');
     }
 
-public function landing()
-{
-    $prestasis = Prestasi::latest()->get();
+    public function landing()
+    {
+        $prestasis = Prestasi::latest()->get();
 
-    return view('landing.prestasi.index', [
-        'prestasis' => $prestasis
-    ]);
-}
+        return view('landing.prestasi.index', compact('prestasis'));
+    }
 
-public function detail($id)
-{
-    $prestasi = Prestasi::findOrFail($id);
-    return view('landing.prestasi.detail', compact('prestasi'));
-}
+    public function detail($id)
+    {
+        $prestasi = Prestasi::findOrFail($id);
 
+        return view('landing.prestasi.detail', compact('prestasi'));
+    }
 }

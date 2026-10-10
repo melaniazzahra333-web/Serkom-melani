@@ -41,3593 +41,1017 @@
    24. Transaction List Component
 --------------------------------------------------------------------- */
 
-/* ---------------------------------------------------------------------
-   1. Google Fonts CDN Import (Plus Jakarta Sans)
---------------------------------------------------------------------- */
+/* =========================================================
+   MAIN CSS
+   Login + Admin
+   ========================================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+/* =========================================================
+   1. DASAR & WARNA
+   ========================================================= */
+:root{
+    --bs-body-bg:#F2EFE7;
+    --bs-body-font-family:'Plus Jakarta Sans',sans-serif;
 
-/* ---------------------------------------------------------------------
-   2. Design System Variables
---------------------------------------------------------------------- */
-:root {
-    /* Colors */
-    --bs-body-bg: #F2EFE7;
-    --bs-body-font-family: 'Plus Jakarta Sans', sans-serif;
+    --brand-forest-dark:#3368A0;
+    --brand-forest-medium:#3368A0;
+    --brand-forest-light:#66A3BF;
 
-    --brand-forest-dark: #3368A0;
-    --brand-forest-medium: #3368A0;
-    --brand-forest-light: #66A3BF;
+    --brand-lime:#C8DFDB;
+    --brand-lime-hover:#66A3BF;
+    --brand-lime-translucent:rgba(102,163,191,.15);
 
-    --brand-lime: #C8DFDB;
-    --brand-lime-hover: #66A3BF;
-    --brand-lime-translucent: rgba(102, 163, 191, 0.15);
+    --text-main:#244D73;
+    --text-muted-green:#66808F;
+    --text-sidebar-muted:#DDEBE9;
 
-    --text-main: #244D73;
-    --text-muted-green: #66808F;
-    --text-sidebar-muted: #DDEBE9;
+    --card-background:#FFFFFF;
+    --border-light:#DCE8E6;
+    --border-dark-green:rgba(255,255,255,.15);
 
-    --card-background: #FFFFFF;
-    --border-light: #DCE8E6;
-    --border-dark-green: rgba(255, 255, 255, 0.15);
+    --sys-green:#22C55E;
+    --sys-red:#EF4444;
+    --sys-orange:#F97316;
 
-    /* System Colors */
-    --sys-green: #22C55E;
-    --sys-green-bg: #DCFCE7;
-    --sys-red: #EF4444;
-    --sys-red-bg: #FEE2E2;
-    --sys-orange: #F97316;
-    --sys-orange-bg: #FFEDD5;
+    /* WARNA YANG DIPAKAI CSS ADMIN */
+    --primary:#3368A0;
+    --primary-light:#3368A0;
+    --soft:#C8DFDB;
+    --muted:#66808F;
 
-    /* Layout Configurations */
-    --sidebar-width: 280px;
-    --navbar-height: 80px;
+    /* UKURAN */
+    --sidebar-width:280px;
+    --navbar-height:80px;
 
-    /* Border Radii */
-    --radius-xxl: 24px;
-    --radius-xl: 18px;
-    --radius-lg: 14px;
-    --radius-md: 10px;
-    --radius-sm: 6px;
+    --radius-xxl:24px;
+    --radius-xl:18px;
+    --radius-lg:12px;
+    --radius-md:10px;
+    --radius-sm:6px;
 
-    /* Box Shadows */
-    --shadow-sm: 0 2px 8px rgba(11, 19, 15, 0.02);
-    --shadow-md: 0 10px 30px rgba(11, 19, 15, 0.04);
-    --shadow-lg: 0 20px 50px rgba(11, 19, 15, 0.08);
+    --shadow-sm:0 2px 8px rgba(11,19,15,.04);
+    --shadow-md:0 10px 30px rgba(11,19,15,.06);
+    --shadow-lg:0 20px 50px rgba(11,19,15,.08);
 }
 
-/* ---------------------------------------------------------------------
-   3. Base Overrides & Typography
---------------------------------------------------------------------- */
-body {
-    background-color: var(--bs-body-bg);
-    color: var(--text-main);
-    font-family: var(--bs-body-font-family);
-    font-size: 0.925rem;
-    font-weight: 500;
-    -webkit-font-smoothing: antialiased;
-    letter-spacing: -0.01em;
+*{box-sizing:border-box}
+
+body{
+    margin:0;
+    font-family:var(--bs-body-font-family);
+    background:#F7F9FC;
+    color:#334155;
 }
 
-h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-    color: var(--text-main);
-    font-weight: 700;
-    letter-spacing: -0.025em;
+a{text-decoration:none}
+
+
+/* =========================================================
+   2. LOGIN
+   BAGIAN INI DIPERTAHANKAN
+   ========================================================= */
+
+.login-wrapper{
+    min-height:100vh; /* Membuat tinggi minimum mengikuti tinggi layar */
+    display:flex; /* Mengaktifkan tata letak flexbox */
+    align-items:center; /* Memusatkan card login secara vertikal */
+    justify-content:center; /* Memusatkan card login secara horizontal */
+    background-color:var(--bs-body-bg); /* Menggunakan warna latar dari variabel Bootstrap */
+    padding:1.5rem; /* Memberikan jarak antara isi dan tepi layar */
+    position:relative; /* Menjadi acuan posisi elemen di dalamnya */
+    overflow:hidden; /* Menyembunyikan elemen yang keluar dari area login */
 }
 
-a {
-    color: var(--brand-forest-medium);
-    text-decoration: none;
-    transition: all 0.25s ease-in-out;
-}
-a:hover {
-    color: var(--brand-lime-hover);
-}
-
-::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
-}
-::-webkit-scrollbar-track {
-    background: transparent;
-}
-::-webkit-scrollbar-thumb {
-    background: #CBD5E1;
-    border-radius: 10px;
-}
-::-webkit-scrollbar-thumb:hover {
-    background: #94A3B8;
+/* Mengatur bentuk dekorasi lingkaran di latar halaman login */
+.login-bg-shape{
+    position:absolute; /* Memungkinkan bentuk ditempatkan secara bebas */
+    width:300px; /* Mengatur lebar lingkaran */
+    height:300px; /* Mengatur tinggi lingkaran */
+    background:radial-gradient(circle,var(--brand-lime-translucent) 0%,rgba(180,241,5,0) 70%); /* Membuat gradasi dari warna hijau transparan ke transparan */
+    border-radius:50%; /* Membuat elemen berbentuk lingkaran */
+    pointer-events:none; /* Mencegah bentuk dekorasi menghalangi klik */
+    z-index:0; /* Menempatkan dekorasi di belakang card login */
 }
 
-/* ---------------------------------------------------------------------
-   4. Sidebar Component (.sidebar-wrapper)
-   Extremely dark sidebar layout
---------------------------------------------------------------------- */
-.sidebar-wrapper {
-    width: var(--sidebar-width);
-    background-color: var(--brand-forest-dark);
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1030;
-    display: flex;
-    flex-direction: column;
-    padding: 2rem 1.5rem;
-    border-right: 1px solid var(--border-dark-green);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+/* Mengatur posisi lingkaran dekorasi pertama di kiri atas */
+.login-bg-shape-1{top:-50px;left:-50px} /* Menggeser lingkaran ke atas dan ke kiri */
+
+/* Mengatur ukuran dan posisi lingkaran dekorasi kedua */
+.login-bg-shape-2{
+    bottom:-100px; /* Menggeser lingkaran melewati bagian bawah */
+    right:-50px; /* Menggeser lingkaran melewati sisi kanan */
+    width:400px; /* Memperbesar lebar lingkaran kedua */
+    height:400px; /* Memperbesar tinggi lingkaran kedua */
 }
 
-.sidebar-brand {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    font-size: 1.35rem;
-    font-weight: 700;
-    color: #FFFFFF;
-    margin-bottom: 2.5rem;
-    padding-left: 0.5rem;
-    text-decoration: none;
-    transition: color 0.25s ease;
+/* =========================
+   2. CARD LOGIN
+========================= */
+
+/* Mengatur tampilan kotak utama formulir login */
+.login-card{
+    background-color:var(--card-background); /* Mengatur warna latar card */
+    border:1px solid var(--border-light); /* Memberikan garis tepi tipis */
+    border-radius:var(--radius-xxl); /* Membulatkan sudut card */
+    padding:2.5rem; /* Memberikan ruang di dalam card */
+    width:100%; /* Membuat lebar card mengikuti area yang tersedia */
+    max-width:450px; /* Membatasi lebar maksimal card menjadi 450px */
+    box-shadow:var(--shadow-lg); /* Memberikan bayangan pada card */
+    z-index:1; /* Menempatkan card di depan dekorasi */
+    position:relative; /* Menjadi acuan posisi elemen di dalam card */
+    transition:transform .3s ease,box-shadow .3s ease; /* Menghaluskan perubahan posisi dan bayangan */
 }
 
-.sidebar-brand:hover {
-    color: #FFFFFF;
+/* Memberikan efek saat kursor diarahkan ke card login */
+.login-card:hover{
+    transform:translateY(-2px); /* Mengangkat card sedikit ke atas */
+    box-shadow:0 30px 60px rgba(11,19,15,.12); /* Memperbesar bayangan card */
 }
 
-.sidebar-brand i {
-    color: var(--brand-lime);
-    font-size: 1.5rem;
-    transition: transform 0.3s ease, color 0.3s ease;
+/* =========================
+   3. IDENTITAS BRAND LOGIN
+========================= */
+
+/* Mengatur tampilan nama atau identitas pada bagian login */
+.login-brand{
+    display:flex; /* Menyusun ikon dan tulisan secara fleksibel */
+    align-items:center; /* Menyejajarkan ikon dan tulisan secara vertikal */
+    justify-content:center; /* Memusatkan identitas secara horizontal */
+    gap:.75rem; /* Memberikan jarak antara ikon dan tulisan */
+    font-size:1.5rem; /* Mengatur ukuran tulisan identitas */
+    font-weight:800; /* Membuat tulisan sangat tebal */
+    color:var(--brand-forest-dark); /* Menggunakan warna utama gelap dari variabel */
+    margin-bottom:1.5rem; /* Memberikan jarak di bawah identitas */
+    text-decoration:none; /* Menghilangkan garis bawah jika identitas berupa link */
+    transition:color .3s ease; /* Menghaluskan perubahan warna tulisan */
 }
 
-.sidebar-brand:hover i {
-    transform: scale(1.1) rotate(90deg);
-    color: var(--brand-lime-hover);
+/* Mengatur ikon pada identitas login */
+.login-brand i{
+    color:var(--brand-forest-medium); /* Mengatur warna ikon */
+    font-size:1.75rem; /* Mengatur ukuran ikon */
+    animation:rotateLogo 15s linear infinite; /* Menjalankan animasi rotateLogo selama 15 detik secara berulang */
+    transition:color .3s ease; /* Menghaluskan perubahan warna ikon */
 }
 
-.sidebar-menu-section {
-    margin-bottom: 1.75rem;
+/* Mengubah warna identitas dan ikonnya ketika diarahkan */
+.login-brand:hover,.login-brand:hover i{color:var(--brand-lime-hover)} /* Menggunakan warna aksen saat hover */
+
+/* =========================
+   4. JUDUL DAN SUBJUDUL LOGIN
+========================= */
+
+/* Mengatur tampilan judul utama pada form login */
+.login-title{
+    font-size:1.5rem; /* Mengatur ukuran judul */
+    font-weight:800; /* Membuat judul sangat tebal */
+    color:var(--text-main); /* Menggunakan warna teks utama */
+    text-align:center; /* Memusatkan tulisan judul */
+    margin-bottom:.35rem; /* Memberikan jarak kecil di bawah judul */
 }
 
-.sidebar-menu-title {
-    font-size: 0.7rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--text-sidebar-muted);
-    padding-left: 0.75rem;
-    margin-bottom: 0.75rem;
-    opacity: 0.6;
+/* Mengatur tampilan teks pendukung di bawah judul login */
+.login-subtitle{
+    font-size:.875rem; /* Mengatur ukuran teks pendukung */
+    color:var(--text-muted-green); /* Menggunakan warna teks sekunder */
+    text-align:center; /* Memusatkan teks pendukung */
+    margin-bottom:2rem; /* Memberikan jarak sebelum formulir */
 }
 
-.sidebar-menu-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+/* =========================
+   5. GRUP FORMULIR LOGIN
+========================= */
+
+/* Mengatur jarak dan posisi setiap kelompok input */
+.login-form-group{
+    margin-bottom:1.25rem; /* Memberikan jarak antar kelompok input */
+    position:relative; /* Menjadi acuan posisi elemen di dalam grup */
 }
 
-.sidebar-menu-item {
-    margin-bottom: 0.35rem;
+/* Mengatur tampilan label pada setiap input */
+.login-form-label{
+    font-size:.8rem; /* Mengatur ukuran label */
+    font-weight:700; /* Membuat label tebal */
+    color:var(--text-main); /* Menggunakan warna teks utama */
+    margin-bottom:.5rem; /* Memberikan jarak di bawah label */
+    display:block; /* Membuat label berada pada baris tersendiri */
 }
 
-.sidebar-menu-link {
-    display: flex;
-    align-items: center;
-    gap: 0.85rem;
-    padding: 0.75rem 0.85rem;
-    font-size: 0.95rem;
-    color: var(--text-sidebar-muted);
-    border-radius: var(--radius-md);
-    font-weight: 500;
-    transition: all 0.2s ease-in-out;
-    position: relative;
+/* Mengatur wadah input dan ikon di dalamnya */
+.login-input-group{
+    position:relative; /* Menjadi acuan posisi ikon input */
+    display:flex; /* Mengatur input dan elemen pendukung dengan flexbox */
+    align-items:center; /* Memusatkan elemen secara vertikal */
 }
 
-.sidebar-menu-link i {
-    font-size: 1.15rem;
-    transition: color 0.2s ease;
+/* Mengatur posisi ikon di sebelah kiri input */
+.login-input-group i.input-icon{
+    position:absolute; /* Menempatkan ikon di atas area input */
+    left:1.25rem; /* Mengatur jarak ikon dari sisi kiri */
+    color:var(--text-muted-green); /* Mengatur warna ikon */
+    font-size:1.1rem; /* Mengatur ukuran ikon */
+    pointer-events:none; /* Mencegah ikon menghalangi klik pada input */
 }
 
-/* Active State & Hover States */
-.sidebar-menu-link:hover {
-    color: #FFFFFF;
-    background-color: rgba(255, 255, 255, 0.03);
+/* Mengatur tampilan dasar kolom input login */
+.login-input{
+    width:100%; /* Membuat input memenuhi lebar wadah */
+    background-color:var(--bs-body-bg); /* Menggunakan warna latar dari Bootstrap */
+    border:1px solid var(--border-light); /* Memberikan garis tepi input */
+    border-radius:var(--radius-lg); /* Membulatkan sudut input */
+    padding:.8rem 1.25rem .8rem 2.85rem; /* Mengatur jarak teks di dalam input */
+    font-size:.9rem; /* Mengatur ukuran teks input */
+    font-weight:600; /* Membuat teks input agak tebal */
+    color:var(--text-main); /* Mengatur warna teks yang diketik */
+    outline:none; /* Menghilangkan garis outline bawaan browser */
+    transition:all .25s ease; /* Menghaluskan perubahan semua properti yang berubah */
 }
 
-.sidebar-menu-link.active {
-    color: #FFFFFF;
-    background-color: rgba(255, 255, 255, 0.05);
-    font-weight: 600;
+/* Menambahkan ruang di sebelah kanan input password */
+.login-input-password{padding-right:2.85rem} /* Menyediakan tempat untuk tombol tampilkan password */
+
+/* Mengatur tampilan input ketika dipilih atau sedang aktif */
+.login-input:focus{
+    background:#fff; /* Mengubah latar input menjadi putih */
+    border-color:var(--brand-forest-medium); /* Mengubah warna garis tepi input */
+    box-shadow:0 0 0 4px var(--brand-lime-translucent); /* Memberikan efek sorotan di sekitar input */
 }
 
-/* Vertical indicator border on left edge */
-.sidebar-menu-link.active::before {
-    content: '';
-    position: absolute;
-    left: -1.5rem;
-    top: 15%;
-    height: 70%;
-    width: 4px;
-    background-color: var(--brand-lime);
-    border-radius: 0 4px 4px 0;
+/* Mengatur tombol untuk menampilkan atau menyembunyikan password */
+.password-toggle-btn{
+    position:absolute; /* Menempatkan tombol di dalam area input password */
+    right:1.25rem; /* Mengatur jarak tombol dari sisi kanan */
+    background:none; /* Menghilangkan warna latar tombol */
+    border:none; /* Menghilangkan garis tepi tombol */
+    color:var(--text-muted-green); /* Mengatur warna ikon tombol */
+    cursor:pointer; /* Mengubah kursor menjadi penunjuk */
+    padding:0; /* Menghilangkan jarak bawaan tombol */
+    display:flex; /* Menyusun ikon dengan flexbox */
+    align-items:center; /* Memusatkan ikon secara vertikal */
+    font-size:1.1rem; /* Mengatur ukuran ikon tombol */
 }
 
-.sidebar-menu-link.active i {
-    color: var(--brand-lime);
+/* Mengubah warna tombol password ketika diarahkan */
+.password-toggle-btn:hover{color:var(--brand-forest-medium)} /* Menonjolkan tombol saat hover */
+
+/* =========================
+   6. OPSI LOGIN
+========================= */
+
+/* Mengatur susunan opsi tambahan di bawah input */
+.login-options{
+    display:flex; /* Menyusun opsi secara fleksibel */
+    align-items:center; /* Menyejajarkan opsi secara vertikal */
+    justify-content:space-between; /* Memisahkan opsi kiri dan kanan */
+    margin-bottom:1.75rem; /* Memberikan jarak sebelum tombol login */
+    font-size:.825rem; /* Mengatur ukuran tulisan opsi */
 }
 
-.sidebar-menu-badge {
-    margin-left: auto;
-    font-size: 0.75rem;
-    font-weight: 700;
-    background-color: var(--brand-lime);
-    color: var(--brand-forest-dark);
-    padding: 0.15rem 0.5rem;
-    border-radius: 50rem;
+/* Mengatur label kontrol seperti checkbox */
+.custom-control-label{
+    cursor:pointer; /* Menunjukkan bahwa label dapat diklik */
+    font-weight:600; /* Membuat tulisan label agak tebal */
+    color:var(--text-muted-green); /* Mengatur warna tulisan label */
+    display:flex; /* Menyusun label dan kontrol secara fleksibel */
+    align-items:center; /* Menyejajarkan isi label secara vertikal */
+    gap:.5rem; /* Memberikan jarak antara kontrol dan teks */
+    user-select:none; /* Mencegah teks label terseleksi saat diklik */
 }
 
-/* Dropdown Caret Styling */
-.sidebar-menu-link .dropdown-caret {
-    margin-left: auto;
-    font-size: 0.75rem;
-    transition: transform 0.2s ease;
+/* Mengatur bentuk checkbox khusus */
+.custom-checkbox-input{
+    width:18px; /* Mengatur lebar checkbox */
+    height:18px; /* Mengatur tinggi checkbox */
+    border-radius:var(--radius-sm); /* Membulatkan sudut checkbox */
+    border:2px solid var(--text-muted-green); /* Memberikan garis tepi checkbox */
+    appearance:none; /* Menghilangkan tampilan bawaan checkbox browser */
+    outline:none; /* Menghilangkan outline bawaan */
+    cursor:pointer; /* Menunjukkan checkbox dapat diklik */
+    position:relative; /* Menjadi acuan posisi tanda centang */
+    background:transparent; /* Membuat latar checkbox transparan */
 }
 
-.sidebar-menu-link[aria-expanded="true"] .dropdown-caret {
-    transform: rotate(180deg);
+/* Mengubah warna checkbox ketika dicentang */
+.custom-checkbox-input:checked{
+    background-color:var(--brand-forest-medium); /* Memberikan latar hijau pada checkbox aktif */
+    border-color:var(--brand-forest-medium); /* Menyesuaikan warna garis tepi checkbox aktif */
 }
 
-/* Submenu layout */
-.sidebar-submenu {
-    list-style: none;
-    padding-left: 2.5rem;
-    margin: 0.25rem 0 0.5rem 0;
+/* Membuat tanda centang pada checkbox aktif */
+.custom-checkbox-input:checked::before{
+    content:"\f272"; /* Menampilkan karakter ikon berdasarkan kode font */
+    font-family:"bootstrap-icons"; /* Menggunakan font ikon Bootstrap Icons */
+    font-size:.7rem; /* Mengatur ukuran tanda centang */
+    color:#fff; /* Membuat tanda centang berwarna putih */
+    position:absolute; /* Menempatkan tanda centang di dalam checkbox */
+    top:50%; /* Memindahkan tanda centang ke bagian tengah secara vertikal */
+    left:50%; /* Memindahkan tanda centang ke bagian tengah secara horizontal */
+    transform:translate(-50%,-50%); /* Menyempurnakan posisi tengah tanda centang */
 }
 
-.sidebar-submenu-link {
-    display: block;
-    padding: 0.45rem 0;
-    color: var(--text-sidebar-muted);
-    font-size: 0.875rem;
-    font-weight: 500;
-    transition: color 0.2s;
+/* Mengatur tampilan link lupa password */
+.forgot-password-link{
+    color:var(--brand-forest-medium); /* Mengatur warna link */
+    font-weight:600; /* Membuat tulisan agak tebal */
+    text-decoration:none; /* Menghilangkan garis bawah link */
 }
 
-.sidebar-submenu-link:hover {
-    color: #FFFFFF;
+/* Mengatur tampilan link lupa password ketika diarahkan */
+.forgot-password-link:hover{
+    color:var(--brand-lime-hover); /* Mengubah warna link saat hover */
+    text-decoration:underline; /* Menampilkan garis bawah saat diarahkan */
 }
 
-/* Bottom Profile Card in Sidebar */
-.sidebar-profile {
-    margin-top: auto;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    background-color: rgba(255, 255, 255, 0.03);
-    padding: 0.85rem;
-    border-radius: var(--radius-xl);
-    border: 1px solid var(--border-dark-green);
-    color: #FFFFFF;
+/* =========================
+   7. TOMBOL LOGIN
+========================= */
+
+/* Mengatur tampilan utama tombol login */
+.btn-login{
+    background-color:var(--brand-forest-medium); /* Memberikan warna latar tombol */
+    color:#fff; /* Membuat teks tombol berwarna putih */
+    border:none; /* Menghilangkan garis tepi tombol */
+    border-radius:var(--radius-lg); /* Membulatkan sudut tombol */
+    padding:.85rem; /* Memberikan ruang dalam tombol */
+    font-weight:700; /* Membuat teks tombol tebal */
+    font-size:.95rem; /* Mengatur ukuran teks tombol */
+    width:100%; /* Membuat tombol memenuhi lebar wadah */
+    box-shadow:var(--shadow-sm); /* Memberikan bayangan tipis pada tombol */
+    transition:all .25s ease; /* Menghaluskan perubahan tampilan tombol */
+    display:flex; /* Menyusun teks dan ikon secara fleksibel */
+    align-items:center; /* Menyejajarkan isi tombol secara vertikal */
+    justify-content:center; /* Memusatkan isi tombol secara horizontal */
+    gap:.5rem; /* Memberikan jarak antara teks dan ikon */
 }
 
-.sidebar-profile-img {
-    width: 42px;
-    height: 42px;
-    border-radius: var(--radius-lg);
-    object-fit: cover;
-    background-color: var(--brand-forest-medium);
+/* Memberikan efek saat kursor diarahkan ke tombol login */
+.btn-login:hover{
+    background-color:var(--brand-forest-dark); /* Mengubah latar menjadi warna lebih gelap */
+    color:#fff; /* Mempertahankan teks berwarna putih */
+    transform:translateY(-1px); /* Mengangkat tombol sedikit ke atas */
 }
 
-.sidebar-profile-info {
-    flex-grow: 1;
-    min-width: 0; /* allows text truncation */
+/* Mengatur ukuran dan transisi ikon di tombol login */
+.btn-login i{
+    font-size:1rem; /* Mengatur ukuran ikon tombol */
+    transition:transform .25s ease; /* Menghaluskan gerakan ikon */
 }
 
-.sidebar-profile-name {
-    font-size: 0.875rem;
-    font-weight: 600;
-    margin-bottom: 0.1rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+/* Menggeser ikon ke kanan ketika tombol login diarahkan */
+.btn-login:hover i{transform:translateX(3px)} /* Memberikan efek gerak pada ikon */
+
+/* =========================
+   8. PEMISAH FORMULIR
+========================= */
+
+/* Mengatur garis pemisah dengan teks di tengahnya */
+.login-divider{
+    display:flex; /* Menyusun teks dan garis secara fleksibel */
+    align-items:center; /* Menyejajarkan teks dan garis secara vertikal */
+    text-align:center; /* Memusatkan teks */
+    color:var(--text-muted-green); /* Mengatur warna teks pemisah */
+    margin:1.75rem 0; /* Memberikan jarak atas dan bawah */
+    font-size:.75rem; /* Mengatur ukuran teks pemisah */
+    font-weight:700; /* Membuat teks pemisah tebal */
+    text-transform:uppercase; /* Mengubah teks menjadi huruf kapital */
+    letter-spacing:.05em; /* Memberikan jarak antarhuruf */
+    opacity:.6; /* Membuat teks pemisah sedikit transparan */
 }
 
-.sidebar-profile-email {
-    font-size: 0.75rem;
-    color: var(--text-sidebar-muted);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    opacity: 0.8;
+/* Membuat garis sebelum dan sesudah teks pemisah */
+.login-divider::before,.login-divider::after{
+    content:''; /* Membuat elemen garis kosong */
+    flex:1; /* Membuat garis memenuhi ruang yang tersedia */
+    border-bottom:1px solid var(--border-light); /* Memberikan garis tipis di bawah elemen */
 }
 
-/* Minimized Sidebar Adjustments */
-body.sidebar-minimized {
-    --sidebar-width: 80px;
+/* Memberikan jarak antara garis kiri dan teks pemisah */
+.login-divider:not(:empty)::before{margin-right:.75rem}
+
+/* Memberikan jarak antara teks pemisah dan garis kanan */
+.login-divider:not(:empty)::after{margin-left:.75rem}
+
+/* Mengatur tampilan tombol login sosial dalam bentuk grid dua kolom */
+.social-login-grid{
+    display:grid; /* Menggunakan tata letak grid */
+    grid-template-columns:1fr 1fr; /* Membagi area menjadi dua kolom sama besar */
+    gap:.75rem; /* Memberikan jarak antar tombol */
+    margin-bottom:1.75rem; /* Memberikan jarak di bawah kumpulan tombol */
 }
 
-body.sidebar-minimized .sidebar-wrapper {
-    padding: 2rem 0.75rem;
-    align-items: center;
+/* Mengatur tampilan dasar tombol login sosial */
+.btn-social{
+    background:#fff; /* Memberikan latar putih */
+    border:1px solid var(--border-light); /* Memberikan garis tepi tombol */
+    color:var(--text-main); /* Mengatur warna tulisan tombol */
+    border-radius:var(--radius-lg); /* Membulatkan sudut tombol */
+    padding:.7rem; /* Memberikan ruang di dalam tombol */
+    font-weight:600; /* Membuat tulisan agak tebal */
+    font-size:.85rem; /* Mengatur ukuran tulisan */
+    display:flex; /* Menyusun ikon dan tulisan secara fleksibel */
+    align-items:center; /* Menyejajarkan ikon dan tulisan secara vertikal */
+    justify-content:center; /* Memusatkan isi tombol */
+    gap:.5rem; /* Memberikan jarak antara ikon dan tulisan */
+    box-shadow:var(--shadow-sm); /* Memberikan bayangan tipis */
+}
+
+/* Mengubah latar dan garis tepi tombol sosial saat diarahkan */
+.btn-social:hover{
+    background:var(--bs-body-bg); /* Mengubah warna latar saat hover */
+    border-color:rgba(0,0,0,.1); /* Mengubah warna garis tepi */
+}
+
+/* Mengatur ukuran ikon pada tombol sosial */
+.btn-social i{font-size:1.1rem} /* Menentukan ukuran ikon */
+
+/* Mengatur teks bagian bawah formulir login */
+.login-footer-text{
+    text-align:center; /* Memusatkan teks */
+    font-size:.85rem; /* Mengatur ukuran teks */
+    color:var(--text-muted-green); /* Menggunakan warna teks sekunder */
+    font-weight:600; /* Membuat tulisan agak tebal */
+    margin-bottom:0; /* Menghilangkan jarak bawah */
+}
+
+/* Mengatur warna dan ketebalan link pada teks footer login */
+.login-footer-text a{
+    color:var(--brand-forest-medium); /* Mengatur warna link */
+    font-weight:700; /* Membuat tulisan link tebal */
+}
+
+/* Mengubah tampilan link footer ketika diarahkan */
+.login-footer-text a:hover{
+    color:var(--brand-lime-hover); /* Mengubah warna link saat hover */
+    text-decoration:underline; /* Menampilkan garis bawah link */
+}
+
+/* Mengatur animasi putaran logo */
+@keyframes rotateLogo{
+    from{transform:rotate(0deg)} /* Memulai animasi dari posisi awal */
+    to{transform:rotate(360deg)} /* Memutar logo satu putaran penuh */
+}
+
+
+/* =========================================================
+   3. ADMIN - DASAR
+   ========================================================= */
+
+/* Mengatur pembungkus utama halaman admin */
+.main-wrapper{
+    min-height:100vh; /* Membuat tinggi minimum mengikuti tinggi layar */
+    margin-left:var(--sidebar-width); /* Memberikan ruang untuk sidebar */
+    transition:.3s; /* Menghaluskan perubahan tampilan */
+    display:flex; /* Menggunakan tata letak flexbox */
+    flex-direction:column; /* Menyusun isi secara vertikal */
+}
+
+/* Mengatur area konten utama admin */
+.main-content{
+    padding:25px; /* Memberikan jarak di sekitar konten */
+    flex:1; /* Membuat konten mengisi ruang yang tersedia */
+}
+
+/* Mengatur jarak dalam area isi halaman */
+.page-content{padding:25px} /* Memberikan ruang di dalam konten */
+
+
+/* =========================================================
+   4. SIDEBAR
+   ========================================================= */
+
+/* Mengatur posisi dan tampilan sidebar utama */
+.sidebar-wrapper{
+    position:fixed; /* Mempertahankan sidebar pada posisi tetap */
+    top:0; /* Meletakkan sidebar dari bagian atas layar */
+    left:0; /* Meletakkan sidebar di sisi kiri layar */
+    width:var(--sidebar-width); /* Mengatur lebar sidebar melalui variabel */
+    height:100vh; /* Membuat sidebar setinggi layar */
+    background:var(--primary); /* Menggunakan warna utama sidebar */
+    color:#fff; /* Membuat warna teks putih */
+    z-index:1030; /* Menentukan lapisan sidebar */
+    overflow-y:auto; /* Mengaktifkan scroll vertikal jika isi terlalu panjang */
+    transition:.3s; /* Menghaluskan perubahan tampilan sidebar */
+    display:flex; /* Menggunakan tata letak flexbox */
+    flex-direction:column; /* Menyusun isi sidebar secara vertikal */
+}
+
+/* Mengatur tata letak identitas atau logo sidebar */
+.sidebar-brand{
+    height:70px; /* Mengatur tinggi area identitas */
+    padding:12px 18px; /* Memberikan jarak di dalam area identitas */
+    display:flex; /* Menyusun logo dan tulisan secara fleksibel */
+    align-items:center; /* Menyejajarkan logo dan tulisan secara vertikal */
+    gap:10px; /* Memberikan jarak antara logo dan tulisan */
+    border-bottom:1px solid rgba(255,255,255,.12); /* Memberikan garis pemisah di bawah identitas */
+}
+
+/* Mengatur ukuran logo pada sidebar */
+.sidebar-brand-logo{
+    width:42px; /* Mengatur lebar logo */
+    height:42px; /* Mengatur tinggi logo */
+    object-fit:contain; /* Menjaga proporsi logo agar tidak terpotong */
+}
+
+/* Mengatur tulisan identitas di samping logo sidebar */
+.sidebar-brand span{
+    color:#fff; /* Membuat tulisan berwarna putih */
+    font-size:17px; /* Mengatur ukuran tulisan */
+    font-weight:700; /* Membuat tulisan tebal */
+}
+
+/* Mengatur jarak pada setiap kelompok menu sidebar */
+.sidebar-menu-section{padding:18px 12px 5px} /* Memberikan ruang di sekitar kelompok menu */
+
+/* Mengatur tampilan judul kelompok menu sidebar */
+.sidebar-menu-title{
+    padding:0 12px 8px; /* Mengatur jarak di sekitar judul menu */
+    color:rgba(255,255,255,.55); /* Membuat teks judul lebih transparan */
+    font-size:11px; /* Mengatur ukuran tulisan */
+    font-weight:700; /* Membuat judul tebal */
+    text-transform:uppercase; /* Mengubah tulisan menjadi huruf kapital */
+}
+
+/* Menghilangkan bullet dan jarak bawaan daftar menu */
+.sidebar-menu-list{
+    list-style:none; /* Menghilangkan tanda bullet daftar */
+    padding:0; /* Menghilangkan padding bawaan */
+    margin:0; /* Menghilangkan margin bawaan */
+}
+
+/* Memberikan jarak di antara item menu sidebar */
+.sidebar-menu-item{margin-bottom:4px} /* Mengatur jarak bawah setiap item */
+
+/* Mengatur bentuk, warna, dan tata letak link menu sidebar */
+.sidebar-menu-link{
+    display:flex; /* Menyusun ikon dan teks secara fleksibel */
+    align-items:center; /* Menyejajarkan ikon dan teks secara vertikal */
+    gap:11px; /* Memberikan jarak antara ikon dan teks */
+    padding:11px 13px; /* Memberikan ruang di dalam link */
+    border-radius:9px; /* Membulatkan sudut link */
+    color:rgba(255,255,255,.85); /* Mengatur warna teks putih transparan */
+    font-size:14px; /* Mengatur ukuran teks menu */
+    transition:.2s; /* Menghaluskan perubahan tampilan menu */
+}
+
+/* Mengatur lebar dan posisi ikon pada menu sidebar */
+.sidebar-menu-link i{
+    width:20px; /* Menyamakan lebar area ikon */
+    text-align:center; /* Memusatkan ikon */
+}
+
+/* Memberikan tampilan berbeda pada menu saat diarahkan atau aktif */
+.sidebar-menu-link:hover,
+.sidebar-menu-link.active{
+    background:rgba(255,255,255,.14); /* Memberikan latar transparan pada menu */
+    color:#fff; /* Membuat teks menu menjadi putih */
+}
+
+/* Mengatur tata letak tombol dropdown sidebar */
+.sidebar-dropdown{
+    display:flex; /* Menyusun teks dan tanda panah secara fleksibel */
+    align-items:center; /* Menyejajarkan isi secara vertikal */
+    justify-content:space-between; /* Memisahkan teks dan tanda panah */
+    width:100%; /* Membuat tombol memenuhi lebar sidebar */
+    border:0; /* Menghilangkan garis tepi tombol */
+    background:none; /* Menghilangkan latar bawaan tombol */
+    color:inherit; /* Mengikuti warna dari elemen induk */
+}
+
+/* Menghaluskan gerakan tanda panah dropdown */
+.sidebar-dropdown .caret{transition:.2s} /* Membuat rotasi panah lebih halus */
+
+/* Memutar tanda panah saat dropdown dibuka */
+.sidebar-dropdown[aria-expanded="true"] .caret{
+    transform:rotate(180deg); /* Memutar panah 180 derajat */
+}
+
+/* Mengatur area profil pengguna pada sidebar */
+.sidebar-profile{
+    padding:14px; /* Memberikan ruang di dalam area profil */
+    margin-top:15px; /* Memberikan jarak di atas profil */
+    border-top:1px solid rgba(255,255,255,.1); /* Memberikan garis pemisah di atas profil */
+}
+
+/* Mengatur tampilan link untuk membuka website publik */
+.sidebar-website-link{
+    display:flex; /* Menyusun ikon dan tulisan secara fleksibel */
+    align-items:center; /* Menyejajarkan ikon dan tulisan secara vertikal */
+    gap:10px; /* Memberikan jarak antara ikon dan tulisan */
+    padding:10px 12px; /* Memberikan ruang di dalam link */
+    border-radius:9px; /* Membulatkan sudut link */
+    color:#fff; /* Membuat tulisan berwarna putih */
+    background:rgba(255,255,255,.08); /* Memberikan latar putih transparan */
+}
+
+/* Mengubah latar link website saat diarahkan */
+.sidebar-website-link:hover{
+    background:rgba(255,255,255,.16); /* Membuat latar lebih terang */
+    color:#fff; /* Mempertahankan tulisan berwarna putih */
+}
+
+/* =========================================================
+   5. SIDEBAR MINIMIZED
+   ========================================================= */
+
+body.sidebar-minimized .sidebar-wrapper{width:75px}
+body.sidebar-minimized .main-wrapper{margin-left:75px}
+
+body.sidebar-minimized .sidebar-brand{
+    justify-content:center;
+    padding:10px;
 }
 
 body.sidebar-minimized .sidebar-brand span,
 body.sidebar-minimized .sidebar-menu-title,
 body.sidebar-minimized .sidebar-menu-link span,
-body.sidebar-minimized .sidebar-menu-badge,
-body.sidebar-minimized .dropdown-caret,
-body.sidebar-minimized .sidebar-submenu,
-body.sidebar-minimized .sidebar-profile-info {
-    display: none !important;
+body.sidebar-minimized .sidebar-dropdown .caret,
+body.sidebar-minimized .sidebar-website-link span{
+    display:none;
 }
 
-body.sidebar-minimized .sidebar-brand {
-    padding-left: 0;
-    justify-content: center;
-    width: 100%;
-}
-
-body.sidebar-minimized .sidebar-menu-link {
-    justify-content: center;
-    padding: 0.75rem;
-}
-
-body.sidebar-minimized .sidebar-menu-link.active::before {
-    left: -0.75rem;
-}
-
-body.sidebar-minimized .sidebar-menu-link i {
-    font-size: 1.35rem;
-}
-
-body.sidebar-minimized .sidebar-profile {
-    padding: 0.5rem;
-    justify-content: center;
-    border: none;
-    background-color: transparent;
-}
-
-/* ---------------------------------------------------------------------
-   5. Main Wrapper Layout
---------------------------------------------------------------------- */
-.main-wrapper {
-    margin-left: var(--sidebar-width);
-    padding: 2rem 2.5rem;
-    min-height: 100vh;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    display: flex;
-    flex-direction: column;
-}
-
-
-
-/* ---------------------------------------------------------------------
-   6. Custom Header / Navbar Component
---------------------------------------------------------------------- */
-.navbar-custom {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    background-color: rgba(244, 246, 245, 0.85);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    margin-top: -2rem;
-    margin-left: -2.5rem;
-    margin-right: -2.5rem;
-    padding: 1.25rem 2.5rem;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    display: grid !important;
-    grid-template-columns: 1fr 480px 1fr !important;
-    align-items: center;
-    margin-bottom: 2rem;
-    gap: 1.5rem;
-}
-
-.navbar-left {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-}
-
-/* Quick Actions Dropdown Button */
-.btn-quick-action {
-    background-color: var(--brand-forest-medium);
-    color: #FFFFFF;
-    border: none;
-    border-radius: var(--radius-lg);
-    padding: 0.5rem 1.15rem;
-    font-size: 0.825rem;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    box-shadow: var(--shadow-sm);
-    transition: all 0.25s ease-in-out;
-    cursor: pointer;
-}
-
-
-.btn-quick-action:hover {
-    background-color: var(--brand-forest-dark);
-    color: #FFFFFF;
-    box-shadow: 0 4px 12px var(--brand-lime-translucent);
-}
-
-.btn-quick-action:focus {
-    outline: none;
-}
-
-.btn-quick-action.dropdown-toggle::after {
-    display: none !important;
-}
-
-.btn-quick-action i {
-    font-size: 0.85rem;
-    transition: transform 0.25s ease;
-}
-
-.btn-quick-action:hover i {
-    transform: rotate(90deg);
-}
-
-/* Custom Dropdown Menu styles */
-.dropdown-menu-quick-action {
-    background-color: #FFFFFF !important;
-    border: 1px solid var(--border-light) !important;
-    border-radius: var(--radius-xl) !important;
-    box-shadow: var(--shadow-lg) !important;
-    padding: 0.5rem 0 !important;
-    margin-top: 0.5rem !important;
-    border: none !important;
-    animation: dropdownFadeIn 0.2s ease;
-}
-
-
-.dropdown-menu-quick-action .dropdown-header {
-    font-size: 0.725rem;
-    font-weight: 750;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--text-muted-green);
-    padding: 0.5rem 1.25rem 0.25rem;
-}
-
-.dropdown-menu-quick-action .dropdown-item {
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--text-main);
-    padding: 0.55rem 1.25rem;
-    display: flex;
-    align-items: center;
-    gap: 0.65rem;
-    transition: all 0.2s ease-in-out;
-}
-
-.dropdown-menu-quick-action .dropdown-item i {
-    font-size: 0.95rem;
-    color: var(--text-muted-green);
-    transition: color 0.2s;
-}
-
-.dropdown-menu-quick-action .dropdown-item:hover {
-    background-color: var(--bs-body-bg);
-    color: var(--brand-forest-medium);
-}
-
-.dropdown-menu-quick-action .dropdown-item:hover i {
-    color: var(--brand-forest-medium);
-}
-
-.dropdown-menu-quick-action .dropdown-divider {
-    border-color: var(--border-light);
-    margin: 0.4rem 0;
-}
-
-.navbar-title-dropdown {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--text-main);
-    background: transparent;
-    border: none;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0;
-}
-
-.navbar-search-wrapper {
-    width: 480px;
-    max-width: 100%;
-    position: relative;
-    margin: 0 auto;
-}
-
-.navbar-search-input {
-    width: 100%;
-    background-color: #FFFFFF;
-    border: 1px solid var(--border-light);
-    border-radius: 50rem;
-    padding: 0.65rem 1.25rem;
-    padding-right: 2.75rem;
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--text-main);
-    outline: none;
-    box-shadow: var(--shadow-sm);
-    transition: all 0.2s ease-in-out;
-}
-
-.navbar-search-input:focus {
-    border-color: rgba(5, 28, 18, 0.25);
-    box-shadow: 0 4px 12px rgba(11, 19, 15, 0.05);
-}
-
-.navbar-search-btn {
-    position: absolute;
-    right: 1.25rem;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    color: var(--text-muted-green);
-    padding: 0;
-    display: flex;
-    align-items: center;
-}
-
-.navbar-actions {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 0.75rem;
-}
-
-.navbar-action-btn {
-    width: 42px;
-    height: 42px;
-    border-radius: var(--radius-lg);
-    background-color: #FFFFFF;
-    border: 1px solid var(--border-light);
-    color: var(--text-main);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.15rem;
-    position: relative;
-    box-shadow: var(--shadow-sm);
-    transition: all 0.25s ease;
-}
-
-.navbar-action-btn:hover {
-    background-color: var(--border-light);
-    color: var(--brand-forest-medium);
-}
-
-.navbar-action-badge {
-    position: absolute;
-    top: -2px;
-    right: -2px;
-    width: 11px;
-    height: 11px;
-    background-color: var(--sys-green);
-    border-radius: 50rem;
-    border: 2px solid #FFFFFF;
-    box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
-    animation: statusPulse 2s infinite;
-}
-
-.navbar-actions .dropdown-toggle::after {
-    display: none !important;
-}
-
-/* Custom Dropdown Notifications */
-.dropdown-menu-notification {
-    width: 320px;
-    border-radius: var(--radius-xl) !important;
-    border: 1px solid var(--border-light) !important;
-    box-shadow: var(--shadow-lg) !important;
-    margin-top: 0.5rem !important;
-    border: none !important;
-    animation: dropdownFadeIn 0.2s ease;
-}
-
-@keyframes dropdownFadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-
-
-.notification-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem 1.25rem;
-    border-bottom: 1px solid var(--border-light);
-}
-
-.notification-title {
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: var(--text-main);
-    margin: 0;
-}
-
-.btn-clear-all {
-    background: none;
-    border: none;
-    padding: 0;
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: var(--brand-forest-medium);
-    transition: color 0.2s;
-    outline: none;
-}
-
-.btn-clear-all:hover {
-    color: var(--brand-lime-hover);
-}
-
-.notification-list {
-    max-height: 260px;
-    overflow-y: auto;
-}
-
-.notification-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.85rem;
-    padding: 0.85rem 1.25rem;
-    border-bottom: 1px solid var(--border-light);
-    transition: background-color 0.2s ease;
-    text-decoration: none;
-}
-
-.notification-item:hover {
-    background-color: var(--bs-body-bg);
-}
-
-.notification-icon {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.95rem;
-    flex-shrink: 0;
-}
-
-.notification-content {
-    flex-grow: 1;
-    min-width: 0;
-}
-
-.notification-text {
-    font-size: 0.8rem;
-    color: var(--text-main);
-    margin-bottom: 0.15rem;
-    line-height: 1.35;
-}
-
-.notification-time {
-    font-size: 0.725rem;
-    color: var(--text-muted-green);
-}
-
-.notification-unread-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50rem;
-    background-color: var(--sys-green);
-    flex-shrink: 0;
-    margin-top: 0.35rem;
-}
-
-.notification-footer {
-    display: block;
-    text-align: center;
-    padding: 0.85rem;
-    font-size: 0.8rem;
-    font-weight: 700;
-    color: var(--brand-forest-medium);
-    text-decoration: none;
-    transition: all 0.25s ease-in-out;
-}
-
-.notification-footer:hover {
-    color: var(--brand-lime-hover);
-}
-
-.btn-dark-custom {
-    background-color: var(--text-main);
-    color: #FFFFFF;
-    font-weight: 600;
-    font-size: 0.875rem;
-    padding: 0.65rem 1.25rem;
-    border-radius: 50rem;
-    border: none;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    box-shadow: var(--shadow-sm);
-    transition: all 0.2s ease-in-out;
-}
-
-.btn-dark-custom:hover {
-    background-color: #000000;
-    color: #FFFFFF;
-    transform: translateY(-1px);
-}
-
-.btn-dark-custom .icon-wrap {
-    width: 20px;
-    height: 20px;
-    border-radius: 50rem;
-    background-color: #FFFFFF;
-    color: var(--text-main);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.75rem;
-}
-
-/* Mobile Sidebar Toggle Button */
-.sidebar-toggle-btn {
-    display: none;
-    width: 42px;
-    height: 42px;
-    border-radius: var(--radius-lg);
-    background-color: #FFFFFF;
-    border: 1px solid var(--border-light);
-    color: var(--text-main);
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    box-shadow: var(--shadow-sm);
-    cursor: pointer;
-}
-
-/* Desktop Sidebar Toggle Button */
-.btn-desktop-toggle {
-    width: 42px;
-    height: 42px;
-    border-radius: var(--radius-lg);
-    background-color: #FFFFFF;
-    border: 1px solid var(--border-light);
-    color: var(--text-main);
-    cursor: pointer;
-    box-shadow: var(--shadow-sm);
-    transition: all 0.25s ease;
-}
-
-.btn-desktop-toggle:hover {
-    background-color: var(--border-light);
-    color: var(--brand-forest-medium);
-}
-
-/* ---------------------------------------------------------------------
-   7. Page Title & Controls Row
---------------------------------------------------------------------- */
-.page-header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    margin-bottom: 2rem;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-}
-
-.page-title {
-    font-size: 1.75rem;
-    margin-bottom: 0.25rem;
-}
-
-.page-subtitle {
-    font-size: 0.875rem;
-    color: var(--text-muted-green);
-    margin-bottom: 0;
-}
-
-.btn-date-picker {
-    background-color: #FFFFFF;
-    border: 1px solid var(--border-light);
-    border-radius: 50rem;
-    padding: 0.55rem 1.25rem;
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--text-main);
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    box-shadow: var(--shadow-sm);
-}
-
-.btn-date-picker:hover {
-    background-color: var(--border-light);
-}
-
-/* ---------------------------------------------------------------------
-   8. Cards & Styling Components
---------------------------------------------------------------------- */
-.card {
-    background-color: var(--card-background);
-    border: none;
-    border-radius: var(--radius-xxl);
-    padding: 1.75rem;
-    box-shadow: var(--shadow-md);
-    margin-bottom: 1.5rem;
-    position: relative;
-    overflow: hidden;
-}
-
-.card-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 1.25rem;
-    background: transparent !important;
-    border: none !important;
-    padding: 0 !important;
-}
-
-.card-title {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--text-main);
-    margin-bottom: 0;
-}
-
-.card-more-btn {
-    background: none;
-    border: none;
-    color: var(--text-muted-green);
-    font-size: 1.15rem;
-    padding: 0;
-    display: flex;
-    align-items: center;
-}
-
-/* Stat-specific cards */
-.card-stat {
-    height: 100%;
-}
-
-.stat-label {
-    font-size: 0.875rem;
-    color: var(--text-muted-green);
-    margin-bottom: 0.75rem;
-    font-weight: 500;
-}
-
-.stat-value {
-    font-size: 2rem;
-    font-weight: 800;
-    color: var(--text-main);
-    margin-bottom: 0.75rem;
-    line-height: 1.1;
-    letter-spacing: -0.03em;
-}
-
-.trend-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    font-size: 0.785rem;
-    font-weight: 600;
-}
-
-.trend-up {
-    color: var(--sys-green);
-}
-
-.trend-down {
-    color: var(--sys-red);
-}
-
-/* Alert Dark Green Card */
-.alert-green-card {
-    background-color: var(--brand-forest-medium);
-    color: #FFFFFF;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 165px;
-    position: relative;
-    overflow: hidden;
-}
-
-/* Geometric green visual element in bottom right of Alert Card */
-.alert-green-bg-shape {
-    position: absolute;
-    bottom: -20px;
-    right: -20px;
-    width: 120px;
-    height: 120px;
-    opacity: 0.95;
-    pointer-events: none;
-    z-index: 1;
-    transform: rotate(15deg);
-    transition: transform 0.4s ease-in-out;
-}
-
-/* Subtle micro-animation on hover */
-.alert-green-card:hover .alert-green-bg-shape {
-    transform: rotate(45deg) scale(1.05);
-}
-
-.alert-green-card .stat-value {
-    color: #FFFFFF;
-}
-
-.alert-green-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    background-color: rgba(255, 255, 255, 0.1);
-    color: #FFFFFF;
-    font-size: 0.75rem;
-    font-weight: 700;
-    padding: 0.35rem 0.75rem;
-    border-radius: 50rem;
-    margin-bottom: 1.25rem;
-}
-
-.alert-green-badge::before {
-    content: '';
-    display: inline-block;
-    width: 6px;
-    height: 6px;
-    background-color: var(--sys-red);
-    border-radius: 50rem;
-    animation: redPulse 2s infinite;
-}
-
-@keyframes redPulse {
-    0% {
-        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.5);
-    }
-    70% {
-        box-shadow: 0 0 0 6px rgba(239, 68, 68, 0);
-    }
-    100% {
-        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
-    }
-}
-
-.alert-green-date {
-    font-size: 0.75rem;
-    color: var(--text-sidebar-muted);
-    opacity: 0.8;
-    margin-bottom: 0.35rem;
-}
-
-.alert-green-text {
-    font-size: 1.15rem;
-    font-weight: 700;
-    line-height: 1.3;
-    margin-bottom: 1rem;
-}
-
-.alert-green-link {
-    color: var(--brand-lime);
-    font-size: 0.875rem;
-    font-weight: 600;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.25rem;
-    margin-top: auto;
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.alert-green-link:hover {
-    color: #FFFFFF;
-}
-
-.alert-green-link i {
-    transition: transform 0.25s ease;
-}
-
-.alert-green-link:hover i {
-    transform: translateX(3px);
-}
-
-/* ---------------------------------------------------------------------
-   9. Custom List (Transaction List Table replacement)
---------------------------------------------------------------------- */
-.custom-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.85rem;
-}
-
-.custom-list-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.85rem;
-    background-color: #FFFFFF;
-    border-radius: var(--radius-xl);
-    transition: background-color 0.2s ease-in-out;
-}
-
-.custom-list-item:hover {
-    background-color: var(--bs-body-bg);
-}
-
-.item-left {
-    display: flex;
-    align-items: center;
-    gap: 0.85rem;
-    min-width: 0;
-}
-
-.item-icon-wrapper {
-    width: 44px;
-    height: 44px;
-    border-radius: 50rem;
-    background-color: var(--bs-body-bg);
-    color: var(--text-main);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.25rem;
-    flex-shrink: 0;
-}
-
-.item-info {
-    min-width: 0;
-}
-
-.item-name {
-    font-size: 0.875rem;
-    font-weight: 700;
-    color: var(--text-main);
-    margin-bottom: 0.15rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.item-sub {
-    font-size: 0.75rem;
-    color: var(--text-muted-green);
-    margin-bottom: 0;
-}
-
-.item-status-wrapper {
-    text-align: right;
-    flex-shrink: 0;
-}
-
-.item-status {
-    font-size: 0.8rem;
-    font-weight: 700;
-    margin-bottom: 0.15rem;
-}
-
-.item-status.completed {
-    color: var(--brand-forest-medium);
-}
-
-.item-status.pending {
-    color: var(--text-muted-green);
-    opacity: 0.8;
-}
-
-.item-hash {
-    font-size: 0.75rem;
-    font-family: monospace;
-    color: var(--text-muted-green);
-    opacity: 0.7;
-    margin-bottom: 0;
-}
-
-/* ---------------------------------------------------------------------
-   10. Custom Progress & Bar Chart Custom Layouts
---------------------------------------------------------------------- */
-.progress-container {
-    margin-bottom: 1.25rem;
-}
-
-.progress-label-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 0.8rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-}
-
-.progress-label {
-    color: var(--text-main);
-}
-
-.progress-value {
-    color: var(--text-muted-green);
-}
-
-.progress {
-    height: 10px !important;
-    background-color: var(--bs-body-bg) !important;
-    border-radius: 50rem !important;
-    overflow: hidden !important;
-}
-
-.progress-bar {
-    height: 100% !important;
-    border-radius: 50rem !important;
-    transition: width 0.6s ease !important;
-}
-
-.bg-forest-medium {
-    background-color: var(--brand-forest-medium);
-}
-
-.bg-lime-accent {
-    background-color: var(--brand-lime);
-}
-
-.bg-brand-orange {
-    background-color: var(--sys-orange);
-}
-
-/* ---------------------------------------------------------------------
-   11. Right Panel Component & Layout
---------------------------------------------------------------------- */
-.right-panel-wrapper {
-    height: auto;
-}
-
-/* Donut Chart legend styling */
-.chart-legends-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: var(--bs-body-bg);
-    padding: 0.75rem;
-    border-radius: var(--radius-lg);
-    margin-top: 1.5rem;
-    gap: 0.5rem;
-}
-
-.chart-legend-item {
-    display: flex;
-    align-items: center;
-    gap: 0.35rem;
-    font-size: 0.75rem;
-    font-weight: 700;
-}
-
-.legend-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50rem;
-    display: inline-block;
-}
-
-/* Promo Banner Card */
-.promo-banner-card {
-    background-color: #E2E8DF; /* Soft light olive-sage */
-    border-radius: var(--radius-xxl);
-    padding: 1.75rem;
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 1.5rem;
-}
-
-.promo-banner-card {
-    min-height: 250px;
-}
-
-/* Geometric green visual element in bottom right */
-.promo-banner-bg-shape {
-    position: absolute;
-    bottom: -15px;
-    right: -15px;
-    width: 140px;
-    height: 140px;
-    opacity: 0.95;
-    pointer-events: none;
-}
-
-.promo-title {
-    font-size: 1.5rem;
-    font-weight: 800;
-    line-height: 1.25;
-    color: var(--brand-forest-dark);
-    margin-bottom: 0.75rem;
-    max-width: 80%;
-    z-index: 2;
-}
-
-.promo-desc {
-    font-size: 0.85rem;
-    color: var(--brand-forest-medium);
-    opacity: 0.85;
-    line-height: 1.4;
-    margin-bottom: auto;
-    max-width: 80%;
-    z-index: 2;
-}
-
-.btn-promo {
-    background-color: var(--brand-forest-dark);
-    color: #FFFFFF;
-    font-weight: 700;
-    font-size: 0.85rem;
-    padding: 0.75rem 1.25rem;
-    border-radius: 50rem;
-    text-align: center;
-    border: none;
-    width: 100%;
-    margin-top: 1.5rem;
-    z-index: 2;
-    transition: all 0.25s ease;
-}
-
-.btn-promo:hover {
-    background-color: #000000;
-    color: #FFFFFF;
-}
-
-/* ---------------------------------------------------------------------
-   12. Responsive Adjustments
---------------------------------------------------------------------- */
-@media (max-width: 1200px) {
-    .sidebar-wrapper {
-        transform: translateX(-100%);
-    }
-
-    .sidebar-wrapper.show {
-        transform: translateX(0);
-        box-shadow: var(--shadow-lg);
-    }
-
-    .main-wrapper {
-        margin-left: 0;
-        padding: 1.5rem 1.5rem;
-    }
-
-    .sidebar-toggle-btn {
-        display: flex;
-    }
-
-    .navbar-search-wrapper {
-        order: 3;
-        max-width: 100%;
-        width: 100%;
-        margin-top: 0.5rem;
-    }
-
-    .navbar-custom {
-        display: flex !important;
-        margin-top: -1.5rem;
-        margin-left: -1.5rem;
-        margin-right: -1.5rem;
-        padding: 1rem 1.5rem;
-        flex-wrap: wrap;
-        gap: 0.75rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .page-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
-    }
-
-    .btn-date-picker {
-        width: 100%;
-        justify-content: center;
-    }
-}
-
-/* ---------------------------------------------------------------------
-   14. Flatpickr Theme Customization (Spark Admin Styles)
---------------------------------------------------------------------- */
-.flatpickr-calendar {
-    background: #FFFFFF !important;
-    border: 1px solid var(--border-light) !important;
-    border-radius: 20px !important;
-    box-shadow: var(--shadow-lg) !important;
-    font-family: 'Plus Jakarta Sans', sans-serif !important;
-    width: 324px !important;
-    padding: 16px 14px 10px 14px !important;
-}
-
-.flatpickr-calendar.arrowTop:before,
-.flatpickr-calendar.arrowTop:after {
-    border-bottom-color: #FFFFFF !important;
-}
-
-/* Month and Year navigation banner */
-.flatpickr-months {
-    position: relative !important;
-    height: 40px !important;
-    align-items: center !important;
-}
-
-.flatpickr-month {
-    height: 40px !important;
-    color: var(--text-main) !important;
-}
-
-.flatpickr-current-month {
-    font-size: 1.05rem !important;
-    font-weight: 700 !important;
-    color: var(--text-main) !important;
-    padding: 0 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 0.25rem !important;
-    height: 40px !important;
-}
-
-.flatpickr-current-month select.flatpickr-monthDropdown-months {
-    font-weight: 700 !important;
-    color: var(--text-main) !important;
-    background: transparent !important;
-    border: none !important;
-    border-radius: var(--radius-md) !important;
-    padding: 4px 8px !important;
-    font-size: 1.05rem !important;
-    cursor: pointer !important;
-    appearance: none !important;
-    -webkit-appearance: none !important;
-}
-
-.flatpickr-current-month select.flatpickr-monthDropdown-months:hover {
-    background: var(--bs-body-bg) !important;
-}
-
-.flatpickr-current-month input.cur-year {
-    font-weight: 700 !important;
-    color: var(--text-main) !important;
-    font-size: 1.05rem !important;
-    padding: 4px 6px !important;
-    border-radius: var(--radius-md) !important;
-    width: 55px !important;
-    cursor: pointer !important;
-}
-
-.flatpickr-current-month input.cur-year:hover {
-    background: var(--bs-body-bg) !important;
-}
-
-/* Hide default numeric scroll spinner arrows */
-.numInputWrapper span {
-    display: none !important;
-}
-
-/* Center navigation chevrons and style with hover circle */
-.flatpickr-months .flatpickr-prev-month,
-.flatpickr-months .flatpickr-next-month {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    width: 32px !important;
-    height: 32px !important;
-    border-radius: 50rem !important;
-    top: 50% !important;
-    transform: translateY(-50%) !important;
-    background: transparent !important;
-    transition: all 0.2s ease !important;
-    color: var(--text-main) !important;
-    fill: var(--text-main) !important;
-}
-
-.flatpickr-months .flatpickr-prev-month:hover,
-.flatpickr-months .flatpickr-next-month:hover {
-    background-color: var(--bs-body-bg) !important;
-}
-
-.flatpickr-months .flatpickr-prev-month svg,
-.flatpickr-months .flatpickr-next-month svg {
-    width: 12px !important;
-    height: 12px !important;
-}
-
-/* Weekday labels row */
-.flatpickr-weekdays {
-    height: 30px !important;
-    margin-top: 10px !important;
-    margin-bottom: 6px !important;
-}
-
-span.flatpickr-weekday {
-    font-weight: 700 !important;
-    color: var(--text-sidebar-muted) !important;
-    font-size: 0.8rem !important;
-    opacity: 0.85;
-}
-
-/* Days container layout */
-.flatpickr-innerContainer {
-    margin-top: 6px !important;
-}
-
-.flatpickr-days {
-    width: 294px !important;
-}
-
-.dayContainer {
-    width: 294px !important;
-    min-width: 294px !important;
-    max-width: 294px !important;
-    gap: 2px 0px !important;
-}
-
-/* Day grid cell elements */
-.flatpickr-day {
-    font-weight: 600 !important;
-    color: var(--text-main) !important;
-    border-radius: 50rem !important;
-    height: 38px !important;
-    line-height: 38px !important;
-    max-width: 38px !important;
-    font-size: 0.85rem !important;
-    transition: all 0.15s ease !important;
-    border: none !important;
-    margin: 0 auto !important;
-}
-
-.flatpickr-day:hover,
-.flatpickr-day:focus {
-    background-color: var(--bs-body-bg) !important;
-    color: var(--brand-forest-medium) !important;
-    border-radius: 50rem !important;
-}
-
-/* Selected endpoints styling */
-.flatpickr-day.selected,
-.flatpickr-day.startRange,
-.flatpickr-day.endRange {
-    background-color: var(--brand-forest-medium) !important;
-    color: #FFFFFF !important;
-    box-shadow: 0 4px 10px rgba(5, 28, 18, 0.25) !important;
-}
-
-.flatpickr-day.startRange {
-    border-radius: 50rem 0 0 50rem !important;
-}
-
-.flatpickr-day.endRange {
-    border-radius: 0 50rem 50rem 0 !important;
-}
-
-.flatpickr-day.startRange.endRange {
-    border-radius: 50rem !important;
-}
-
-/* Selected in-range days styling */
-.flatpickr-day.inRange,
-.flatpickr-day.prevMonthDay.inRange,
-.flatpickr-day.nextMonthDay.inRange,
-.flatpickr-day.today.inRange,
-.flatpickr-day.prevMonthDay.today.inRange,
-.flatpickr-day.nextMonthDay.today.inRange {
-    background-color: #E1FCD2 !important;
-    color: var(--brand-forest-medium) !important;
-    border-radius: 0 !important;
-}
-
-/* Disabled and adjacent month days */
-.flatpickr-day.flatpickr-disabled,
-.flatpickr-day.flatpickr-disabled:hover,
-.flatpickr-day.prevMonthDay,
-.flatpickr-day.nextMonthDay {
-    color: #CBD5E1 !important;
-    background: transparent !important;
-}
-
-/* ---------------------------------------------------------------------
-   15. Dropdown Component Styles (Reusable)
---------------------------------------------------------------------- */
-.dropdown-menu-custom {
-    background: #FFFFFF !important;
-    border: 1px solid rgba(11, 19, 15, 0.05) !important;
-    border-radius: var(--radius-lg) !important;
-    box-shadow: var(--shadow-lg) !important;
-    padding: 8px 6px !important;
-    min-width: 170px !important;
-    margin-top: 6px !important;
-    transition: all 0.2s ease !important;
-    border: 1px solid var(--border-light) !important;
-    z-index: 1050 !important;
-}
-
-.dropdown-menu-custom .dropdown-item {
-    font-family: 'Plus Jakarta Sans', sans-serif !important;
-    font-size: 0.85rem !important;
-    font-weight: 600 !important;
-    color: var(--text-muted-green) !important;
-    padding: 8px 12px !important;
-    border-radius: var(--radius-md) !important;
-    display: flex !important;
-    align-items: center !important;
-    gap: 8px !important;
-    transition: all 0.15s ease !important;
-}
-
-.dropdown-menu-custom .dropdown-item i {
-    font-size: 1rem !important;
-}
-
-.dropdown-menu-custom .dropdown-item:hover,
-.dropdown-menu-custom .dropdown-item:focus {
-    background-color: var(--bs-body-bg) !important;
-    color: var(--text-main) !important;
-}
-
-.dropdown-menu-custom .dropdown-item.text-danger:hover {
-    background-color: var(--sys-red-bg) !important;
-    color: var(--sys-red) !important;
-}
-
-.dropdown-menu-custom .dropdown-divider {
-    border-top: 1px solid var(--border-light) !important;
-    margin: 6px 0 !important;
-    opacity: 1 !important;
-}
-
-/* Custom ApexCharts Hover Overrides for Lime-Yellow Color (#B4F105) */
-.apexcharts-bar-area[fill="#B4F105"]:hover,
-.apexcharts-bar-area[fill="#b4f105"]:hover,
-.apexcharts-pie-area[fill="#B4F105"]:hover,
-.apexcharts-pie-area[fill="#b4f105"]:hover {
-    fill: #c1f824 !important;
-}
-
-/* ---------------------------------------------------------------------
-   16. Footer Component Styles
---------------------------------------------------------------------- */
-.footer-custom {
-    margin-top: auto;
-    padding-top: 1.25rem;
-    border-top: 1px solid rgba(11, 19, 15, 0.06);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    font-size: 0.85rem;
-    color: var(--text-muted-green);
-    transition: all 0.3s ease;
-}
-
-.footer-left {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    flex-wrap: wrap;
-}
-
-.footer-logo {
-    font-weight: 700;
-    color: var(--text-main);
-    display: flex;
-    align-items: center;
-    gap: 0.35rem;
-}
-
-.footer-logo i {
-    color: var(--brand-forest-medium);
-    font-size: 0.95rem;
-    display: inline-block;
-    animation: rotateLogo 12s linear infinite;
-}
-
-@keyframes rotateLogo {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
-.footer-separator {
-    color: var(--border-light);
-    opacity: 0.6;
-    user-select: none;
-}
-
-.footer-copy {
-    display: flex;
-    align-items: center;
-    gap: 0.35rem;
-}
-
-.footer-heart {
-    font-size: 0.75rem;
-    display: inline-block;
-    animation: heartBeat 1.5s ease infinite;
-}
-
-@keyframes heartBeat {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.2); }
-}
-
-.footer-right {
-    display: flex;
-    align-items: center;
-}
-
-.footer-links {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-}
-
-.footer-link {
-    color: var(--text-muted-green);
-    font-weight: 600;
-    transition: color 0.25s ease-in-out;
-    text-decoration: none;
-}
-
-.footer-link:hover {
-    color: var(--brand-forest-dark);
-    text-decoration: none;
-}
-
-
-.footer-link .status-dot {
-    display: inline-block;
-    width: 6px;
-    height: 6px;
-    background-color: var(--sys-green);
-    border-radius: 50%;
-    margin-left: 0.35rem;
-    vertical-align: middle;
-    box-shadow: 0 0 6px var(--sys-green);
-    animation: statusPulse 2s infinite;
-}
-
-@keyframes statusPulse {
-    0% {
-        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4);
-    }
-    70% {
-        box-shadow: 0 0 0 6px rgba(34, 197, 94, 0);
-    }
-    100% {
-        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
-    }
-}
-
-@media (max-width: 768px) {
-    .footer-custom {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        margin-top: 1.5rem;
-        gap: 1rem;
-    }
-
-    .footer-left {
-        flex-direction: column;
-        gap: 0.5rem;
-        align-items: center;
-    }
-
-    .footer-separator {
-        display: none;
-    }
-
-    .footer-links {
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 1rem;
-    }
-}
-
-/* ---------------------------------------------------------------------
-   13. Login Page Styles (.login-wrapper)
---------------------------------------------------------------------- */
-.login-wrapper {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--bs-body-bg);
-    padding: 1.5rem;
-    position: relative;
-    overflow: hidden;
-}
-
-/* Geometric background decoration */
-.login-bg-shape {
-    position: absolute;
-    width: 300px;
-    height: 300px;
-    background: radial-gradient(circle, var(--brand-lime-translucent) 0%, rgba(180, 241, 5, 0) 70%);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 0;
-}
-.login-bg-shape-1 {
-    top: -50px;
-    left: -50px;
-}
-.login-bg-shape-2 {
-    bottom: -100px;
-    right: -50px;
-    width: 400px;
-    height: 400px;
-}
-
-.login-card {
-    background-color: var(--card-background);
-    border: 1px solid var(--border-light);
-    border-radius: var(--radius-xxl);
-    padding: 2.5rem;
-    width: 100%;
-    max-width: 450px;
-    box-shadow: var(--shadow-lg);
-    z-index: 1;
-    position: relative;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.login-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 30px 60px rgba(11, 19, 15, 0.12);
-}
-
-.login-brand {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.75rem;
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: var(--brand-forest-dark);
-    margin-bottom: 1.5rem;
-    text-decoration: none;
-    transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.login-brand i {
-    color: var(--brand-forest-medium);
-    font-size: 1.75rem;
-    animation: rotateLogo 15s linear infinite;
-    transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.login-brand:hover,
-.login-brand:hover i {
-    color: var(--brand-lime-hover);
-}
-
-.login-title {
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: var(--text-main);
-    text-align: center;
-    margin-bottom: 0.35rem;
-    letter-spacing: -0.02em;
-}
-
-.login-subtitle {
-    font-size: 0.875rem;
-    color: var(--text-muted-green);
-    text-align: center;
-    margin-bottom: 2rem;
-}
-
-.login-form-group {
-    margin-bottom: 1.25rem;
-    position: relative;
-}
-
-.login-form-label {
-    font-size: 0.8rem;
-    font-weight: 700;
-    color: var(--text-main);
-    margin-bottom: 0.5rem;
-    display: block;
-}
-
-.login-input-group {
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-.login-input-group i.input-icon {
-    position: absolute;
-    left: 1.25rem;
-    color: var(--text-muted-green);
-    font-size: 1.1rem;
-    pointer-events: none;
-    transition: color 0.25s ease;
-}
-
-.login-input {
-    width: 100%;
-    background-color: var(--bs-body-bg);
-    border: 1px solid var(--border-light);
-    border-radius: var(--radius-lg);
-    padding: 0.8rem 1.25rem 0.8rem 2.85rem;
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--text-main);
-    outline: none;
-    transition: all 0.25s ease-in-out;
-}
-
-/* Adjust padding for password field to fit eye toggle */
-.login-input-password {
-    padding-right: 2.85rem;
-}
-
-.login-input:focus {
-    background-color: #FFFFFF;
-    border-color: var(--brand-forest-medium);
-    box-shadow: 0 0 0 4px var(--brand-lime-translucent);
-}
-
-.login-input:focus + i.input-icon {
-    color: var(--brand-forest-medium);
-}
-
-.password-toggle-btn {
-    position: absolute;
-    right: 1.25rem;
-    background: none;
-    border: none;
-    color: var(--text-muted-green);
-    cursor: pointer;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    font-size: 1.1rem;
-    transition: color 0.2s;
-}
-
-.password-toggle-btn:hover {
-    color: var(--brand-forest-medium);
-}
-
-.login-options {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 1.75rem;
-    font-size: 0.825rem;
-}
-
-/* Custom Checkbox Styling */
-.custom-control-label {
-    cursor: pointer;
-    font-weight: 600;
-    color: var(--text-muted-green);
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    user-select: none;
-}
-
-.custom-checkbox-input {
-    width: 18px;
-    height: 18px;
-    border-radius: var(--radius-sm);
-    border: 2px solid var(--text-muted-green);
-    appearance: none;
-    outline: none;
-    cursor: pointer;
-    position: relative;
-    transition: all 0.2s ease;
-    background-color: transparent;
-}
-
-.custom-checkbox-input:checked {
-    background-color: var(--brand-forest-medium);
-    border-color: var(--brand-forest-medium);
-}
-
-.custom-checkbox-input:checked::before {
-    content: "\f272"; /* check icon in bootstrap-icons font */
-    font-family: "bootstrap-icons";
-    font-weight: 900;
-    font-size: 0.7rem;
-    color: #FFFFFF;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.forgot-password-link {
-    color: var(--brand-forest-medium);
-    font-weight: 600;
-    text-decoration: none;
-}
-
-.forgot-password-link:hover {
-    color: var(--brand-lime-hover);
-    text-decoration: underline;
-}
-
-.btn-login {
-    background-color: var(--brand-forest-medium);
-    color: #FFFFFF;
-    border: none;
-    border-radius: var(--radius-lg);
-    padding: 0.85rem;
-    font-weight: 700;
-    font-size: 0.95rem;
-    width: 100%;
-    box-shadow: var(--shadow-sm);
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-}
-
-.btn-login:hover {
-    background-color: var(--brand-forest-dark);
-    color: #FFFFFF;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px var(--brand-lime-translucent);
-}
-
-.btn-login i {
-    font-size: 1rem;
-    transition: transform 0.25s ease;
-}
-
-.btn-login:hover i {
-    transform: translateX(3px);
-}
-
-.login-divider {
-    display: flex;
-    align-items: center;
-    text-align: center;
-    color: var(--text-muted-green);
-    margin: 1.75rem 0;
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    opacity: 0.6;
-}
-
-.login-divider::before,
-.login-divider::after {
-    content: '';
-    flex: 1;
-    border-bottom: 1px solid var(--border-light);
-}
-
-.login-divider:not(:empty)::before {
-    margin-right: .75rem;
-}
-
-.login-divider:not(:empty)::after {
-    margin-left: .75rem;
-}
-
-.social-login-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.75rem;
-    margin-bottom: 1.75rem;
-}
-
-.btn-social {
-    background-color: #FFFFFF;
-    border: 1px solid var(--border-light);
-    color: var(--text-main);
-    border-radius: var(--radius-lg);
-    padding: 0.7rem;
-    font-weight: 600;
-    font-size: 0.85rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    box-shadow: var(--shadow-sm);
-    transition: all 0.2s ease;
-}
-
-.btn-social:hover {
-    background-color: var(--bs-body-bg);
-    border-color: rgba(0, 0, 0, 0.1);
-}
-
-.btn-social i {
-    font-size: 1.1rem;
-}
-
-.login-footer-text {
-    text-align: center;
-    font-size: 0.85rem;
-    color: var(--text-muted-green);
-    font-weight: 600;
-    margin-bottom: 0;
-}
-
-.login-footer-text a {
-    color: var(--brand-forest-medium);
-    font-weight: 700;
-}
-
-.login-footer-text a:hover {
-    color: var(--brand-lime-hover);
-    text-decoration: underline;
-}
-
-/* =====================================================================
-   16. Navbar Profile Dropdown Styles
-   ===================================================================== */
-.navbar-profile-btn {
-    background: transparent;
-    border: none;
-    padding: 0.25rem 0;
-    display: flex;
-    align-items: center;
-    gap: 0.65rem;
-    border-radius: var(--radius-lg);
-    transition: all 0.2s ease-in-out;
-    cursor: pointer;
-}
-
-.navbar-profile-btn:hover {
-    background-color: var(--bs-body-bg);
-}
-
-.navbar-profile-btn:focus {
-    outline: none;
-}
-
-.navbar-profile-btn.dropdown-toggle::after {
-    display: none !important;
-}
-
-.navbar-profile-img {
-    width: 38px;
-    height: 38px;
-    border-radius: var(--radius-lg);
-    object-fit: cover;
-    transition: border-color 0.2s;
-}
-
-.navbar-profile-btn:hover .navbar-profile-img {
-    border-color: var(--brand-lime-hover);
-}
-
-.navbar-profile-name {
-    font-size: 0.875rem;
-    font-weight: 700;
-    color: var(--text-main);
-    transition: color 0.2s;
-}
-
-.navbar-profile-btn:hover .navbar-profile-name {
-    color: var(--brand-forest-medium);
-}
-
-.navbar-profile-caret {
-    font-size: 0.75rem;
-    color: var(--text-muted-green);
-    transition: transform 0.2s, color 0.2s;
-}
-
-.navbar-profile-btn:hover .navbar-profile-caret {
-    color: var(--brand-forest-medium);
-}
-
-.navbar-profile-btn[aria-expanded="true"] .navbar-profile-caret {
-    transform: rotate(180deg);
-}
-
-/* Custom Dropdown Menu for Profile */
-.dropdown-menu-profile {
-    width: 200px;
-    background-color: #FFFFFF !important;
-    border: 1px solid var(--border-light) !important;
-    border-radius: var(--radius-xl) !important;
-    box-shadow: var(--shadow-lg) !important;
-    padding: 0.5rem 0 !important;
-    margin-top: 0.5rem !important;
-    border: none !important;
-    animation: dropdownFadeIn 0.2s ease;
-}
-
-
-.dropdown-menu-profile .dropdown-header {
-    font-size: 0.725rem;
-    font-weight: 750;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--text-muted-green);
-    padding: 0.65rem 1.25rem 0.35rem;
-}
-
-.dropdown-menu-profile .dropdown-item {
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--text-main);
-    padding: 0.65rem 1.25rem;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    transition: all 0.2s ease-in-out;
-}
-
-.dropdown-menu-profile .dropdown-item i {
-    font-size: 1.05rem;
-    color: var(--text-muted-green);
-    transition: color 0.2s;
-}
-
-.dropdown-menu-profile .dropdown-item:hover {
-    background-color: var(--bs-body-bg);
-    color: var(--brand-forest-medium);
-}
-
-.dropdown-menu-profile .dropdown-item:hover i {
-    color: var(--brand-forest-medium);
-}
-
-.dropdown-menu-profile .dropdown-divider {
-    border-color: var(--border-light);
-    margin: 0.4rem 0;
-}
-
-/* ---------------------------------------------------------------------
-   18. Reusable Premium Table Component
---------------------------------------------------------------------- */
-.table-card-custom {
-    background-color: #FFFFFF;
-    border-radius: var(--radius-xl);
-    border: 1px solid rgba(11, 19, 15, 0.06) !important;
-    box-shadow: var(--shadow-sm);
-    overflow: hidden;
-    margin-bottom: 1.25rem !important; /* Pushes the main footer down to create breathing space */
-    width: 100%;
-}
-
-.table-custom {
-    width: 100%;
-    margin-bottom: 0;
-    vertical-align: middle;
-    border-collapse: collapse;
-}
-
-.table-custom th,
-.table-custom td {
-    padding: 1rem 1.25rem;
-    border-bottom: 1px solid rgba(11, 19, 15, 0.05);
-    white-space: nowrap;
-}
-
-.table-custom th {
-    background-color: #F8FAF9;
-    color: var(--text-muted-green);
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    border-bottom: 1px solid rgba(11, 19, 15, 0.08);
-}
-
-.table-custom tbody tr {
-    transition: background-color 0.2s ease-in-out;
-}
-
-.table-custom tbody tr:hover {
-    background-color: rgba(180, 241, 5, 0.03); /* Soft brand-lime-glow transparent hover */
-}
-
-.table-custom tbody tr:last-child td {
-    border-bottom: none;
-}
-
-/* User/Product visual info cell */
-.table-user-cell {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-}
-
-.table-user-avatar {
-    width: 38px;
-    height: 38px;
-    border-radius: var(--radius-lg);
-    object-fit: cover;
-    background-color: var(--brand-forest-medium);
-}
-
-.table-user-name {
-    font-weight: 700;
-    color: var(--text-main);
-    font-size: 0.875rem;
-}
-
-.table-user-sub {
-    font-size: 0.75rem;
-    color: var(--text-muted-green);
-}
-
-/* Badge styles */
-.badge-table {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    padding: 0.25rem 0.65rem;
-    font-size: 0.75rem;
-    font-weight: 700;
-    border-radius: 50rem;
-}
-
-.badge-table::before {
-    content: '';
-    display: inline-block;
-    width: 6px;
-    height: 6px;
-    border-radius: 50rem;
-}
-
-.badge-table.success {
-    background-color: rgba(34, 197, 94, 0.1);
-    color: var(--sys-green);
-}
-.badge-table.success::before {
-    background-color: var(--sys-green);
-}
-
-.badge-table.pending {
-    background-color: rgba(249, 115, 22, 0.1);
-    color: var(--sys-orange);
-}
-.badge-table.pending::before {
-    background-color: var(--sys-orange);
-}
-
-.badge-table.failed {
-    background-color: rgba(239, 68, 68, 0.1);
-    color: var(--sys-red);
-}
-.badge-table.failed::before {
-    background-color: var(--sys-red);
-}
-
-/* Table Controls Top bar */
-.table-header-control {
-    background-color: #FFFFFF;
-    padding: 1.25rem;
-    border-bottom: 1px solid rgba(11, 19, 15, 0.06);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 1rem;
-}
-
-.table-search-box {
-    position: relative;
-    max-width: 320px;
-    flex-grow: 1;
-}
-
-.table-search-input {
-    width: 100%;
-    padding: 0.5rem 1rem 0.5rem 2.25rem;
-    font-size: 0.85rem;
-    border-radius: var(--radius-lg);
-    border: 1px solid rgba(11, 19, 15, 0.1);
-    background-color: #FDFDFD;
-    transition: all 0.2s ease-in-out;
-}
-
-.table-search-input:focus {
-    outline: none;
-    border-color: var(--brand-forest-medium);
-    box-shadow: 0 0 0 3px rgba(7, 47, 31, 0.08);
-}
-
-.table-search-icon {
-    position: absolute;
-    left: 0.75rem;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--text-muted-green);
-    font-size: 0.85rem;
-}
-
-/* Table Actions dropdown/filters */
-.table-filter-group {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-}
-
-.btn-table-action {
-    background-color: #FFFFFF;
-    border: 1px solid rgba(11, 19, 15, 0.1);
-    color: var(--brand-forest-dark);
-    font-size: 0.85rem;
-    font-weight: 600;
-    padding: 0.5rem 1rem;
-    border-radius: var(--radius-lg);
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    transition: all 0.2s ease-in-out;
-}
-
-.btn-table-action:hover {
-    background-color: #F8FAF9;
-    border-color: var(--brand-forest-medium);
-}
-
-/* Action button items in table cell */
-.table-btn-action {
-    width: 32px;
-    height: 32px;
-    border-radius: var(--radius-md);
-    border: 1px solid rgba(11, 19, 15, 0.08);
-    background-color: #FFFFFF;
-    color: var(--brand-forest-dark);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.85rem;
-    transition: all 0.2s ease-in-out;
-    text-decoration: none;
-}
-
-.table-btn-action:hover {
-    background-color: var(--brand-forest-medium);
-    color: #FFFFFF;
-    border-color: var(--brand-forest-medium);
-}
-
-.table-btn-action.delete:hover {
-    background-color: var(--sys-red);
-    color: #FFFFFF;
-    border-color: var(--sys-red);
-}
-
-/* Table Footer Pagination */
-.table-footer-control {
-    background-color: #FFFFFF;
-    padding: 1.25rem;
-    border-top: 1px solid rgba(11, 19, 15, 0.06);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 1rem;
-}
-
-.table-pagination-info {
-    font-size: 0.85rem;
-    color: var(--text-muted-green);
-}
-
-/* Custom column styles */
-.table-order-id {
-    font-weight: 700;
-    color: var(--text-main);
-}
-
-.table-product-name {
-    font-weight: 600;
-    color: var(--text-main);
-}
-
-.table-amount {
-    font-weight: 700;
-    color: var(--text-main);
-}
-
-/* Custom Table pagination overrides */
-.table-footer-control .pagination .page-link {
-    border-radius: var(--radius-md);
-    color: var(--brand-forest-dark);
-    background-color: transparent;
-    transition: all 0.25s ease-in-out;
-}
-
-.table-footer-control .pagination .page-link:hover {
-    background-color: #F8FAF9;
-    color: var(--brand-forest-medium);
-}
-
-.table-footer-control .pagination .page-item.active .page-link {
-    background-color: var(--brand-forest-medium) !important;
-    color: #FFFFFF !important;
-}
-
-.table-footer-control .pagination .page-item.disabled .page-link {
-    opacity: 0.5;
-    color: var(--text-muted-green);
-    pointer-events: none;
-}
-
-/* ---------------------------------------------------------------------
-   19. Custom Premium Form Elements Design System
---------------------------------------------------------------------- */
-.form-label-custom {
-    display: inline-block;
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: var(--text-main);
-    margin-bottom: 0.5rem;
-}
-
-.form-control-custom {
-    display: block;
-    width: 100%;
-    padding: 0.6rem 1rem;
-    font-size: 0.875rem;
-    font-weight: 500;
-    line-height: 1.5;
-    color: var(--text-main);
-    background-color: #FFFFFF;
-    background-clip: padding-box;
-    border: 1px solid rgba(11, 19, 15, 0.12);
-    border-radius: var(--radius-lg);
-    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-}
-
-.form-control-custom:focus {
-    color: var(--text-main);
-    background-color: #FFFFFF;
-    border-color: var(--brand-forest-medium);
-    outline: 0;
-    box-shadow: 0 0 0 3px rgba(7, 47, 31, 0.08);
-}
-
-.form-control-custom::placeholder {
-    color: var(--text-muted-green);
-    opacity: 0.5;
-}
-
-.form-control-custom:disabled,
-.form-control-custom[readonly] {
-    background-color: #F8FAF9;
-    border-color: rgba(11, 19, 15, 0.06);
-    color: var(--text-muted-green);
-    opacity: 0.8;
-    cursor: not-allowed;
-}
-
-/* Sizing overrides */
-.form-control-custom-sm {
-    padding: 0.35rem 0.75rem;
-    font-size: 0.75rem;
-    border-radius: var(--radius-md);
-}
-
-.form-control-custom-lg {
-    padding: 0.75rem 1.25rem;
-    font-size: 1rem;
-    border-radius: var(--radius-xl);
-}
-
-/* Select overrides */
-.form-select-custom {
-    display: block;
-    width: 100%;
-    padding: 0.6rem 2.25rem 0.6rem 1rem;
-    font-size: 0.875rem;
-    font-weight: 500;
-    line-height: 1.5;
-    color: var(--text-main);
-    background-color: #FFFFFF;
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23072F1F' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
-    background-repeat: no-repeat;
-    background-position: right 1rem center;
-    background-size: 12px 10px;
-    border: 1px solid rgba(11, 19, 15, 0.12);
-    border-radius: var(--radius-lg);
-    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    appearance: none;
-}
-
-.form-select-custom:focus {
-    border-color: var(--brand-forest-medium);
-    outline: 0;
-    box-shadow: 0 0 0 3px rgba(7, 47, 31, 0.08);
-}
-
-.form-select-custom:disabled {
-    background-color: #F8FAF9;
-    border-color: rgba(11, 19, 15, 0.06);
-    color: var(--text-muted-green);
-    opacity: 0.8;
-    cursor: not-allowed;
-}
-
-/* Custom Checkbox & Radios */
-.form-check-custom {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    min-height: 1.5rem;
-    margin-bottom: 0.5rem;
-}
-
-.form-check-input-custom {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    width: 18px;
-    height: 18px;
-    margin-top: 0;
-    vertical-align: top;
-    background-color: #FFFFFF;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    border: 1px solid rgba(11, 19, 15, 0.15);
-    transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-    cursor: pointer;
-}
-
-.form-check-input-custom[type="checkbox"] {
-    border-radius: var(--radius-md);
-}
-
-.form-check-input-custom[type="radio"] {
-    border-radius: 50rem;
-}
-
-.form-check-input-custom:focus {
-    outline: 0;
-    border-color: var(--brand-lime-hover);
-    box-shadow: 0 0 0 3px var(--brand-lime-translucent);
-}
-
-.form-check-input-custom:checked {
-    background-color: var(--brand-lime);
-    border-color: var(--brand-lime);
-}
-
-.form-check-input-custom[type="checkbox"]:checked {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23072F1F' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e");
-}
-
-.form-check-input-custom[type="radio"]:checked {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3ccircle cx='8' cy='8' r='3.5' fill='%23072F1F'/%3e%3c/svg%3e");
-}
-
-.form-check-input-custom:disabled {
-    background-color: #F8FAF9;
-    border-color: rgba(11, 19, 15, 0.06);
-    opacity: 0.8;
-    cursor: not-allowed;
-}
-
-/* Custom switch button style */
-.form-switch-custom {
-    display: flex;
-    align-items: center;
-    gap: 0.65rem;
-    min-height: 1.5rem;
-    margin-bottom: 0.5rem;
-}
-
-.form-switch-input-custom {
-    width: 38px;
-    height: 20px;
-    border-radius: 50rem;
-    background-color: rgba(11, 19, 15, 0.1);
-    position: relative;
-    border: 1px solid rgba(11, 19, 15, 0.08);
-    transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    cursor: pointer;
-    appearance: none;
-    outline: none;
-}
-
-.form-switch-input-custom::before {
-    content: '';
-    position: absolute;
-    width: 16px;
-    height: 16px;
-    border-radius: 50rem;
-    left: 1px;
-    top: 1px;
-    background-color: #FFFFFF;
-    box-shadow: 0 2px 4px rgba(11, 19, 15, 0.15);
-    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.form-switch-input-custom:checked {
-    background-color: var(--brand-forest-medium);
-    border-color: var(--brand-forest-medium);
-}
-
-.form-switch-input-custom:checked::before {
-    transform: translateX(18px);
-}
-
-.form-switch-input-custom:focus {
-    box-shadow: 0 0 0 3px rgba(7, 47, 31, 0.08);
-}
-
-.form-switch-input-custom:disabled {
-    background-color: #F8FAF9;
-    border-color: rgba(11, 19, 15, 0.06);
-    opacity: 0.8;
-    cursor: not-allowed;
-}
-
-/* Input group styles */
-.input-group-custom {
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: stretch;
-    width: 100%;
-    border-radius: var(--radius-lg);
-    border: 1px solid rgba(11, 19, 15, 0.12);
-    background-color: #FFFFFF;
-    overflow: hidden;
-    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-}
-
-.input-group-custom:focus-within {
-    border-color: var(--brand-forest-medium);
-    box-shadow: 0 0 0 3px rgba(7, 47, 31, 0.08);
-}
-
-.input-group-text-custom {
-    display: flex;
-    align-items: center;
-    padding: 0.375rem 0.85rem;
-    font-size: 0.875rem;
-    font-weight: 500;
-    line-height: 1.5;
-    color: var(--text-muted-green);
-    text-align: center;
-    white-space: nowrap;
-    background-color: #F8FAF9;
-}
-
-.input-group-custom .form-control-custom {
-    border: none !important;
-    border-radius: 0 !important;
-    flex: 1 1 auto;
-    width: 1%;
-    min-width: 0;
-    padding-left: 0.75rem;
-}
-
-.input-group-custom .form-control-custom:focus {
-    box-shadow: none !important;
-}
-
-/* Validation styles */
-.form-control-custom.is-invalid-custom {
-    border-color: var(--sys-red) !important;
-}
-
-.form-control-custom.is-invalid-custom:focus {
-    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.08) !important;
-}
-
-.form-control-custom.is-valid-custom {
-    border-color: var(--sys-green) !important;
-}
-
-.form-control-custom.is-valid-custom:focus {
-    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.08) !important;
-}
-
-.form-feedback-custom {
-    display: block;
-    width: 100%;
-    margin-top: 0.35rem;
-    font-size: 0.75rem;
-    font-weight: 700;
-}
-
-.form-feedback-custom.invalid-custom {
-    color: var(--sys-red);
-}
-
-.form-feedback-custom.valid-custom {
-    color: var(--sys-green);
-}
-
-/* ---------------------------------------------------------------------
-   20. Reusable Custom Buttons & Alerts Design System
---------------------------------------------------------------------- */
-/* Custom Buttons base style */
-.btn-custom {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    font-size: 0.875rem;
-    font-weight: 600;
-    padding: 0.6rem 1.25rem;
-    border-radius: var(--radius-lg);
-    border: 1px solid transparent;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    cursor: pointer;
-    text-decoration: none;
-    line-height: 1.5;
-}
-
-.btn-custom:active {
-    transform: scale(0.97);
-}
-
-.btn-custom:focus-visible {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(7, 47, 31, 0.15);
-}
-
-/* Custom Buttons sizing variants */
-.btn-custom-sm {
-    padding: 0.35rem 0.75rem;
-    font-size: 0.75rem;
-    border-radius: var(--radius-md);
-}
-
-.btn-custom-lg {
-    padding: 0.75rem 1.75rem;
-    font-size: 1rem;
-    border-radius: var(--radius-xl);
-}
-
-/* Custom Buttons color variants */
-.btn-custom-primary {
-    background-color: var(--brand-forest-medium);
-    border-color: var(--brand-forest-medium);
-    color: #FFFFFF;
-}
-
-.btn-custom-primary:hover {
-    background-color: var(--brand-forest-dark);
-    border-color: var(--brand-forest-dark);
-    color: #FFFFFF;
-}
-
-.btn-custom-secondary {
-    background-color: var(--brand-lime);
-    border-color: var(--brand-lime);
-    color: #072F1F;
-}
-
-.btn-custom-secondary:hover {
-    background-color: var(--brand-lime-hover);
-    border-color: var(--brand-lime-hover);
-    color: #072F1F;
-}
-
-.btn-custom-light {
-    background-color: #F8FAF9;
-    border-color: rgba(11, 19, 15, 0.08);
-    color: var(--brand-forest-dark);
-}
-
-.btn-custom-light:hover {
-    background-color: #EEF2F0;
-    border-color: rgba(11, 19, 15, 0.12);
-    color: var(--brand-forest-dark);
-}
-
-.btn-custom-danger {
-    background-color: var(--sys-red);
-    border-color: var(--sys-red);
-    color: #FFFFFF;
-}
-
-.btn-custom-danger:hover {
-    background-color: #dc2626;
-    border-color: #dc2626;
-    color: #FFFFFF;
-}
-
-.btn-custom-warning {
-    background-color: #F59E0B;
-    border-color: #F59E0B;
-    color: #FFFFFF;
-}
-
-.btn-custom-warning:hover {
-    background-color: #d97706;
-    border-color: #d97706;
-    color: #FFFFFF;
-}
-
-/* Custom Buttons outline variants */
-.btn-custom-outline-primary {
-    background-color: transparent;
-    border-color: var(--brand-forest-medium);
-    color: var(--brand-forest-medium);
-}
-
-.btn-custom-outline-primary:hover {
-    background-color: var(--brand-forest-medium);
-    color: #FFFFFF;
-}
-
-.btn-custom-outline-secondary {
-    background-color: transparent;
-    border-color: var(--brand-lime-hover);
-    color: var(--brand-forest-dark);
-}
-
-.btn-custom-outline-secondary:hover {
-    background-color: var(--brand-lime);
-    border-color: var(--brand-lime);
-    color: #072F1F;
-}
-
-.btn-custom-outline-danger {
-    background-color: transparent;
-    border-color: var(--sys-red);
-    color: var(--sys-red);
-}
-
-.btn-custom-outline-danger:hover {
-    background-color: var(--sys-red);
-    color: #FFFFFF;
-}
-
-/* Custom alert components */
-.alert-custom {
-    padding: 1rem 1.25rem;
-    border-radius: var(--radius-lg);
-    border: 1px solid transparent;
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    position: relative;
-    font-size: 0.875rem;
-    font-weight: 500;
-}
-
-.alert-custom-icon {
-    font-size: 1.15rem;
-    flex-shrink: 0;
-}
-
-.alert-custom-content {
-    flex-grow: 1;
-}
-
-.alert-custom-close {
-    background: none;
-    border: none;
-    font-size: 1rem;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.25rem;
-    border-radius: var(--radius-md);
-    transition: all 0.2s ease;
-    opacity: 0.5;
-}
-
-.alert-custom-close:hover {
-    opacity: 1;
-    background-color: rgba(11, 19, 15, 0.05);
-}
-
-/* Alert theme variations */
-.alert-custom-primary {
-    background-color: rgba(7, 47, 31, 0.04);
-    border-color: rgba(7, 47, 31, 0.08);
-    color: var(--brand-forest-dark);
-}
-
-.alert-custom-success {
-    background-color: #f0fdf4;
-    border-color: #bbf7d0;
-    color: #166534;
-}
-
-.alert-custom-danger {
-    background-color: #fef2f2;
-    border-color: #fecaca;
-    color: #991b1b;
-}
-
-.alert-custom-warning {
-    background-color: #fffbeb;
-    border-color: #fef3c7;
-    color: #92400e;
-}
-
-.alert-custom-info {
-    background-color: #f0f9ff;
-    border-color: #bae6fd;
-    color: #075985;
-}
-
-/* ---------------------------------------------------------------------
-   21. Error 404 Page Styling Layout
---------------------------------------------------------------------- */
-.error-card-custom {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 5rem 2rem;
-    min-height: 480px;
-    background-color: #FFFFFF;
-    border-radius: var(--radius-xl);
-    border: 1px solid rgba(11, 19, 15, 0.06) !important;
-    box-shadow: var(--shadow-sm);
-    margin-bottom: 2rem;
-}
-
-.error-title-huge {
-    font-size: 7.5rem;
-    font-weight: 800;
-    line-height: 1;
-    color: var(--brand-forest-dark);
-    margin-bottom: 1.5rem;
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.15em;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-}
-
-.error-title-huge .bi-asterisk {
-    font-size: 5.5rem;
-    color: var(--brand-lime);
-    display: inline-block;
-    animation: asteriskSpin 20s infinite linear;
-}
-
-.error-subtitle {
-    font-size: 1.75rem;
-    font-weight: 700;
-    color: var(--text-main);
-    margin-bottom: 1rem;
-}
-
-.error-desc {
-    max-width: 480px;
-    font-size: 0.95rem;
-    color: var(--text-muted-green);
-    margin-bottom: 2.25rem;
-    line-height: 1.6;
-}
-
-.error-actions-group {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-}
-
-@keyframes asteriskSpin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-/* ---------------------------------------------------------------------
-   23. Reusable Helper & Utility Classes (Zero Inline Style Policy)
---------------------------------------------------------------------- */
-.z-index-2 {
-    z-index: 2 !important;
-}
-
-.sparkline-card-footer {
-    margin-left: -1.75rem;
-    margin-right: -1.75rem;
-    margin-bottom: -1.75rem;
-    margin-top: 1.25rem;
-    overflow: hidden;
-    border-bottom-left-radius: var(--radius-xxl);
-    border-bottom-right-radius: var(--radius-xxl);
-}
-
-.chart-legend-label {
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--text-muted-green);
-}
-
-.stat-value-amount {
-    font-size: 1.6rem;
-    font-weight: 800;
-    color: var(--text-main);
-}
-
-.fs-xs {
-    font-size: 0.75rem !important;
-}
-
-.w-38 {
-    width: 38% !important;
-}
-
-.w-45 {
-    width: 45% !important;
-}
-
-.w-50 {
-    width: 50% !important;
-}
-
-.w-65 {
-    width: 65% !important;
-}
-
-.w-75 {
-    width: 75% !important;
-}
-
-.w-85 {
-    width: 85% !important;
-}
-
-
-.empty-state-icon {
-    font-size: 3.5rem;
-    opacity: 0.25;
-}
-
-.sidebar-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(5, 28, 18, 0.4);
-    backdrop-filter: blur(4px);
-    z-index: 1025;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.25s ease, visibility 0.25s ease;
-}
-
-.sidebar-overlay.show {
-    opacity: 1;
-    visibility: visible;
-}
-
-/* ---------------------------------------------------------------------
-   24. Transaction List Component
---------------------------------------------------------------------- */
-.transaction-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-}
-
-.transaction-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.85rem 1rem;
-    background-color: var(--bs-body-bg);
-    border-radius: var(--radius-lg);
-    transition: all 0.2s ease-in-out;
-}
-
-.transaction-item:hover {
-    background-color: rgba(5, 28, 18, 0.06);
-}
-
-.transaction-icon {
-    width: 44px;
-    height: 44px;
-    border-radius: 50rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.25rem;
-    flex-shrink: 0;
-    margin-right: 0.85rem;
-}
-
-.transaction-info {
-    flex-grow: 1;
-    min-width: 0;
-}
-
-.transaction-name {
-    font-size: 0.875rem;
-    font-weight: 700;
-    color: var(--text-main);
-    margin-bottom: 0.15rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.transaction-date {
-    font-size: 0.75rem;
-    color: var(--text-muted-green);
-    margin-bottom: 0;
-}
-
-.transaction-amount {
-    font-size: 0.875rem;
-    font-weight: 700;
-    text-align: right;
-    flex-shrink: 0;
-    margin-left: 0.85rem;
-}
-
-.bg-forest-light {
-    background-color: var(--brand-forest-dark) !important;
-}
-
-.text-lime {
-    color: var(--brand-lime) !important;
-}
-
-/* FOOTER */
-.admin-footer {
-    width: 100%;
-    margin-top: auto;
-    padding: 20px 30px;
-    text-align: center;
-    background: #3368A0;
-    color: #ffffff;
-    border-top: 1px solid #66A3BF;
-
-}
-
-.admin-footer-title {
-    font-size: 16px;
-    font-weight: 700;
-    margin-bottom: 5px;
-}
-
-.admin-footer-text {
-    font-size: 14px;
-    color: #C8DFDB;
-}
-
-html,
-body {
-    min-height: 100%;
-}
-
-body {
-    min-height: 100vh;
-}
-
-.main-wrapper {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-.page-content {
-    flex: 1;
-    padding-bottom: 30px;
-}
-
-.admin-footer {
-    width: 100%;
-    padding: 20px 30px;
-    margin-top: 0;
-    text-align: center;
-    background: #3368A0;
-    color: #ffffff;
-    border-top: 1px solid #66A3BF;
-}
-
-.admin-footer-title {
-    font-size: 16px;
-    font-weight: 700;
-    margin-bottom: 5px;
-}
-
-.admin-footer-text {
-    font-size: 14px;
-    color: #C8DFDB;
-}
-
-.main-content {
-    min-height: calc(100vh - 80px);
-    display: flex;
-    flex-direction: column;
-}
-
-.sidebar-logout {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 12px;
-    border: 0;
-    border-radius: 8px;
-    background: transparent;
-    color: rgba(255,255,255,.8);
-    font-size: 14px;
-    cursor: pointer;
-    transition: .2s ease;
-    text-align: left;
-}
-
-.sidebar-logout i {
-    width: 18px;
-    text-align: center;
-}
-
-.sidebar-logout:hover {
-    background: rgba(255,255,255,.1);
-    color: #fff;
-}
-
-/* Tombol Lihat Website */
-.sidebar-website-only {
-    padding: 14px 20px !important;
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-}
-
-.sidebar-website-link {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 6px !important;
-    padding: 6px 0 !important;
-    background: transparent !important;
-    border: none !important;
-    color: rgba(255, 255, 255, 0.85) !important;
-    text-decoration: none !important;
-    font-size: 14px !important;
-    font-weight: 600 !important;
-}
-
-.sidebar-website-link i {
-    font-size: 12px !important;
-}
-
-.sidebar-website-link:hover {
-    color: #FFFFFF !important;
-}
-
-.sidebar-brand-logo {
-    width: 42px;
-    height: 42px;
-    object-fit: contain;
-    flex-shrink: 0;
-}
-
-.site-footer {
-    width: calc(100% + 80px);
-    margin-left: -40px !important;
-    margin-right: -40px !important;
-    margin-bottom: -30px !important;
-    padding: 22px 20px;
-    background: #2b6cb0;
-    color: #FFFFFF;
-    border-radius: 0 !important;
-    box-shadow: none !important;
-}
-.navbar-custom {
-    position: relative !important;
-}
-
-.navbar-actions {
-    position: absolute !important;
-    right: 20px !important;
-    top: 50% !important;
-    transform: translateY(-50%) !important;
-}
-
-body.sidebar-minimized .sidebar-website-link span {
-    display: none !important;
-}
-
-body.sidebar-minimized .sidebar-website-link {
-    justify-content: center;
-}
-
-body.sidebar-minimized .sidebar-website-link i {
-    margin: 0;
-}
-
-/* ==============================
-   RESPONSIVE
-   ============================== */
-
-@media (max-width: 1199.98px) {
-
-    .main-wrapper {
-        margin-left: 0 !important;
-    }
-
-    .sidebar-wrapper {
-        transform: translateX(-100%);
-        z-index: 1050;
-    }
-
-    .sidebar-wrapper.show {
-        transform: translateX(0);
-    }
-
-    .main-content {
-        padding: 20px !important;
-    }
-
-    .site-footer {
-        width: 100% !important;
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-    }
-}
-
-
-/* TABLET */
-@media (max-width: 991.98px) {
-
-    .main-content {
-        padding: 18px !important;
-    }
-
-    .card-body {
-        padding: 20px !important;
-    }
-
-    .table-responsive {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-    }
-
-}
-
-
-/* HP */
-@media (max-width: 767.98px) {
-
-    .main-content {
-        padding: 15px !important;
-    }
-
-    /* Header halaman */
-    .container-fluid > .d-flex.justify-content-between {
-        flex-wrap: wrap;
-        gap: 15px;
-    }
-
-    /* Tombol tambah */
-    .container-fluid > .d-flex.justify-content-between > a {
-        width: 100%;
-        text-align: center;
-    }
-
-    /* Search */
-    .card-header .d-flex {
-        flex-wrap: wrap;
-    }
-
-    .card-header form {
-        width: 100%;
-        flex-wrap: wrap;
-    }
-
-    .card-header form .input-group {
-        width: 100% !important;
-    }
-
-    .card-header form .form-select {
-        width: 100% !important;
-    }
-
-    .card-header form .btn {
-        flex: 1;
-    }
-
-    /* Badge jumlah */
-    .card-header > .d-flex > .badge {
-        width: 100%;
-        text-align: center;
-    }
-
-    /* Card */
-    .card-body {
-        padding: 15px !important;
-    }
-
-    /* Tabel */
-    .table {
-        min-width: 700px;
-    }
-
-    /* Footer */
-    .site-footer {
-        padding: 18px 15px !important;
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-    }
-
-}
-
-
-/* HP KECIL */
-@media (max-width: 575.98px) {
-
-    .main-content {
-        padding: 12px !important;
-    }
-
-    h1 {
-        font-size: 24px;
-    }
-
-    h2 {
-        font-size: 21px;
-    }
-
-    h3 {
-        font-size: 19px;
-    }
-
-    .card-body {
-        padding: 12px !important;
-    }
-
-    .navbar-custom {
-        padding-left: 12px !important;
-        padding-right: 12px !important;
-    }
-
-    .navbar-profile-name {
-        display: none !important;
-    }
-
-}
-
-.profile-card {
-    position:relative;
-    width:100%;
-    max-width:580px;
-    min-height:500px;
-    background:#fff;
-    border-radius:24px;
-    overflow:hidden;
-    box-shadow:0 8px 25px rgba(0,0,0,.08);
-}
-
-.profile-wave {
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:195px;
-    overflow:hidden;
-    z-index:1;
-}
-
-.profile-wave svg {
-    width:100%;
-    height:100%;
-    display:block;
-}
-
-.profile-wave path {
-    fill:#244D73;
-}
-
-.profile-photo-wrapper {
-    position:relative;
-    z-index:2;
-    display:flex;
+body.sidebar-minimized .sidebar-menu-link{
     justify-content:center;
-    padding-top:95px;
 }
 
-.profile-photo {
-    width:130px;
-    height:130px;
-    object-fit:cover;
-    border-radius:50%;
-    border:5px solid #fff;
-    box-shadow:0 4px 12px rgba(0,0,0,.15);
-    background:#eef3f8;
-    transform:translateY(-10px);
-}
-
-.profile-photo-default {
-    display:flex;
-    align-items:center;
+body.sidebar-minimized .sidebar-website-link{
     justify-content:center;
-    color:#6c8ba8;
-    font-size:50px;
 }
 
-.profile-data {
-    position:relative;
-    z-index:2;
-    width:100%;
-    margin:25px auto 0;
-    padding:0;
+
+/* =========================================================
+   6. NAVBAR
+   ========================================================= */
+
+/* =========================================================
+   6. NAVBAR ADMIN
+   ========================================================= */
+
+/* Mengatur tampilan utama navbar admin */
+.navbar-custom{
+    height:var(--navbar-height); /* Mengatur tinggi navbar sesuai variabel */
+    background:#fff; /* Memberikan latar putih */
+    border-bottom:1px solid var(--border-light); /* Memberikan garis pemisah di bawah navbar */
+    padding:0 25px; /* Memberikan jarak kiri dan kanan navbar */
+    display:flex; /* Menyusun elemen navbar secara fleksibel */
+    align-items:center; /* Menyejajarkan isi navbar secara vertikal */
+    justify-content:space-between; /* Memisahkan bagian kiri dan kanan navbar */
+    position:sticky; /* Membuat navbar tetap menempel saat halaman digulir */
+    top:0; /* Menempatkan navbar pada bagian atas */
+    z-index:1020; /* Mengatur lapisan navbar agar tampil di atas konten */
 }
 
-.profile-row {
-    display:grid;
-    grid-template-columns:130px 160px;
-    align-items:center;
-    width:290px;
-    margin:0 auto 18px;
+/* Mengatur tata letak bagian kiri navbar */
+.navbar-left{
+    display:flex; /* Menyusun elemen secara fleksibel */
+    align-items:center; /* Menyejajarkan elemen secara vertikal */
+    gap:10px; /* Memberikan jarak antar elemen */
 }
 
-.profile-label {
-    width:130px;
-    color:#6c757d;
-    font-weight:600;
-    text-align:left;
+/* Mengatur ukuran, bentuk, warna, dan posisi ikon tombol navbar */
+.btn-desktop-toggle,
+.sidebar-toggle-btn,
+.navbar-action-btn{
+    width:40px; /* Menentukan lebar tombol */
+    height:40px; /* Menentukan tinggi tombol */
+    border:0; /* Menghilangkan garis tepi tombol */
+    border-radius:9px; /* Membulatkan sudut tombol */
+    background:#F1F5F9; /* Memberikan latar abu-abu muda */
+    color:var(--primary); /* Menggunakan warna utama untuk ikon */
+    display:flex; /* Menyusun isi tombol secara fleksibel */
+    align-items:center; /* Memusatkan isi secara vertikal */
+    justify-content:center; /* Memusatkan isi secara horizontal */
 }
 
-.profile-value {
-    color:#244D73;
-    font-weight:500;
-    text-align:left;
+/* Mengubah latar dan warna ikon tombol ketika diarahkan */
+.btn-desktop-toggle:hover,
+.sidebar-toggle-btn:hover,
+.navbar-action-btn:hover{
+    background:var(--soft); /* Mengubah latar tombol saat hover */
+    color:var(--primary); /* Mempertahankan warna ikon utama */
 }
 
-.profile-label i {
-    width:22px;
-    color:#244D73;
+/* Mengatur susunan tombol aksi di navbar */
+.navbar-actions{
+    display:flex; /* Menyusun tombol aksi secara horizontal */
+    align-items:center; /* Menyejajarkan tombol secara vertikal */
+    gap:8px; /* Memberikan jarak antar tombol */
 }
 
-.profile-buttons {
-    display:flex;
-    justify-content:center;
-    gap:10px;
-    margin-top:30px;
-    padding-bottom:30px;
+/* Mengatur tampilan tombol profil pengguna pada navbar */
+.navbar-profile-btn{
+    display:flex; /* Menyusun foto profil dan informasi pengguna */
+    align-items:center; /* Menyejajarkan isi secara vertikal */
+    gap:9px; /* Memberikan jarak antar elemen */
+    border:0; /* Menghilangkan garis tepi tombol */
+    background:none; /* Menghilangkan latar bawaan tombol */
+    padding:5px 8px; /* Memberikan ruang di dalam tombol */
+    border-radius:10px; /* Membulatkan sudut tombol */
+    cursor:pointer; /* Menampilkan kursor penunjuk */
 }
 
-.profile-edit-btn {
-    background:#244D73;
-    color:#fff;
-    padding:8px 24px;
-    border-radius:10px;
-    border:1px solid #244D73;
+/* Memberikan latar pada tombol profil ketika diarahkan */
+.navbar-profile-btn:hover{background:#F1F5F9}
+
+/* Mengatur ukuran dan bentuk foto profil pada navbar */
+.navbar-profile-img{
+    width:38px; /* Mengatur lebar foto */
+    height:38px; /* Mengatur tinggi foto */
+    border-radius:50%; /* Membuat foto berbentuk lingkaran */
+    object-fit:cover; /* Memenuhi area foto tanpa mengubah proporsi */
 }
 
-.profile-edit-btn:hover {
-    background:#1b3d5c;
-    color:#fff;
-    border-color:#1b3d5c;
+/* Mengatur warna dan ketebalan nama pengguna pada navbar */
+.navbar-profile-name{
+    color:var(--primary); /* Menggunakan warna utama */
+    font-weight:600; /* Membuat tulisan agak tebal */
 }
 
-.profile-cancel-btn {
-    background:#fff;
-    color:#244D73;
-    border:1px solid #d6dce2;
-    padding:8px 24px;
-    border-radius:10px;
+/* Mengatur warna dan ukuran tanda panah dropdown profil */
+.navbar-profile-caret{
+    color:var(--muted); /* Menggunakan warna teks sekunder */
+    font-size:12px; /* Mengatur ukuran tanda panah */
 }
 
-.profile-cancel-btn:hover {
-    background:#f1f4f7;
-    color:#244D73;
+
+/* =========================================================
+   7. DROPDOWN PROFILE
+   ========================================================= */
+
+/* Mengatur tampilan menu dropdown profil pengguna */
+.dropdown-menu-profile{
+    min-width:210px; /* Menentukan lebar minimum dropdown */
+    padding:8px; /* Memberikan ruang di dalam dropdown */
+    border:1px solid var(--border-light); /* Memberikan garis tepi dropdown */
+    border-radius:12px; /* Membulatkan sudut dropdown */
+    background:#fff; /* Memberikan latar putih */
+    box-shadow:0 8px 25px rgba(0,0,0,.08); /* Memberikan bayangan dropdown */
 }
 
+/* Mengatur susunan dan tampilan link serta tombol dropdown profil */
+.dropdown-menu-profile a,
+.dropdown-menu-profile button{
+    display:flex; /* Menyusun ikon dan teks secara fleksibel */
+    align-items:center; /* Menyejajarkan isi secara vertikal */
+    gap:10px; /* Memberikan jarak antara ikon dan teks */
+    width:100%; /* Membuat elemen memenuhi lebar dropdown */
+    padding:10px 12px; /* Memberikan ruang di dalam pilihan menu */
+    border:0; /* Menghilangkan garis tepi */
+    background:none; /* Menghilangkan latar bawaan */
+    border-radius:8px; /* Membulatkan sudut pilihan menu */
+    color:#334155; /* Mengatur warna teks menu */
+    text-align:left; /* Meratakan teks ke kiri */
+}
+
+/* Mengubah latar dan warna teks pilihan dropdown ketika diarahkan */
+.dropdown-menu-profile a:hover,
+.dropdown-menu-profile button:hover{
+    background:#F1F5F9; /* Memberikan latar abu-abu muda */
+    color:var(--primary); /* Mengubah teks menjadi warna utama */
+}
+
+
+/* =========================================================
+   8. UMUM ADMIN
+   ========================================================= */
+
+/* Mengatur warna judul pada halaman admin */
+.admin-title{color:var(--primary)}
+
+/* Mengatur warna ikon pada halaman admin */
+.admin-icon{color:var(--primary)}
+
+/* Mengatur warna latar dan teks pada elemen penghitung data */
+.admin-count{
+    background:var(--soft); /* Memberikan latar warna lembut */
+    color:var(--primary-light); /* Memberikan warna teks utama yang lebih muda */
+}
+
+/* Mengatur warna latar dan teks pada badge admin */
+.admin-badge{
+    background:#EEF5F4; /* Memberikan latar hijau keabu-abuan muda */
+    color:var(--primary-light); /* Memberikan warna teks utama yang lebih muda */
+}
+
+/* Mengatur tampilan ketika data belum tersedia */
+.empty-data{
+    padding:30px; /* Memberikan ruang di sekitar pesan */
+    text-align:center; /* Memusatkan pesan */
+    color:var(--muted);
+}
+/* =========================================================
+   11. UPLOAD FOTO PROFIL
+   ========================================================= */
+
+/* Menjadi wadah untuk foto profil dan tombol upload */
+.profile-upload{
+    position:relative; /* Menjadi acuan posisi tombol upload */
+    display:inline-block; /* Membuat wadah mengikuti ukuran isinya */
+}
+
+/* Mengatur ukuran dan bentuk foto profil yang diunggah */
+.profile-upload-img{
+    width:130px; /* Mengatur lebar foto */
+    height:130px; /* Mengatur tinggi foto */
+    object-fit:cover; /* Memenuhi area foto tanpa mengubah proporsi */
+    border-radius:50%; /* Membuat foto berbentuk lingkaran */
+    border:5px solid #fff; /* Memberikan bingkai putih pada foto */
+    box-shadow:0 4px 12px rgba(0,0,0,.15); /* Memberikan bayangan pada foto */
+}
+
+/* Mengatur tampilan pengganti foto jika foto belum tersedia */
+.profile-default{
+    display:flex; /* Mengaktifkan flexbox untuk memusatkan ikon */
+    align-items:center; /* Memusatkan ikon secara vertikal */
+    justify-content:center; /* Memusatkan ikon secara horizontal */
+    background:#EEF3F8; /* Memberikan latar abu-abu kebiruan */
+    color:#6C8BA8; /* Mengatur warna ikon pengganti */
+    font-size:50px; /* Mengatur ukuran ikon */
+}
+
+/* Mengatur tombol upload foto pada bagian bawah foto profil */
+.profile-upload-btn{
+    position:absolute; /* Memungkinkan tombol ditempatkan di atas foto */
+    right:0; /* Meletakkan tombol di sisi kanan */
+    bottom:0; /* Meletakkan tombol di bagian bawah */
+    width:40px; /* Mengatur lebar tombol */
+    height:40px; /* Mengatur tinggi tombol */
+    border-radius:50%; /* Membuat tombol berbentuk lingkaran */
+    background:var(--primary); /* Menggunakan warna utama sebagai latar */
+    color:#fff; /* Membuat ikon tombol berwarna putih */
+    border:3px solid #fff; /* Memberikan bingkai putih pada tombol */
+    display:flex; /* Menggunakan flexbox untuk ikon */
+    align-items:center; /* Memusatkan ikon secara vertikal */
+    justify-content:center; /* Memusatkan ikon secara horizontal */
+    cursor:pointer; /* Menampilkan kursor penunjuk */
+}
+
+/* Mengubah warna latar tombol upload saat diarahkan */
+.profile-upload-btn:hover{background:#1D3D5D}
+
+
+/* =========================================================
+   12. PROFIL SEKOLAH
+   ========================================================= */
+
+/* Mengatur tampilan kotak informasi profil sekolah */
+.profil-box{
+    background:#F8FAFC; /* Memberikan latar abu-abu sangat muda */
+    border:1px solid #EDF1F5; /* Memberikan garis tepi tipis */
+    border-radius:14px; /* Membulatkan sudut kotak */
+    padding:15px 17px; /* Memberikan ruang di dalam kotak */
+}
+
+/* Mengatur ukuran, bentuk, dan posisi ikon profil sekolah */
+.profil-icon{
+    width:42px; /* Mengatur lebar ikon */
+    height:42px; /* Mengatur tinggi ikon */
+    border-radius:12px; /* Membulatkan sudut wadah ikon */
+    background:#EAF3FA; /* Memberikan latar biru muda */
+    color:var(--primary); /* Menggunakan warna utama untuk ikon */
+    display:flex; /* Menggunakan flexbox untuk ikon */
+    align-items:center; /* Memusatkan ikon secara vertikal */
+    justify-content:center; /* Memusatkan ikon secara horizontal */
+}
+
+/* Mengatur latar, garis tepi, dan sudut kotak foto profil sekolah */
+.profil-photo-box{
+    background:#F7FAFC; /* Memberikan latar abu-abu kebiruan */
+    border:1px solid #EDF1F5; /* Memberikan garis tepi tipis */
+    border-radius:18px; /* Membulatkan sudut kotak foto */
+}
+
+/* Mengatur kotak isi informasi profil sekolah */
+.profil-content-box{
+    background:#F8FAFC; /* Memberikan latar abu-abu sangat muda */
+    border:1px solid #EDF1F5; /* Memberikan garis tepi tipis */
+    border-left:4px solid var(--primary); /* Memberikan garis aksen di sisi kiri */
+    border-radius:12px; /* Membulatkan sudut kotak */
+    padding:18px; /* Memberikan ruang di dalam kotak */
+    line-height:1.8; /* Mengatur jarak antarbaris teks */
+    white-space:pre-line; /* Mempertahankan baris baru pada teks */
+}
+
+
+/* =========================================================
+   13. FOOTER
+   ========================================================= */
+
+/* Mengatur tampilan bagian footer pada halaman admin */
+.site-footer{
+    padding:20px 25px; /* Memberikan ruang di dalam footer */
+    background:#3368A0; /* Memberikan latar biru */
+    color:#fff; /* Membuat tulisan footer berwarna putih */
+    font-size:13px; /* Mengatur ukuran teks footer */
+    text-align:center; /* Memusatkan teks footer */
+}
+
+
+/* =========================================================
+   14. RESPONSIVE
+   ========================================================= */
+
+/* Menyesuaikan tampilan admin untuk layar maksimal 1199px */
+@media(max-width:1199px){
+
+    /* Menghilangkan jarak kiri untuk menyesuaikan sidebar pada layar kecil */
+    .main-wrapper{
+        margin-left:0;
+    }
+
+    /* Menyembunyikan sidebar ke sisi kiri layar */
+    .sidebar-wrapper{
+        transform:translateX(-100%); /* Menggeser sidebar keluar dari layar */
+        z-index:1050; /* Menempatkan sidebar di lapisan atas saat dibuka */
+    }
+
+    /* Menampilkan sidebar ketika memiliki class show */
+    .sidebar-wrapper.show{
+        transform:translateX(0); /* Menggeser sidebar kembali ke layar */
+    }
+
+    /* Menghilangkan jarak sidebar pada layout yang diminimalkan */
+    body.sidebar-minimized .main-wrapper{
+        margin-left:0;
+    }
+}
+
+/* Menyesuaikan tampilan admin untuk layar maksimal 991px */
+@media(max-width:991px){
+
+    /* Mengurangi jarak di dalam konten utama */
+    .main-content{padding:20px}
+
+    /* Mengurangi jarak di dalam area konten halaman */
+    .page-content{padding:20px}
+
+    /* Memungkinkan tabel digulir secara horizontal jika terlalu lebar */
+    .table-responsive{
+        overflow-x:auto; /* Mengaktifkan scroll horizontal */
+        -webkit-overflow-scrolling:touch; /* Menghaluskan scroll pada perangkat yang mendukung */
+    }
+}
+
+/* Menyesuaikan tampilan admin untuk layar maksimal 767px */
+@media(max-width:767px){
+
+    /* Mengurangi jarak konten pada layar HP */
+    .main-content,.page-content{
+        padding:15px;
+    }
+
+    /* Mengurangi jarak kiri dan kanan navbar pada HP */
+    .navbar-custom{
+        padding:0 15px;
+    }
+
+    /* Menyembunyikan nama profil agar navbar lebih ringkas */
+    .navbar-profile-name{
+        display:none;
+    }
+
+    /* Menyusun informasi profil menjadi vertikal */
+    .profile-row{
+        display:block;
+    }
+
+    /* Meratakan nilai profil ke kiri pada layar HP */
+    .profile-value{
+        text-align:left;
+        margin-top:5px; /* Memberikan jarak di atas nilai */
+    }
+
+    /* Memusatkan tombol pada halaman profil HP */
+    .profile-buttons{
+        justify-content:center;
+    }
+}
+
+/* Menyesuaikan tampilan admin untuk layar maksimal 575px */
+@media(max-width:575px){
+
+    /* Mengurangi jarak konten untuk layar HP kecil */
+    .main-content,.page-content{
+        padding:12px;
+    }
+
+    /* Menyesuaikan tinggi dan jarak navbar pada HP kecil */
+    .navbar-custom{
+        height:60px; /* Mengatur tinggi navbar */
+        padding:0 12px; /* Mengatur jarak kiri dan kanan */
+    }
+
+    /* Mengurangi ruang dalam card Bootstrap pada HP kecil */
+    .card-body{
+        padding:15px!important;
+    }
+
+    /* Mengurangi jarak dalam area data profil pada HP kecil */
+    .profile-data{
+        padding:20px;
+    }
+
+    /* Mengurangi ruang dalam card login pada HP kecil */
+    .login-card{
+        padding:1.5rem;
+    }
+}

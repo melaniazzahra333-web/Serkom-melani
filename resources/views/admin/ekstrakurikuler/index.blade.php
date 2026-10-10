@@ -24,126 +24,119 @@
         </div>
     @endif
 
-    {{-- CARD --}}
-    <div class="card border-0 shadow-sm">
-        <div class="card-body p-4">
-
-            {{-- SEARCH --}}
-            <div class="d-flex align-items-center gap-2 mb-4 w-100">
-                <form action="{{ route('admin.ektrakurikuler') }}" method="GET" class="d-flex flex-grow-1">
-                    <div class="input-group w-100">
-                        <span class="input-group-text bg-white">
-                            <i class="fa-solid fa-magnifying-glass text-muted"></i>
-                        </span>
-
-                        <input type="text" name="search" class="form-control" placeholder="Cari ekstrakurikuler..." value="{{ $search ?? '' }}">
-                    </div>
-
-                    @if(!empty($search))
-                        <a href="{{ route('admin.ektrakurikuler') }}" class="btn btn-secondary ms-2">Reset</a>
-                    @endif
-                </form>
-
-                <span class="badge rounded-pill flex-shrink-0" style="background-color:#C8DFDB;color:#3368A0;padding:8px 16px;">
-                    {{ $ekstrakurikulers->count() }} Ekstrakurikuler
+    {{-- SEARCH --}}
+    <div class="d-flex align-items-center gap-2 pb-3">
+        <form action="{{ route('admin.ektrakurikuler') }}" method="GET" class="d-flex flex-grow-1">
+            <div class="input-group">
+                <span class="input-group-text bg-white">
+                    <i class="fa-solid fa-magnifying-glass text-muted"></i>
                 </span>
+
+                <input type="text" name="search" class="form-control" placeholder="Cari ekstrakurikuler..." value="{{ $search ?? '' }}">
             </div>
 
-            {{-- TABLE --}}
-            <div class="table-responsive">
-                <table class="table table-hover align-middle mb-0">
+            @if(!empty($search))
+                <a href="{{ route('admin.ektrakurikuler') }}" class="btn btn-secondary ms-2">Reset</a>
+            @endif
+        </form>
 
-                    <thead class="table-light">
-                        <tr>
-                            <th style="width:60px;">No</th>
-                            <th style="width:140px;">Gambar</th>
-                            <th style="width:180px;">Nama Ekstrakurikuler</th>
-                            <th style="width:150px;">Pembina</th>
-                            <th style="width:160px;">Jadwal Latihan</th>
-                            <th style="width:40%;">Deskripsi</th>
-                            <th style="width:120px;text-align:center;">Aksi</th>
-                        </tr>
-                    </thead>
+        <span class="badge rounded-pill flex-shrink-0" style="background-color:#C8DFDB;color:#3368A0;padding:8px 16px;">
+            {{ $ekstrakurikulers->count() }} Ekstrakurikuler
+        </span>
+    </div>
 
-                    <tbody>
+    {{-- TABLE --}}
+    <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
 
-                        @forelse($ekstrakurikulers as $ekstrakurikuler)
+            <thead class="table-light">
+                <tr>
+                    <th style="width:60px;">No</th>
+                    <th style="width:140px;">Gambar</th>
+                    <th style="width:180px;">Nama Ekstrakurikuler</th>
+                    <th style="width:150px;">Pembina</th>
+                    <th style="width:160px;">Jadwal Latihan</th>
+                    <th style="width:40%;">Deskripsi</th>
+                    <th style="width:120px;text-align:center;">Aksi</th>
+                </tr>
+            </thead>
 
-                            <tr>
-                                {{-- NO --}}
-                                <td>{{ $loop->iteration }}</td>
+            <tbody>
 
-                                {{-- GAMBAR --}}
-                                <td>
-                                    @if($ekstrakurikuler->gambar)
-                                        <img src="{{ asset('storage/' . $ekstrakurikuler->gambar) }}" width="100" height="100" class="rounded" style="object-fit:cover;" alt="Gambar Ekstrakurikuler">
-                                    @else
-                                        <i class="fa-solid fa-image fs-4 text-secondary"></i>
-                                    @endif
-                                </td>
+                @forelse($ekstrakurikulers as $ekstrakurikuler)
 
-                                {{-- NAMA --}}
-                                <td class="fw-semibold">{{ $ekstrakurikuler->nama_eskul }}</td>
+                    <tr>
+                        {{-- NO --}}
+                        <td>{{ $loop->iteration }}</td>
 
-                                {{-- PEMBINA --}}
-                                <td>{{ $ekstrakurikuler->pembina }}</td>
+                        {{-- GAMBAR --}}
+                        <td>
+                            @if($ekstrakurikuler->gambar)
+                                <img src="{{ asset('storage/' . $ekstrakurikuler->gambar) }}" width="100" height="100" class="rounded" style="object-fit:cover;" alt="Gambar Ekstrakurikuler">
+                            @else
+                                <i class="fa-solid fa-image fs-4 text-secondary"></i>
+                            @endif
+                        </td>
 
-                                {{-- JADWAL --}}
-                                <td>{{ $ekstrakurikuler->jadwal_latihan }}</td>
+                        {{-- NAMA --}}
+                        <td class="fw-semibold">{{ $ekstrakurikuler->nama_eskul }}</td>
 
-                                {{-- DESKRIPSI --}}
-                                <td>{{ $ekstrakurikuler->deskripsi }}</td>
+                        {{-- PEMBINA --}}
+                        <td>{{ $ekstrakurikuler->pembina }}</td>
 
-                                {{-- AKSI --}}
-                                <td>
-                                    <div class="d-flex justify-content-center gap-1">
+                        {{-- JADWAL --}}
+                        <td>{{ $ekstrakurikuler->jadwal_latihan }}</td>
 
-                                        {{-- EDIT --}}
-                                        <a href="{{ route('admin.ektrakurikuler.edit', $ekstrakurikuler->id_eskul) }}" class="btn btn-sm btn-warning" title="Edit">
-                                            <i class="fa-solid fa-pen"></i>
-                                        </a>
+                        {{-- DESKRIPSI --}}
+                        <td>{{ $ekstrakurikuler->deskripsi }}</td>
 
-                                        {{-- HAPUS --}}
-                                        <form action="{{ route('admin.ektrakurikuler.destroy', $ekstrakurikuler->id_eskul) }}" method="POST" class="form-hapus">
-                                            @csrf
-                                            @method('DELETE')
+                        {{-- AKSI --}}
+                        <td>
+                            <div class="d-flex justify-content-center gap-1">
 
-                                            <button type="submit" class="btn btn-sm btn-danger" title="Hapus">
-                                                <i class="fa-solid fa-trash"></i>
-                                            </button>
-                                        </form>
+                                {{-- EDIT --}}
+                                <a href="{{ route('admin.ektrakurikuler.edit', $ekstrakurikuler->id_eskul) }}" class="btn btn-sm btn-warning" title="Edit">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
 
-                                    </div>
-                                </td>
+                                {{-- HAPUS --}}
+                                <form action="{{ route('admin.ektrakurikuler.destroy', $ekstrakurikuler->id_eskul) }}" method="POST" class="form-hapus">
+                                    @csrf
+                                    @method('DELETE')
 
-                            </tr>
+                                    <button type="submit" class="btn btn-sm btn-danger" title="Hapus">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                </form>
 
-                        @empty
+                            </div>
+                        </td>
 
-                            <tr>
-                                <td colspan="7" class="text-center py-5">
+                    </tr>
 
-                                    <i class="fa-solid fa-people-group fs-1 text-secondary mb-3"></i>
+                @empty
 
-                                    <p class="text-muted mb-0">
-                                        @if(!empty($search))
-                                            Data ekstrakurikuler tidak ditemukan.
-                                        @else
-                                            Belum ada data ekstrakurikuler.
-                                        @endif
-                                    </p>
+                    <tr>
+                        <td colspan="7" class="text-center py-5">
 
-                                </td>
-                            </tr>
+                            <i class="fa-solid fa-people-group fs-1 text-secondary mb-3"></i>
 
-                        @endforelse
+                            <p class="text-muted mb-0">
+                                @if(!empty($search))
+                                    Data ekstrakurikuler tidak ditemukan.
+                                @else
+                                    Belum ada data ekstrakurikuler.
+                                @endif
+                            </p>
 
-                    </tbody>
+                        </td>
+                    </tr>
 
-                </table>
-            </div>
+                @endforelse
 
-        </div>
+            </tbody>
+
+        </table>
     </div>
 
 </div>

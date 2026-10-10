@@ -26,7 +26,7 @@
         </div>
 
         <div class="row g-5">
-
+            
             {{-- DETAIL BERITA --}}
             <div class="col-lg-8" data-aos="fade-up">
                 <p style="color:#e99b00;letter-spacing:2px;font-size:14px;margin-bottom:8px;">BERITA SEKOLAH</p>

@@ -23,9 +23,9 @@
 
         <div style="display:flex;justify-content:space-between;align-items:end;margin-bottom:35px;gap:20px;">
             <div>
-                <div style="font-size:14px;letter-spacing:2px;color:#e99b00;">INFORMASI SEKOLAH</div>
-                <h2 style="font-size:32px;font-weight:700;color:#005baa;margin-top:5px;">Berita Sekolah</h2>
-                <div style="width:200px;height:4px;background:#e9a000;margin:14px 0 0;"></div>
+                <span style="font-size:13px;color:#e99b00;">INFORMASI SEKOLAH</span>
+                <h2 style="font-size:25px; font-weight:bold; color:#005eab;">Berita Sekolah</h2>
+                <hr style="width:190px;height:4px;background:#e58b00;">
             </div>
 
             <form action="{{ route('berita') }}" method="GET" style="display:flex;gap:8px;margin-bottom:3px;">
@@ -42,7 +42,7 @@
             </form>
         </div>
 
-        <div class="row g-4">
+        <div class="row g-4" data-aos="fade-up">
 
             @forelse($beritas as $item)
 
@@ -61,11 +61,11 @@
 
                                 <small style="color:#888;">
                                     <i class="fa-regular fa-calendar me-1"></i>
-                                    {{ \Carbon\Carbon::parse($item->tanggal)->translatedFormat('d F Y') }}
+                                    {{ date('d-m-Y', strtotime($item->tanggal)) }}
                                 </small>
 
                                 <p style="font-size:15px;color:#555;line-height:1.7;margin-top:15px;">
-                                    {{ \Illuminate\Support\Str::limit(strip_tags($item->isi),150) }}
+                                   {{ substr(strip_tags($item->isi), 0, 150) }}...
                                 </p>
 
                                 <span style="color:#0866b3;font-size:14px;font-weight:600;">

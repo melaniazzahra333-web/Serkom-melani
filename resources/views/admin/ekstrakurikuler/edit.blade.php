@@ -11,9 +11,7 @@
             <p class="text-muted mb-0">Perbarui data ekstrakurikuler sekolah</p>
         </div>
 
-        <!-- <a href="{{ route('admin.ektrakurikuler') }}" class="btn btn-secondary">
-            <i class="fa-solid fa-arrow-left me-1"></i>Kembali
-        </a> -->
+        
     </div>
 
     {{-- FORM EDIT --}}

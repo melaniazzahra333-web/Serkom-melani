@@ -8,7 +8,7 @@
             <h2 class="fw-bold mb-1" style="color:#244D73;"><i class="fa-solid fa-user-plus me-2"></i>Tambah User</h2>
             <p class="text-muted mb-0">Tambahkan akun pengguna baru</p>
         </div>
-        <!-- <a href="{{ route('admin.user') }}" class="btn btn-secondary"><i class="fa-solid fa-arrow-left me-1"></i>Kembali</a> -->
+        
     </div>
 
     <div class="card border-0 shadow-sm">

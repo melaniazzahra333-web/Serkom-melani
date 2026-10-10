@@ -44,14 +44,14 @@
 
 
 <!-- SAMBUTAN KEPALA SEKOLAH -->
-<div id="sambutan" style="background:#fff;">
+<div id="sambutan" style="background:#fff; margin-bottom: 50px;">
     <div class="container py-5">
         <div class="row align-items-center g-4">
 
             <div class="col-md-3 text-center" data-aos="fade-right">
                 <div class="kepala-sekolah-img">
                     @if($kepalaSekolah && $kepalaSekolah->foto)
-                        <img src="/storage/{{ $kepalaSekolah->foto }}" alt="{{ $kepalaSekolah->nama_guru }}">
+                        <img src="/storage/{{ $kepalaSekolah->foto }}" alt="{{ $kepalaSekolah->nama_guru }}" style="border-radius:12px; ">
                     @endif
                 </div>
             </div>
@@ -84,225 +84,219 @@
 </div>
 
 
-<!-- PENGUMUMAN / PRESTASI / BERITA -->
-<section style="background:#f3f8fc;padding:60px 0;">
-    <div class="container">
+<!-- PENGUMUMAN, PRESTASI, BERITA -->
+<div class="informasi">
+    <div class="container" style="margin-top: 60px">
         <div class="row g-4">
-
-            <!-- PENGUMUMAN -->
             <div class="col-lg-4" id="pengumuman" data-aos="fade-up">
                 <div class="card h-100 info-card">
-                    <div class="card-body">
+                    <div class="card-body"><h3><i class="fa-solid fa-bullhorn"></i> Pengumuman</h3>
+                    <hr>
 
-                        <h3 style="color:#0866b3;font-size:22px;">
-                            <i class="fa-solid fa-bullhorn"></i> Pengumuman
-                        </h3>
-
-                        <hr>    
-
-                        @foreach($pengumuman as $item)
-                            <div style="margin-bottom:20px;">
-                                <h5 style="font-size:16px;">{{ $item->judul }}</h5>
-                                <small style="color:#888;">{{ substr($item->tanggal, 0, 10) }}</small>
-                                <p style="font-size:14px;color:#666;margin-top:8px;">{{ $item->isi }}</p>
-                            </div>
-                        @endforeach
-
-                        <a href="{{ route('pengumuman') }}" style="color:#0866b3;text-decoration:none;">
-                            Lihat Semua Pengumuman →
-                        </a>
+                @foreach($pengumuman as $item)
+                    <div class="info-item" style="margin-bottom: 20px;">
+                        <h5 style="font-size: 16px;">{{ $item->judul }}</h5>
+                        <small>{{ ($item->tanggal) }}</small>
+                        <br>
+                    <small>{{ $item->isi }}</small>
 
                     </div>
-                </div>
+                @endforeach
+
+                <a href="{{ route('pengumuman') }}" class="info-link" style="text-decoration: none;">
+                    Lihat Semua Pengumuman →
+                </a>
             </div>
+        </div>
+    </div>
 
-
-            <!-- PRESTASI -->
-            <div class="col-lg-4" id="prestasi" data-aos="fade-up" data-aos-delay="150">
-                <div class="card h-100 info-card">
+        <div class="col-lg-4" id="prestasi" data-aos="fade-up">
+            <a href="{{ route('prestasi.detail', $prestasis->id_prestasi) }}" style="text-decoration: none; color: inherit; display: block; height: 100%;">
+                <div class="card h-100 info-card" style="cursor: pointer;">
                     <div class="card-body">
-                        <h3 style="color:#0866b3;font-size:22px;">
-                            <i class="fa-solid fa-trophy"></i> Prestasi
-                        </h3>
-
+                        <h3><i class="fa-solid fa-trophy"></i> Prestasi</h3>
                         <hr>
 
                         @if($prestasis)
-
                             @if($prestasis->foto)
                                 <div class="info-img">
                                     <img src="{{ asset('storage/'.$prestasis->foto) }}" alt="Foto Prestasi">
                                 </div>
                             @endif
 
-                            <p style="font-size:14px;color:#666;margin-top:8px;">{{ $prestasis->deskripsi }}</p>
-                            <small style="color:#888;">Tahun Ajaran {{ $prestasis->tahun_ajaran }}</small>
-                            <br>
-
+                            <p class="prestasi-text">{{ $prestasis->deskripsi }}</p>
+                            <small>Tahun Ajaran {{ $prestasis->tahun_ajaran }}</small>
                         @else
-
-                            <p style="color:#888;">Belum ada prestasi.</p>
-
+                            <p>Belum ada prestasi.</p>
                         @endif
 
-                        <a href="{{ route('prestasi') }}" style="color:#0866b3;text-decoration:none;">
+                        <span class="info-link">
                             Lihat Semua Prestasi →
-                        </a>
-
+                        </span>
                     </div>
                 </div>
-            </div>
+            </a>
+        </div>
 
+            <div class="col-lg-4" id="berita" data-aos="fade-up">
+                <a href="{{ route('berita.detail',  $berita->slug) }}" style="text-decoration: none; color: inherit; display: block; height: 100%;">
+                    <div class="card h-100 info-card" style="cursor: pointer;">
+                        <div class="card-body">
+                            <h3><i class="fa-solid fa-newspaper"></i> Berita</h3>
+                            <hr>
 
-            <!-- BERITA -->
-            <div class="col-lg-4" id="berita" data-aos="fade-up" data-aos-delay="300">
-                <div class="card h-100 info-card">
-                    <div class="card-body">
+                            @if($berita)
+                                @if($berita->gambar)
+                                    <div class="info-img">
+                                        <img src="{{ asset('storage/'.$berita->gambar) }}" alt="Foto Berita">
+                                    </div>
+                                @endif
 
-                        <h3 style="color:#0866b3;font-size:22px;">
-                            <i class="fa-solid fa-newspaper"></i> Berita
-                        </h3>
-
-                        <hr>
-
-                        @if($berita)
-
-                            @if($berita->gambar)
-                                <div class="info-img">
-                                    <img src="{{ asset('storage/'.$berita->gambar) }}" alt="Foto Berita">
-                                </div>
+                                <h5>{{ $berita->judul }}</h5>
+                                <small>{{ $berita->tanggal }}</small>
+                                <p class="home-text">{{ $berita->isi }}</p>
+                            @else
+                                <p>Belum ada berita.</p>
                             @endif
 
-                            <h5 style="font-size:16px;">{{ $berita->judul }}</h5>
-                            <small style="color:#888;">{{ $berita->tanggal }}</small>
-                            <p style="font-size:14px;color:#666;margin-top:8px;" class="home-text">{{ $berita->isi }}</p>
-
-                        @else
-
-                            <p style="color:#888;">Belum ada berita.</p>
-
-                        @endif
-
-                        <a href="{{ route('berita') }}" style="color:#0866b3;text-decoration:none;">
-                            Lihat Semua Berita →
-                        </a>
+                            <span class="info-link">
+                                Lihat Semua Berita →
+                            </span>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
+
         </div>
     </div>
-</section>
+</div>
 
 
 <!-- KEUNGGULAN -->
-<section class="keunggulan">
+<section id="keunggulan" class="keunggulan" >
     <div class="container">
-        <div class="section-title" data-aos="fade-down">
-            <span>KEUNGGULAN SEKOLAH</span>
-            <h2>Mengapa Kami Menjadi Pilihan Tepat</h2>
-            <hr>
-            <p>Kami memberikan pendidikan berkualitas untuk mendukung prestasi dan potensi siswa.</p>
+
+        <div class="keunggulan-heading">
+            <span style="font-size:15px;">KEUNGGULAN SEKOLAH</span>
+            <h2>Mengapa Memilih SMA Lentera Bangsa?</h2>
+           <hr style="width:520px; height:4px; background:#E9A000; margin:auto; margin-bottom:10px;">
+            <p style="font-size:15px; color:#666;">Kami memberikan pendidikan berkualitas untuk mendukung prestasi dan potensi siswa.</p>
         </div>
 
-        <div class="row g-4">
-            <div class="col-md-4" data-aos="fade-up">
+        <div class="row g-4" data-aos="fade-up" data-aos-delay="300">
+            <div class="col-md-4">
                 <div class="keunggulan-card">
-                    <div class="keunggulan-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                    <div class="keunggulan-icon">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
                     <h4>Pendidikan Berkualitas</h4>
                     <p>Guru kompeten membantu siswa mendapatkan pembelajaran yang baik.</p>
                 </div>
             </div>
 
-            <div class="col-md-4" data-aos="fade-up">
+            <div class="col-md-4">
                 <div class="keunggulan-card">
-                    <div class="keunggulan-icon"><i class="fa-solid fa-lightbulb"></i></div>
-                    <h4>Minat & Bakat</h4>
+                    <div class="keunggulan-icon">
+                        <i class="fa-solid fa-lightbulb"></i>
+                    </div>
+                    <h4>Minat dan Bakat</h4>
                     <p>Siswa dapat mengembangkan minat, bakat, kreativitas, dan potensi diri.</p>
                 </div>
             </div>
 
-            <div class="col-md-4" data-aos="fade-up">
+            <div class="col-md-4">
                 <div class="keunggulan-card">
-                    <div class="keunggulan-icon"><i class="fa-solid fa-school"></i></div>
+                    <div class="keunggulan-icon">
+                        <i class="fa-solid fa-school"></i>
+                    </div>
                     <h4>Pendidikan Lanjutan</h4>
                     <p>Siswa dibekali pengetahuan dan keterampilan untuk melanjutkan pendidikan.</p>
                 </div>
             </div>
+
         </div>
     </div>
 </section>
 
 
 <!-- GURU & STAF -->
-<div id="guru" style="padding:60px 0;"> 
+<section id="guru" class="guru-section">
     <div class="container">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+
+        <div class="guru-heading">
             <div>
-                <span style="color:#e58b00;letter-spacing:2px;">TENAGA PENDIDIK PROFESIONAL</span>
-                <h2 style="color:#0866b3;font-weight:700;margin:5px 0;border-bottom:3px solid #e58b00;padding-bottom:10px;">
-                    Guru & Staf Berkualitas
-                </h2>
+               <span style="font-size:14px;color:#e99b00;">Tenaga Pendidik Profesional</span>
+
+               <h2>Guru & Staf Berkualitas</h2>
+                <hr style="width:320px;height:4px;background:#e58b00;">
+                <p style="font-size:15px; ">Guru kami siap mendampingi siswa untuk belajar, berkembang, dan meraih prestasi.</p>
             </div>
-            <a href="{{ route('staf.guru') }}" style="background:#0866b3;color:white;padding:10px 15px;text-decoration:none;border-radius:5px;">
-                › Lihat Semua
+
+            <a href="{{ route('staf.guru') }}" class="guru-button">
+                › Lihat Semua</i>
             </a>
         </div>
 
-        <p style="margin-bottom:30px;">
-            Guru dan staf kami terdiri dari tenaga profesional yang kompeten,
-            berpengalaman, dan berdedikasi tinggi dalam memberikan layanan pendidikan
-            berkualitas.
-        </p>
-
-        <div class="row g-4">
+        <div class="row g-4" data-aos="fade-up" data-aos-delay="300">
             @foreach($gurus as $guru)
-                <div class="col-lg-3 col-md-6" data-aos="fade-up">
-                    <a href="{{ route('staf.guru.detail', $guru->id_guru) }}" style="text-decoration:none;color:inherit;">
-                        <div class="guru-card">
-                            <img src="{{ asset('storage/'.$guru->foto) }}" style="width:100%;height:360px;object-fit:cover;" alt="{{ $guru->nama_guru }}">
-                            <div style="padding:15px;text-align:center;">
-                                <h5 style="font-weight:700;margin:0;">{{ $guru->nama_guru }}</h5>
+                <div class="col-lg-3 col-md-6">
+                    <a href="{{ route('staf.guru.detail', $guru->id_guru) }}" class="guru-link">
+                        <div class="guru-card" >
+
+                            @if($guru->foto)
+                                <img style="object-fit:cover; width:100%; height:300px;" src="{{ asset('storage/'.$guru->foto) }}" alt="{{ $guru->nama_guru }}">
+                            @else
+                                <div class="guru-no-image">
+                                    <i class="fa-solid fa-user"></i>
+                                </div>
+                            @endif
+
+                            <div class="guru-info" style="padding:15px;">
+                                <h5 style="font-size:15px; font-weight:bold;">{{ $guru->nama_guru }}</h5>
+                                <span style="font-size:13px; color:#888;">Tenaga Pendidik</span>
                             </div>
+
                         </div>
                     </a>
                 </div>
             @endforeach
+
         </div>
     </div>
-</div>
+</section>
 
 
 <!-- EKSTRAKURIKULER -->
-<section class="eskul-section">
+<section class="eskul-section" style="padding:60px; ">
     <div class="container">
 
         <div class="section-head">
             <div>
-                <span>PENGEMBANGAN MINAT & BAKAT</span>
+                <span style="font-size:14px;color:#e99b00;">PENGEMBANGAN MINAT & BAKAT</span>
                 <h2>Ekstrakurikuler Sekolah</h2>
+                <hr style="width:320px;height:4px;background:#e58b00;">
             </div>
 
-            <a href="{{ route('ekstrakurikuler') }}">› Lihat Semua</a>
+            <a href="{{ route('ekstrakurikuler') }}" style="text-decoration: none;">› Lihat Semua</a>
         </div>
 
-        <p class="eskul-deskripsi">
+        <p style="font-size:15px; padding-bottom:15px; color:#666">
             Kami menyediakan beragam kegiatan ekstrakurikuler
             sebagai wadah pengembangan minat, bakat, dan karakter siswa.
         </p>
 
         <div class="row g-4">
-
             @foreach($ekskuls as $eskul)
 
                 <div class="col-lg-6" data-aos="fade-up" data-aos-delay="{{ $loop->iteration * 100 }}">
 
-                    <a href="{{ route('ekstrakurikuler.detail',  $eskul->slug) }}">
+                    <a href="{{ route('ekstrakurikuler.detail',  $eskul->slug) }}" style="text-decoration: none;">
 
                         <div class="eskul-card">
 
                             @if($eskul->gambar)
 
-                                <img src="{{ asset('storage/'.$eskul->gambar) }}" alt="{{ $eskul->nama_eskul }}">
+                                <img src="{{ asset('storage/'.$eskul->gambar) }}" alt="{{ $eskul->nama_eskul }}" style="width:50%;height:100%;object-fit:cover;">
 
                             @else
 
@@ -317,16 +311,16 @@
                                 <h4>{{ $eskul->nama_eskul }}</h4>
 
                                 <p>
-                                    <i class="fa-solid fa-user"></i>
+                                    <i class="fa-solid fa-user" style="width:22px; color:#0866b3;"></i>
                                     Nama Pembina: {{ $eskul->pembina }}
                                 </p>
 
                                 <p>
-                                    <i class="fa-solid fa-calendar"></i>
+                                    <i class="fa-solid fa-calendar" style="width:22px; color:#0866b3;"></i>
                                     Jadwal Latihan: {{ $eskul->jadwal_latihan }}
                                 </p>
 
-                                <span>Selengkapnya »</span>
+                            
 
                             </div>
                         </div>
@@ -341,7 +335,7 @@
 
 
 <!-- GALERI -->
-<div id="galeri" style="padding:60px 0;background:#f3f8fc;">
+<div id="galeri" style="padding:60px;">
     <div class="container">
 
         <div class="d-flex justify-content-between align-items-start">
@@ -349,7 +343,7 @@
             <div>
                 <div style="font-size:14px;letter-spacing:2px;color:#e99b00;">DOKUMENTASI KEGIATAN</div>
                 <h2 style="font-size:30px;font-weight:700;color:#005baa;margin:0;">Galeri Sekolah</h2>
-                <div style="width:295px;height:4px;background:#e9a000;margin-top:14px;"></div>
+                 <hr style="width:230px;height:4px;background:#e58b00;">
             </div>
 
             <a href="{{ route('galeri') }}" style="background:#0863aa;color:#fff;padding:10px 15px;border-radius:6px;text-decoration:none;font-size:14px;">
@@ -358,7 +352,7 @@
 
         </div>
 
-        <p style="font-size:15px;line-height:1.7;color:#555;margin:20px 0 35px;">
+        <p style="font-size:15px; padding-bottom:20px; color:#666">
             Galeri sekolah menampilkan berbagai dokumentasi kegiatan dan momen berharga siswa
             selama proses pembelajaran dan pengembangan diri.
         </p>

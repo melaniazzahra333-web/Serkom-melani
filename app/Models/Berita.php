@@ -35,4 +35,17 @@ class Berita extends Model
             }
         });
     }
+
+    protected static function booted()
+{
+    static::saving(function ($berita) {
+        if (empty($berita->slug)) {
+            $berita->slug = Str::slug($berita->judul);
+        }
+
+        if ($berita->isDirty('judul')) {
+            $berita->slug = Str::slug($berita->judul);
+        }
+    });
+}
 }

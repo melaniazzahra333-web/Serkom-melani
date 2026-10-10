@@ -10,9 +10,7 @@
             <p class="text-muted mb-0">Perbarui data prestasi sekolah</p>
         </div>
 
-        <!-- <a href="{{ route('admin.prestasi') }}" class="btn btn-secondary">
-            <i class="fa-solid fa-arrow-left me-1"></i>Kembali
-        </a> -->
+        
     </div>
 
     <div class="card border-0 shadow-sm">

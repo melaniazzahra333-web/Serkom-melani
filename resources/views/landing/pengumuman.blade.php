@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all.min.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
 
     <link rel="stylesheet" href="{{ asset('assets/css/landing.css') }}">
 </head>
@@ -15,7 +16,7 @@
 
     @include('landing.navbar')
 
-    <section style="padding:50px 0 60px;background:#f5f8fb;">
+    <section style="padding:50px 0 60px;background:#f5f8fb; min-height:80vh;">
         <div class="container">
 
             <!-- Breadcrumb -->
@@ -24,36 +25,23 @@
                 <span style="color:#777;font-size:14px;"> » Pengumuman</span>
             </div>
 
-            <!-- Judul -->
-            <div style="margin-bottom:35px;">
-                <div style="font-size:14px;letter-spacing:2px;color:#e99b00;">
-                    INFORMASI SEKOLAH
-                </div>
+            <div>
+            <span style="font-size:13px;color:#e99b00;">INFORMASI SEKOLAH</span>
+            <h2 style="font-size:25px; font-weight:bold; color:#005eab;">Pengumuman</h2>
+            <hr style="width:190px;height:4px;background:#e58b00;">
+        </div>
 
-                <h2 style="font-size:32px;font-weight:700;color:#005baa;margin-top:5px;">
-                    Pengumuman
-                </h2>
-
-                <div style="width:200px;height:4px;background:#e9a000;margin:14px 0 0;"></div>
-            </div>
-
-            <div class="row g-4">
+            <div class="row g-4" data-aos="fade-up">
 
                 @forelse($pengumuman as $item)
-
                     <div class="col-md-6">
-
                         <div class="card h-100" style="border:1px solid #e5e7eb;border-radius:16px;">
                             <div class="card-body">
 
-                                <h4 style="font-size:20px;font-weight:600;color:#005baa;">
-                                    <i class="fa-solid fa-bullhorn me-2"></i>
-                                    {{ $item->judul }}
-                                </h4>
-
+                                <h4 style="font-size:20px;font-weight:600;color:#005baa;"><i class="fa-solid fa-bullhorn me-2"></i>{{ $item->judul }}</h4>
                                 <small style="color:#888;">
                                     <i class="fa-regular fa-calendar me-1"></i>
-                                    {{ \Carbon\Carbon::parse($item->tanggal)->translatedFormat('d F Y') }}
+                                   {{ date('d-m-Y', strtotime($item->tanggal)) }}
                                 </small>
 
                                 <p style="font-size:15px;color:#555;line-height:1.7;margin-top:15px;">
@@ -81,6 +69,10 @@
     @include('landing.footer')
 
     <script src="{{ asset('assets/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+AOS.init({duration:800,once:true});
+</script>
 
 </body>
 </html>

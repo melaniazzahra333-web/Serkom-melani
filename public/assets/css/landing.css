@@ -1,688 +1,501 @@
-/* =========================
-   UMUM
-========================= */
-
-html{
-    scroll-behavior:smooth;
-}
-
 body{
-    margin:0;
-    padding-top:76px;
-    font-family:Arial,sans-serif;
-    color:#333;
-    font-family:Arial,sans-serif !important;
+    margin:0; /* Mengatur margin luar body menjadi 0 */
+    padding-top:80px; /* Ruang di atas agar konten tidak tertutup navbar */
+    font-family:Arial,sans-serif; /* Menentukan jenis font utama */
+    /* color:#333; */ /* Mengatur warna teks (nonaktif) */
 }
 
 
 /* =========================
-   NAVBAR
+   2. NAVBAR
 ========================= */
 
 .navbar{
-    background:#fff;
-    box-shadow:0 4px 15px rgba(0,0,0,.10);
-    z-index:1000;
+    background:#fff; /* Warna latar belakang navbar putih */
+    box-shadow:0 4px 15px #0002; /* Memberikan efek bayangan pada navbar */
+    /* z-index:1000; */ /* Mengatur tingkat tumpukan elemen (nonaktif) */
 }
 
 .navbar-brand{
-    color:#0866b3 !important;
+    color:#0866b3; /* Warna teks nama sekolah/brand */
 }
 
 .navbar .nav-link{
-    color:#0866b3;
-    white-space:nowrap;
-    padding-left:10px;
-    padding-right:10px;
-    transition:.3s;
+    color:#0866b3; /* Warna teks tautan menu navbar */
+    padding:10px; /* Jarak padding dalam tautan menu */
+    transition:.3s; /* Durasi animasi perubahan halus */
 }
 
 .navbar .nav-link:hover{
-    color:#e58b00;
+    color:#e58b00; /* Warna menu saat kursor diarahkan (hover) */
 }
 
 .navbar .nav-link.show{
-    color:#0866b3;
-    font-weight:600;
-    border-bottom:3px solid #0866b3;
+    border-bottom:3px solid #0866b3; /* Garis bawah untuk menu aktif/terbuka */
 }
 
-
-/* =========================
-   DROPDOWN NAVBAR
-========================= */
-
 .navbar .dropdown-menu{
-    border:0;
-    border-radius:12px;
-    padding:8px;
-    margin-top:10px;
-    min-width:180px;
-    box-shadow:0 10px 25px rgba(0,0,0,.12);
+    border:0; /* Menghilangkan border dropdown */
+    border-radius:12px; /* Membuat sudut dropdown melengkung */
+    padding:8px; /* Jarak padding di dalam dropdown */
+    box-shadow:0 10px 25px #0002; /* Bayangan kotak dropdown */
 }
 
 .navbar .dropdown-item{
-    border-radius:8px;
-    padding:10px 14px;
-    color:#333;
-    font-size:15px;
-    transition:.25s;
+    border-radius:8px; /* Sudut melengkung pada item dropdown */
+    font-size:16px; /* Ukuran font item dropdown */
 }
 
 .navbar .dropdown-item:hover{
-    background:#eaf4ff;
-    color:#0866b3;
-    padding-left:18px;
+    background:#eaf4ff; /* Warna latar saat item dropdown di-hover */
+    color:#0866b3; /* Warna teks saat item dropdown di-hover */
 }
 
 
 /* =========================
-   BANNER
+   3. TOMBOL NAVBAR HP
 ========================= */
 
-#banner img{
-    width:100%;
-    height:420px;
-    object-fit:cover;
+.navbar-toggler{
+    border:2px solid #005baa; /* Border tombol toggle mobile */
+    padding:5px; /* Padding di dalam tombol toggle */
+}
+
+/* Membuat ikon tiga garis menu HP */
+.navbar-toggler-icon{
+    width:24px; /* Lebar ikon garis */
+    height:18px; /* Tinggi ikon garis */
+    position:relative; /* Posisi relatif untuk elemen garis anak */
+    border-top:3px solid #005baa; /* Garis pertama di atas */
+}
+
+.navbar-toggler-icon:before,
+.navbar-toggler-icon:after{
+    content:""; /* Konten kosong wajib untuk pseudo-element */
+    position:absolute; /* Posisi absolut terhadap ikon */
+    left:0; /* Posisi dari kiri */
+    width:24px; /* Lebar garis */
+    border-top:3px solid #005baa; /* Ketebalan dan warna garis */
+}
+
+.navbar-toggler-icon:before{
+    top:5px; /* Posisi garis tengah */
+}
+
+.navbar-toggler-icon:after{
+    top:13px; /* Posisi garis bawah */
 }
 
 
 /* =========================
-   SAMBUTAN KEPALA SEKOLAH
+   4. BANNER
 ========================= */
 
-.kepala-sekolah-img{
-    overflow:hidden;
-    border-radius:12px;
+.banner img{
+    width:100%; /* Lebar gambar banner penuh */
+    height:600PX; /* Tinggi tetap banner */
+    object-fit:cover; /* Gambar menutupi area tanpa distorsi/gepeng */
 }
+
+
+/* =========================
+   5. SAMBUTAN KEPALA SEKOLAH
+========================= */
 
 .kepala-sekolah-img img{
-    width:100%;
-    max-height:340px;
-    object-fit:cover;
-    display:block;
-    transition:transform .4s ease;
+    width:100%; /* Lebar gambar menyesuaikan */
+    transition:.4s; /* Durasi animasi transisi */
 }
 
+/* Gambar membesar saat diarahkan */
 .kepala-sekolah-img:hover img{
-    transform:scale(1.08);
+    transform:scale(1.08); /* Memperbesar gambar saat di-hover */
 }
 
 
 /* =========================
-   CARD PENGUMUMAN
-   PRESTASI
-   BERITA
+   6. PENGUMUMAN, PRESTASI, BERITA
 ========================= */
 
+
+
 .info-card{
-    border:1px solid #e5e7eb;
-    border-radius:16px;
-    overflow:hidden;
-    transition:transform .3s ease,box-shadow .3s ease;
+    background:#fff; /* Warna latar kartu informasi */
+    border-radius:10px; /* Sudut melengkung kartu */
+    transition:.3s; /* Transisi halus */
 }
 
 .info-card:hover{
-    transform:translateY(-8px);
-    box-shadow:0 12px 25px rgba(0,0,0,.15);
+    transform:translateY(-6px); /* Kartu naik saat hover */
+    box-shadow:0 8px 20px #0002; /* Bayangan kartu saat di-hover */
 }
 
+.info-card h3{
+    color:#0866b3; /* Warna judul kartu */
+    font-size:20px; /* Ukuran font judul kartu */
+}
+
+
 .info-img{
-    width:100%;
-    height:150px;
-    overflow:hidden;
-    border-radius:10px;
-    margin-bottom:12px;
+    height:300px; /* Tinggi wadah gambar informasi */
+    overflow:hidden; /* Menyembunyikan bagian gambar yang keluar */
+    border-radius:10px; /* Sudut melengkung wadah gambar */
+    margin-bottom:15px; /* Jarak bawah wadah gambar */
 }
 
 .info-img img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    display:block;
-    transition:transform .4s ease;
-}
-
-.info-img:hover img{
-    transform:scale(1.08);
-}
-
-
-/* KEUNGGULAN */
-
-.keunggulan{
-    padding:60px 0;
-    background:#fff;
-}
-
-.section-title{
-    text-align:center;
-    margin-bottom:60px;
-}
-
-.section-title span{
-    color:#e9a000;
-    font-size:14px;
-    letter-spacing:2px;
-}
-
-.section-title h2{
-    color:#005baa;
-    font-size:30px;
-    font-weight:700;
-    margin:5px 0;
-}
-
-.section-title hr{
-    width:290px;
-    margin:14px auto 20px;
-    border:0;
-    border-top:4px solid #e9a000;
-}
-
-.section-title p{
-    max-width:800px;
-    margin:auto;
-    line-height:1.6;
-    color:#222;
-}
-
-.keunggulan-card{
-    background:#fff;
-    border:1px solid #eee;
-    border-radius:14px;
-    text-align:center;
-    padding:65px 35px 25px;
-    position:relative;
-    height:100%;
-    transition:.3s;
-}
-
-.keunggulan-card:hover{
-    transform:translateY(-8px);
-    box-shadow:0 12px 25px rgba(0,0,0,.15);
-}
-
-.keunggulan-icon{
-    width:62px;
-    height:62px;
-    background:#0866b3;
-    color:#fff;
-    border-radius:18px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    position:absolute;
-    top:0;
-    left:50%;
-    transform:translate(-50%,-50%);
-    transition:.3s;
-}
-
-.keunggulan-card:hover .keunggulan-icon{
-    transform:translate(-50%,-50%) scale(1.1);
-}
-
-.keunggulan-icon i{
-    font-size:27px;
-}
-
-.keunggulan-card h4{
-    font-size:21px;
-    font-weight:600;
-    color:#3d3d3d;
-    margin-bottom:20px;
-}
-
-.keunggulan-card p{
-    font-size:15px;
-    line-height:1.6;
-    color:#444;
-    margin:0;
-}
-
-
-/* =========================
-   GURU & STAF
-========================= */
-
-.guru-card{
-    border:1px solid #d9e2ec;
-    border-radius:16px;
-    overflow:hidden;
-    background:#fff;
-    transition:transform .3s ease,box-shadow .3s ease;
-}
-
-.guru-card:hover{
-    transform:translateY(-8px);
-    box-shadow:0 12px 25px rgba(0,0,0,.15);
-}
-
-.guru-card img{
-    transition:.4s;
-}
-
-.guru-card:hover img{
-    transform:scale(1.05);
-}
-.guru-card .card-body{
-    min-height:110px;
-}
-
-
-/* =========================
-   EKSTRAKURIKULER
-========================= */
-
-.eskul-section{
-    padding:60px 0;
-    background:#fff;
-}
-
-.eskul-section a{
-    text-decoration:none;
-    color:inherit;
-}
-
-.section-head{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:20px;
-}
-
-.section-head span{
-    color:#e58b00;
-    font-size:14px;
-    letter-spacing:2px;
-}
-
-.section-head h2{
-    color:#0866b3;
-    font-size:30px;
-    font-weight:700;
-    margin:5px 0;
-    padding-bottom:10px;
-    border-bottom:4px solid #e58b00;
-}
-
-.section-head a{
-    background:#0866b3;
-    color:#fff;
-    padding:11px 18px;
-    border-radius:6px;
-    font-size:14px;
-}
-
-.section-head a:hover{
-    background:#005493;
-    color:#fff;
-}
-
-.eskul-deskripsi{
-    color:#555;
-    font-size:15px;
-    line-height:1.7;
-    margin:20px 0 35px;
-}
-
-
-/* CARD */
-
-.eskul-card{
-    display:flex;
-    height:220px;
-    background:#fff;
-    border:1px solid #e1e7ee;
-    border-radius:14px;
-    overflow:hidden;
-    box-shadow:0 2px 8px rgba(0,0,0,.04);
-    transition:.3s;
-}
-
-.eskul-card:hover{
-    transform:translateY(-7px);
-    box-shadow:0 12px 25px rgba(0,0,0,.12);
-}
-
-
-/* GAMBAR */
-
-.eskul-card img,
-.eskul-no-image{
-    width:50%;
-    height:100%;
-    object-fit:cover;
-}
-
-.eskul-card img{
-    transition:.4s;
-}
-
-.eskul-card:hover img{
-    transform:scale(1.05);
-}
-
-.eskul-no-image{
-    background:#eee;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-
-.eskul-no-image i{
-    color:#aaa;
-    font-size:55px;
-}
-
-
-/* INFORMASI */
-
-.eskul-info{
-    width:50%;
-    padding:25px;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-}
-
-.eskul-info h4{
-    color:#0866b3;
-    font-size:21px;
-    font-weight:700;
-    margin-bottom:18px;
-}
-
-.eskul-info p{
-    color:#777;
-    font-size:14px;
-    margin-bottom:10px;
-}
-
-.eskul-info i{
-    color:#0866b3;
-    width:22px;
-}
-
-.eskul-info span{
-    color:#0866b3;
-    font-size:14px;
-}
-
-
-/* HP */
-
-@media(max-width:767px){
-
-    .section-head{
-        display:block;
-    }
-
-    .section-head a{
-        display:inline-block;
-        margin-top:15px;
-    }
-
-    .eskul-card{
-        display:block;
-        height:auto;
-    }
-
-    .eskul-card img,
-    .eskul-no-image,
-    .eskul-info{
-        width:100%;
-    }
-
-    .eskul-card img,
-    .eskul-no-image{
-        height:200px;
-    }
-
-    .eskul-info{
-        padding:25px;
-    }
-
-}
-
-/* DETAIL BERITA */
-
-.berita-detail{
-    padding:50px 0 70px;
-    background:#f5f8fb;
-    min-height:80vh;
-}
-
-.berita-breadcrumb{
-    padding-bottom:18px;
-    border-bottom:1px solid #eee;
-    margin-bottom:35px;
-    font-size:14px;
-}
-
-.berita-breadcrumb a{
-    color:#333;
-    text-decoration:none;
-}
-
-.berita-breadcrumb span{
-    color:#777;
-    margin:0 5px;
-}
-
-.berita-content{
-    max-width:900px;
-    margin:auto;
-    background:#fff;
-    padding:35px;
-    border-radius:14px;
-    box-shadow:0 3px 12px rgba(0,0,0,.08);
-}
-
-.berita-label{
-    color:#e99b00;
-    font-size:14px;
-    letter-spacing:2px;
-    margin-bottom:8px;
-}
-
-.berita-content h1{
-    color:#005baa;
-    font-size:32px;
-    font-weight:700;
-    margin-bottom:10px;
-}
-
-.berita-tanggal{
-    color:#888;
-    font-size:14px;
-    margin-bottom:25px;
-}
-
-.berita-detail-img{
-    width:100%;
-    max-height:450px;
-    object-fit:cover;
-    border-radius:10px;
-    margin-bottom:25px;
-}
-
-.berita-isi{
-    color:#444;
-    font-size:16px;
-    line-height:1.8;
-}
-
-.btn-kembali{
-    display:inline-block;
-    margin-top:30px;
-    background:#0866b3;
-    color:#fff;
-    padding:10px 18px;
-    border-radius:6px;
-    text-decoration:none;
-}
-
-.btn-kembali:hover{
-    background:#005493;
-    color:#fff;
+    width:100%; /* Lebar gambar penuh */
+    height:100%; /* Tinggi gambar penuh */
+    object-fit:cover; /* Menyesuaikan gambar agar rapi */
 }
 
 .home-text{
-    display:-webkit-box;
-    -webkit-box-orient:vertical;
-    -webkit-line-clamp:6;
-    overflow:hidden;
-    font-family:Arial,sans-serif !important;
+    -webkit-line-clamp:6; /* Batasi teks berita menjadi 6 baris */
+    overflow:hidden; /* Menyembunyikan kelebihan teks */
+}
+
+.info-link{
+    color:#005eab; /* Warna tautan informasi */
+    /* text-decoration:none; */ /* Garis bawah tautan (nonaktif) */
+}
+
+.info-link:hover{
+    color:#4582b0; /* Warna tautan saat di-hover */
+}
+
+/* Membatasi teks prestasi di card landing */
+.prestasi-text{
+    display:-webkit-box; /* Mengatur teks agar bisa dibatasi per baris */
+    -webkit-line-clamp:4; /* Membatasi teks maksimal 4 baris */
+    -webkit-box-orient:vertical; /* Mengatur susunan teks secara vertikal */
+    overflow:hidden; /* Menyembunyikan teks yang melebihi batas */
+}
+
+/* keunggulan sekolah */
+
+.keunggulan{
+    padding:70px; /* Ruang padding seksi keunggulan */
+    /* background:#f3f8fc; */ /* Warna latar seksi (nonaktif) */
+}
+
+.keunggulan-heading{
+    text-align:center; /* Posisi teks judul keunggulan di tengah */
+    margin-bottom:50px; /* Jarak bawah judul */
+}
+
+.keunggulan-heading span{
+    color:#e58b00; /* Warna teks span/sub-judul */
+    font-size:13px; /* Ukuran font sub-judul */
+}
+
+.keunggulan-heading h2{
+    color:#0866b3; /* Warna judul h2 keunggulan */
+    font-size:28px; /* Ukuran font judul */
+    font-weight:bold; /* Ketebalan font tebal */
+}
+
+.keunggulan-heading p{
+    color:#666; /* Warna paragraf keterangan */
+}
+
+.keunggulan-card{
+    height:100%; /* Tinggi kartu penuh */
+    padding:25px; /* Padding di dalam kartu keunggulan */
+    background:#fff; /* Warna latar kartu putih */
+    border:1px solid #6283aa; /* Garis border kartu */
+    border-radius:10px; /* Sudut melengkung kartu */
+    text-align:center; /* Teks di dalam kartu rata tengah */
+    transition:.3s; /* Transisi halus */
+}
+
+.keunggulan-card:hover{
+    transform:translateY(-6px); /* Kartu naik saat di-hover */
+    box-shadow:0 8px 20px #0002; /* Bayangan kartu saat di-hover */
+}
+
+.keunggulan-icon{
+    font-size:30px; /* Ukuran ikon keunggulan */
+    color:#0866b3; /* Warna ikon keunggulan */
+}
+
+.keunggulan-card h4{
+    font-size:19px; /* Ukuran font judul kartu keunggulan */
+    color:#244D73; /* Warna judul kartu keunggulan */
+}
+
+.keunggulan-card p{
+    font-size:14px; /* Ukuran font teks kartu keunggulan */
+    color:#666; /* Warna teks deskripsi kartu */
 }
 
 
 /* =========================
-   GALERI
+   8. GURU DAN STAF
 ========================= */
-    
+
+.guru-section{
+    padding:80px; /* Padding seksi guru */
+    background:#fff; /* Warna latar seksi putih */
+}
+
+.guru-heading{
+    display:flex; /* Menggunakan flexbox untuk tata letak */
+    justify-content:space-between; /* Menyebar posisi elemen ke ujung */
+    align-items:center; /* Menyelaraskan posisi vertikal di tengah */
+    gap:20px; /* Jarak antar elemen */
+    margin-bottom:40px; /* Jarak bawah heading */
+}
+
+.guru-heading h2{
+    color:#0866b3; /* Warna judul seksi guru */
+    font-size:28px; /* Ukuran font judul */
+    font-weight:bold; /* Ketebalan font */
+}
+
+.guru-heading p{
+    color:#666; /* Warna paragraf keterangan */
+}
+
+.guru-button{
+    padding:10px 15px; /* Padding tombol */
+    background:#0866b3; /* Warna latar tombol */
+    color:#fff; /* Warna teks tombol */
+    border-radius:5px; /* Sudut melengkung tombol */
+    text-decoration:none; /* Menghilangkan garis bawah */
+}
+
+.guru-button:hover{
+    background:#005493; /* Warna latar tombol saat di-hover */
+    color:#fff; /* Warna teks tombol saat di-hover */
+}
+
+.guru-link{
+    display:block; /* Menjadikan tautan sebagai elemen blok */
+    height:100%; /* Tinggi penuh */
+    text-decoration:none; /* Menghilangkan garis bawah */
+    color:inherit; /* Mewarisi warna teks induk */
+}
+
+.guru-card{
+    height:100%; /* Tinggi kartu penuh */
+    border:1px solid #eee; /* Garis border kartu tipis */
+    border-radius:14px; /* Sudut melengkung kartu */
+    overflow:hidden; /* Menyembunyikan bagian luar yang meluber */
+    text-align:center; /* Posisi teks rata tengah */
+    transition:.3s; /* Transisi halus */
+}
+
+.guru-card:hover{
+    transform:translateY(-6px); /* Kartu naik saat di-hover */
+    box-shadow:0 8px 20px #0002; /* Bayangan kartu saat di-hover */
+}
+
+
+
+/* =========================
+   9. DETAIL GURU
+========================= */
+
+.breadcrumb-guru a{
+    color:#0866b3; /* Warna tautan breadcrumb */
+    text-decoration:none; /* Menghilangkan garis bawah tautan */
+}
+
+
+.nama-detail-guru{
+    color:#0866b3; /* Warna nama detail guru */
+    font-weight:bold; /* Ketebalan font tebal */
+    margin:8px 0 20px; /* Margin atas, samping, bawah */
+}
+
+.data-guru{
+    padding:10px 0; /* Padding atas bawah baris data */
+    border-bottom:1px solid #eee; /* Garis bawah pemisah data */
+    margin:0; /* Margin nol */
+} */
+
+.data-guru span{
+    display:inline-block; /* Menampilkan span sebagai inline-block */
+    width:140px; /* Lebar tetap untuk label data */
+    color:#777; /* Warna teks label */
+}
+
+
+.guru-lain{
+    flex:0 0 180px; /* Ukuran fleksibel tetap untuk item guru lain */
+    color:#333; /* Warna teks */
+    text-decoration:none; /* Menghilangkan garis bawah */
+    transition:.3s; /* Transisi halus */
+}
+
+.guru-lain:hover{
+    transform:translateY(-5px); /* Efek naik saat di-hover */
+}
+
+.guru-lain img,
+.guru-lain .foto-kosong{
+    width:180px; /* Lebar foto guru lain */
+    height:220px; /* Tinggi foto guru lain */
+    object-fit:cover; /* Menyesuaikan gambar agar proporsional */
+}
+
+.guru-lain strong,
+.guru-lain small{
+    display:block; /* Menampilkan teks sebagai blok ke bawah */
+    margin-top:8px; /* Jarak atas */
+}
+
+.guru-lain small{
+    color:#777; /* Warna teks kecil */
+} */
+
+
+/* =========================
+   10. EKSTRAKURIKULER
+========================= */
+
+.eskul-section a{
+    color:inherit; /* Mewarisi warna teks induk */
+    text-decoration:none; /* Menghilangkan garis bawah */
+}
+
+.section-head{
+    display:flex; /* Tata letak flexbox */
+    justify-content:space-between; /* Posisi menyebar ujung ke ujung */
+    align-items:center; /* Penyelarasan vertikal tengah */
+}
+
+
+
+.section-head h2{
+    color:#0866b3; /* Warna judul header seksi */
+    font-size:30px; /* Ukuran font judul */
+    font-weight:700; /* Ketebalan font */
+    margin:5px 0; /* Margin atas bawah */
+}
+
+.section-head a{
+    display:inline-block; /* Tombol tautan inline-block */
+    background:#0866b3; /* Warna latar tombol */
+    color:#fff; /* Warna teks putih */
+    padding:11px 18px; /* Padding tombol */
+    border-radius:6px; /* Sudut melengkung */
+    font-size:14px; /* Ukuran font tombol */
+}
+
+
+/* Kartu ekstrakurikuler */
+.eskul-card{
+    display:flex; /* Tata letak flex horizontal */
+    height:250px; /* Tinggi tetap kartu eskul */
+    border:1px solid #e1e7ee; /* Garis border kartu */
+    border-radius:14px; /* Sudut melengkung kartu */
+    overflow:hidden; /* Menyembunyikan konten keluar */
+    box-shadow:0 2px 8px #0001; /* Bayangan halus */
+    transition:.3s; /* Transisi halus */
+}
+
+.eskul-card:hover{
+    transform:translateY(-7px); /* Kartu naik saat di-hover */
+    box-shadow:0 12px 25px #0002; /* Bayangan saat kartu di-hover */
+}
+
+.eskul-info{
+    width:50%; /* Lebar bagian informasi 50 persen */
+    padding:25px; /* Padding di dalam info eskul */
+    display:flex; /* Tata letak flex */
+    flex-direction:column; /* Arah kolom ke bawah */
+    justify-content:center; /* Posisi konten di tengah vertikal */
+}
+
+.eskul-info h4{
+    color:#0866b3; /* Warna judul eskul */
+    font-size:21px; /* Ukuran font judul eskul */
+    font-weight:700; /* Ketebalan font */
+    margin-bottom:18px; /* Jarak bawah judul */
+}
+
+.eskul-info p{
+    color:#777; /* Warna teks deskripsi eskul */
+    font-size:14px; /* Ukuran font deskripsi */
+    margin-bottom:10px; /* Jarak bawah paragraf */
+}
+
+
+
+/* =========================
+   11. DETAIL BERITA
+========================= */
+
+.berita-detail{
+    padding:50px 0 70px; /* Padding atas dan bawah seksi detail berita */
+    background:#f5f8fb; /* Warna latar belakang seksi */
+    min-height:80vh; /* Tinggi minimal seksi */
+}
+
+
+.berita-content{
+    max-width:900px; /* Lebar maksimal konten berita */
+    margin:auto; /* Posisi di tengah */
+    background:#fff; /* Warna latar putih */
+    padding:35px; /* Padding di dalam konten berita */
+    border-radius:14px; /* Sudut melengkung */
+    box-shadow:0 3px 12px #0002; /* Bayangan kotak berita */
+}
+
+/* =========================
+   12. GALERI
+========================= */
+
 .galeri-card{
-    background:#fff;
-    border-radius:14px;
-    overflow:hidden;
-    transition:transform .3s ease,box-shadow .3s ease;
+    /* position:relative; */ /* Posisi relatif (nonaktif) */
+    height:100%; /* Tinggi kartu penuh */
+    background:#fff; /* Warna latar putih */
+    border-radius:14px; /* Sudut melengkung */
+    overflow:hidden; /* Menyembunyikan gambar keluar */
+    transition:.3s; /* Transisi halus */
+    cursor:pointer; /* Mengubah kursor menjadi pointer saat diarahkan */
 }
 
 .galeri-card:hover{
-    transform:translateY(-7px);
-    box-shadow:0 10px 25px rgba(0,0,0,.12);
+    transform:translateY(-12px); /* Kartu naik saat di-hover */
+    box-shadow:0 15px 30px #0003; /* Bayangan tebal saat di-hover */
 }
 
-.galeri-card img{
-    width:100%;
-    height:230px;
-    object-fit:cover;
-    display:block;
-    transition:transform .4s ease;
-}
 
 .galeri-card:hover img{
-    transform:scale(1.05);
+    transform:scale(1.05); /* Memperbesar gambar galeri saat di-hover */
 }
 
-.galeri-card h5{
-    font-size:17px;
-    font-weight:600;
-    line-height:1.4;
-    color:#444;
-    margin:0;
-}
 
-.galeri-jumlah{
-    position:absolute;
-    bottom:10px;
-    left:10px;
-    background:rgba(0,0,0,.5);
-    color:#fff;
-    padding:4px 8px;
-    border-radius:4px;
-    font-size:13px;
-}
-
-/* GERAKAN CARD GALERI */
-.galeri-card{
-    position:relative !important;
-    transition:transform 0.3s ease, box-shadow 0.3s ease !important;
-    cursor:pointer !important;
-}
-
-.galeri-card:hover{
-    transform:translateY(-12px) !important;
-    box-shadow:0 15px 30px rgba(0,0,0,0.18) !important;
-}
 
 /* =========================
-   RESPONSIVE
+   13. RESPONSIF TABLET
 ========================= */
 
 @media(max-width:991px){
-
-    .navbar .nav-link{
-        padding:10px 5px;
-    }
-
-    #banner img{
-        height:320px;
-    }
-
+    .navbar .nav-link{padding:10px 5px} /* Mengurangi padding nav link pada tablet */
+    #banner img{height:320px} /* Mengubah tinggi banner pada tablet */
 }
+
+
+/* =========================
+   14. RESPONSIF HP
+========================= */
 
 @media(max-width:767px){
-
-    body{
-        padding-top:70px;
-    }
-
-    #banner img{
-        height:240px;
-    }
-
-    .eskul-card{
-        height:auto;
-        display:block;
-    }
-
-    .eskul-card img,
-    .eskul-info{
-        width:100%;
-    }
-
-    .eskul-card img{
-        height:200px;
-    }
-
-    .eskul-info{
-        padding:25px;
-    }
-
-}
-
-.navbar-toggler{
-    border:2px solid #005baa !important;
-    background:#fff !important;
-    box-shadow:none !important;
-    padding:6px 8px !important;
-}
-
-.navbar-toggler:focus,
-.navbar-toggler:active{
-    outline:none !important;
-    box-shadow:none !important;
-    background:#fff !important;
-}
-
-.navbar-toggler-icon{
-    background-image:none !important;
-    width:24px;
-    height:18px;
-    position:relative;
-    display:block;
-}
-
-.navbar-toggler-icon::before,
-.navbar-toggler-icon::after,
-.navbar-toggler-icon{
-    border-top:3px solid #005baa;
-}
-
-.navbar-toggler-icon::before,
-.navbar-toggler-icon::after{
-    content:"";
-    position:absolute;
-    left:0;
-    width:24px;
-}
-
-.navbar-toggler-icon::before{
-    top:5px;
-}
-
-.navbar-toggler-icon::after{
-    top:13px;
+    body{padding-top:70px} /* Mengurangi padding atas body pada HP */
+    #banner img{height:240px} /* Mengubah tinggi banner pada HP */
+    .guru-heading,.section-head{display:block} /* Mengubah tata letak heading menjadi block */
+    .guru-button,.section-head a{display:inline-block;margin-top:15px} /* Mengatur tombol agar turun ke bawah dengan margin */
+    .keunggulan-heading h2,.guru-heading h2,.section-head h2{font-size:24px} /* Menyesuaikan ukuran font judul pada HP */
+    .eskul-card{height:auto;display:block} /* Mengubah kartu eskul menjadi block dan tinggi otomatis */
+    .eskul-card img,.eskul-no-image,.eskul-info{width:100%} /* Lebar penuh elemen eskul pada HP */
+    .eskul-card img,.eskul-no-image{height:200px} /* Tinggi gambar eskul pada HP */
+    .eskul-info{padding:25px} /* Padding info eskul pada HP */
+    .guru-card img,.guru-no-image{height:280px} /* Tinggi gambar kartu guru pada HP */
+    .foto-detail-guru,.foto-kosong{height:300px} /* Tinggi foto detail guru pada HP */
+    .data-guru span{width:120px} /* Mengubah lebar label data guru pada HP */
+    .berita-content{padding:22px} /* Mengurangi padding konten berita pada HP */
+    .berita-content h1{font-size:26px} /* Mengurangi ukuran judul berita pada HP */
 }
